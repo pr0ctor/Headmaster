@@ -1,0 +1,98 @@
+﻿@model Headmaster.Models.AvailableCourses
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AvailableCourses</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Section)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Section)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CRN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CRN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SemesterYearID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SemesterYearID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Buildings.Abbreviaion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Buildings.Abbreviaion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Courses.CourseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Courses.CourseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Days.Day)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Days.Day)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Professors.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Professors.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SemesterYear.SemesterYearID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SemesterYear.SemesterYearID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Times.Times1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Times.Times1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AvailalbeCourseID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

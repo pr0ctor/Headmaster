@@ -1,0 +1,58 @@
+﻿@model Headmaster.Models.SemesterYear
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SemesterYear</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SemesterID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SemesterID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AvailableCourses.Section)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AvailableCourses.Section)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Semesters.Semester)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Semesters.Semester)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Years.YearID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Years.YearID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SemesterYearID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

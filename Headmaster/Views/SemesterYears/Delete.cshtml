@@ -1,0 +1,64 @@
+﻿@model Headmaster.Models.SemesterYear
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SemesterYear</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SemesterID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SemesterID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AvailableCourses.Section)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AvailableCourses.Section)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Semesters.Semester)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Semesters.Semester)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Years.YearID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Years.YearID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

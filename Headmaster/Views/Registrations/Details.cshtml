@@ -1,0 +1,34 @@
+﻿@model Headmaster.Models.Registrations
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Registrations</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AvailableCourses.Section)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AvailableCourses.Section)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Students.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Students.FirstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RegistrationID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

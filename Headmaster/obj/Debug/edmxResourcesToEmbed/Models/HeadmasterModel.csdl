@@ -1,0 +1,828 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="headmasterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationID" />
+    </Key>
+    <Property Name="MigrationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContextKey" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="StudentUsers" Relationship="Self.FK_StudentUsers_AspNetUsers" FromRole="AspNetUsers" ToRole="StudentUsers" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="AvailableCourses">
+    <Key>
+      <PropertyRef Name="AvailalbeCourseID" />
+    </Key>
+    <Property Name="AvailalbeCourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseID" Type="Int32" Nullable="false" />
+    <Property Name="Section" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CRN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TimeID" Type="Int32" Nullable="false" />
+    <Property Name="DayID" Type="Int32" Nullable="false" />
+    <Property Name="BuildingID" Type="Int32" Nullable="false" />
+    <Property Name="ProfessorID" Type="Int32" Nullable="false" />
+    <Property Name="SemesterYearID" Type="Int32" Nullable="false" />
+    <Property Name="RoomNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Buildings" Relationship="Self.FK_AvailableCourses_Buildings" FromRole="AvailableCourses" ToRole="Buildings" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK_AvailableCourses_Courses" FromRole="AvailableCourses" ToRole="Courses" />
+    <NavigationProperty Name="Days" Relationship="Self.FK_AvailableCourses_Days" FromRole="AvailableCourses" ToRole="Days" />
+    <NavigationProperty Name="Professors" Relationship="Self.FK_AvailableCourses_Professors" FromRole="AvailableCourses" ToRole="Professors" />
+    <NavigationProperty Name="SemesterYear" Relationship="Self.FK_AvailableCourses_SemesterYear" FromRole="AvailableCourses" ToRole="SemesterYear" />
+    <NavigationProperty Name="Times" Relationship="Self.FK_AvailableCourses_Times" FromRole="AvailableCourses" ToRole="Times" />
+    <NavigationProperty Name="Registrations" Relationship="Self.FK_Registrations_AvailableCourses" FromRole="AvailableCourses" ToRole="Registrations" />
+  </EntityType>
+  <EntityType Name="Buildings">
+    <Key>
+      <PropertyRef Name="BuildingID" />
+    </Key>
+    <Property Name="BuildingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Abbreviaion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BuidingName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AvailableCourses" Relationship="Self.FK_AvailableCourses_Buildings" FromRole="Buildings" ToRole="AvailableCourses" />
+  </EntityType>
+  <EntityType Name="Corequisites">
+    <Key>
+      <PropertyRef Name="CorequisiteID" />
+    </Key>
+    <Property Name="CorequisiteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseID" Type="Int32" Nullable="false" />
+    <Property Name="RequiredCourseID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK_Corequisites_Courses" FromRole="Corequisites" ToRole="Courses" />
+    <NavigationProperty Name="Courses1" Relationship="Self.FK_Corequisites_Courses1" FromRole="Corequisites" ToRole="Courses" />
+  </EntityType>
+  <EntityType Name="CourseGrades">
+    <Key>
+      <PropertyRef Name="CourseGradeID" />
+    </Key>
+    <Property Name="CourseGradeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RegistrationID" Type="Int32" Nullable="false" />
+    <Property Name="GradeID" Type="Int32" Nullable="false" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Grades" Relationship="Self.FK_CourseGrades_Grades" FromRole="CourseGrades" ToRole="Grades" />
+    <NavigationProperty Name="Registrations" Relationship="Self.FK_CourseGrades_Registrations" FromRole="CourseGrades" ToRole="Registrations" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_CourseGrades_Students" FromRole="CourseGrades" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Courses">
+    <Key>
+      <PropertyRef Name="CourseID" />
+    </Key>
+    <Property Name="CourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+    <Property Name="CourseName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Credits" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AvailableCourses" Relationship="Self.FK_AvailableCourses_Courses" FromRole="Courses" ToRole="AvailableCourses" />
+    <NavigationProperty Name="Corequisites" Relationship="Self.FK_Corequisites_Courses" FromRole="Courses" ToRole="Corequisites" />
+    <NavigationProperty Name="Corequisites1" Relationship="Self.FK_Corequisites_Courses1" FromRole="Courses" ToRole="Corequisites" />
+    <NavigationProperty Name="Departments" Relationship="Self.FK_Courses_Departments" FromRole="Courses" ToRole="Departments" />
+    <NavigationProperty Name="MajorRequirements" Relationship="Self.FK_MajorRequirements_Courses" FromRole="Courses" ToRole="MajorRequirements" />
+    <NavigationProperty Name="MinorRequirements" Relationship="Self.FK_MinorRequirements_Courses" FromRole="Courses" ToRole="MinorRequirements" />
+    <NavigationProperty Name="Prerequisites" Relationship="Self.FK_Prerequisites_Courses" FromRole="Courses" ToRole="Prerequisites" />
+    <NavigationProperty Name="Prerequisites1" Relationship="Self.FK_Prerequisites_Courses1" FromRole="Courses" ToRole="Prerequisites" />
+  </EntityType>
+  <EntityType Name="Days">
+    <Key>
+      <PropertyRef Name="DaysID" />
+    </Key>
+    <Property Name="DaysID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Day" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AvailableCourses" Relationship="Self.FK_AvailableCourses_Days" FromRole="Days" ToRole="AvailableCourses" />
+  </EntityType>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="DepartmentID" />
+    </Key>
+    <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Abbreviation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK_Courses_Departments" FromRole="Departments" ToRole="Courses" />
+  </EntityType>
+  <EntityType Name="Grades">
+    <Key>
+      <PropertyRef Name="GradeID" />
+    </Key>
+    <Property Name="GradeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Grade" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CourseGrades" Relationship="Self.FK_CourseGrades_Grades" FromRole="Grades" ToRole="CourseGrades" />
+  </EntityType>
+  <EntityType Name="MajorRequirements">
+    <Key>
+      <PropertyRef Name="MajorRequirementsID" />
+    </Key>
+    <Property Name="MajorRequirementsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MajorID" Type="Int32" Nullable="false" />
+    <Property Name="CourseID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK_MajorRequirements_Courses" FromRole="MajorRequirements" ToRole="Courses" />
+    <NavigationProperty Name="Majors" Relationship="Self.FK_MajorRequirements_Majors" FromRole="MajorRequirements" ToRole="Majors" />
+  </EntityType>
+  <EntityType Name="Majors">
+    <Key>
+      <PropertyRef Name="MajorID" />
+    </Key>
+    <Property Name="MajorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MajorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="MajorRequirements" Relationship="Self.FK_MajorRequirements_Majors" FromRole="Majors" ToRole="MajorRequirements" />
+    <NavigationProperty Name="StudentMajors" Relationship="Self.FK_StudentMajors_Majors" FromRole="Majors" ToRole="StudentMajors" />
+  </EntityType>
+  <EntityType Name="MinorRequirements">
+    <Key>
+      <PropertyRef Name="MinorRequirementsID" />
+    </Key>
+    <Property Name="MinorRequirementsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MinorID" Type="Int32" Nullable="false" />
+    <Property Name="CourseID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK_MinorRequirements_Courses" FromRole="MinorRequirements" ToRole="Courses" />
+    <NavigationProperty Name="Minors" Relationship="Self.FK_MinorRequirements_Minors" FromRole="MinorRequirements" ToRole="Minors" />
+  </EntityType>
+  <EntityType Name="Minors">
+    <Key>
+      <PropertyRef Name="MinorID" />
+    </Key>
+    <Property Name="MinorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MinorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="MinorRequirements" Relationship="Self.FK_MinorRequirements_Minors" FromRole="Minors" ToRole="MinorRequirements" />
+    <NavigationProperty Name="StudentMinors" Relationship="Self.FK_StudentMinors_Minors" FromRole="Minors" ToRole="StudentMinors" />
+  </EntityType>
+  <EntityType Name="Prerequisites">
+    <Key>
+      <PropertyRef Name="PrerequisiteID" />
+    </Key>
+    <Property Name="PrerequisiteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseID" Type="Int32" Nullable="false" />
+    <Property Name="RequiredCourseID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK_Prerequisites_Courses" FromRole="Prerequisites" ToRole="Courses" />
+    <NavigationProperty Name="Courses1" Relationship="Self.FK_Prerequisites_Courses1" FromRole="Prerequisites" ToRole="Courses" />
+  </EntityType>
+  <EntityType Name="Professors">
+    <Key>
+      <PropertyRef Name="ProfessorID" />
+    </Key>
+    <Property Name="ProfessorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AvailableCourses" Relationship="Self.FK_AvailableCourses_Professors" FromRole="Professors" ToRole="AvailableCourses" />
+  </EntityType>
+  <EntityType Name="Registrations">
+    <Key>
+      <PropertyRef Name="RegistrationID" />
+    </Key>
+    <Property Name="RegistrationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="AvailableCourseID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AvailableCourses" Relationship="Self.FK_Registrations_AvailableCourses" FromRole="Registrations" ToRole="AvailableCourses" />
+    <NavigationProperty Name="CourseGrades" Relationship="Self.FK_CourseGrades_Registrations" FromRole="Registrations" ToRole="CourseGrades" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Registrations_Students" FromRole="Registrations" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Semesters">
+    <Key>
+      <PropertyRef Name="SemesterID" />
+    </Key>
+    <Property Name="SemesterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Semester" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="SemesterYear" Relationship="Self.FK_SemesterYear_Semesters" FromRole="Semesters" ToRole="SemesterYear" />
+  </EntityType>
+  <EntityType Name="SemesterYear">
+    <Key>
+      <PropertyRef Name="SemesterYearID" />
+    </Key>
+    <Property Name="SemesterYearID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SemesterID" Type="Int32" Nullable="false" />
+    <Property Name="YearID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AvailableCourses" Relationship="Self.FK_AvailableCourses_SemesterYear" FromRole="SemesterYear" ToRole="AvailableCourses" />
+    <NavigationProperty Name="Semesters" Relationship="Self.FK_SemesterYear_Semesters" FromRole="SemesterYear" ToRole="Semesters" />
+    <NavigationProperty Name="Years" Relationship="Self.FK_SemesterYear_Years" FromRole="SemesterYear" ToRole="Years" />
+  </EntityType>
+  <EntityType Name="StudentMajors">
+    <Key>
+      <PropertyRef Name="StudentMajorID" />
+    </Key>
+    <Property Name="StudentMajorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="MajorID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Majors" Relationship="Self.FK_StudentMajors_Majors" FromRole="StudentMajors" ToRole="Majors" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_StudentMajors_Students" FromRole="StudentMajors" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="StudentMinors">
+    <Key>
+      <PropertyRef Name="StudentMinorID" />
+    </Key>
+    <Property Name="StudentMinorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="MinorID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Minors" Relationship="Self.FK_StudentMinors_Minors" FromRole="StudentMinors" ToRole="Minors" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_StudentMinors_Students" FromRole="StudentMinors" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Students">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VIPID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CourseGrades" Relationship="Self.FK_CourseGrades_Students" FromRole="Students" ToRole="CourseGrades" />
+    <NavigationProperty Name="Registrations" Relationship="Self.FK_Registrations_Students" FromRole="Students" ToRole="Registrations" />
+    <NavigationProperty Name="StudentMajors" Relationship="Self.FK_StudentMajors_Students" FromRole="Students" ToRole="StudentMajors" />
+    <NavigationProperty Name="StudentMinors" Relationship="Self.FK_StudentMinors_Students" FromRole="Students" ToRole="StudentMinors" />
+    <NavigationProperty Name="StudentUsers" Relationship="Self.FK_StudentUsers_Students" FromRole="Students" ToRole="StudentUsers" />
+  </EntityType>
+  <EntityType Name="StudentUsers">
+    <Key>
+      <PropertyRef Name="StudentUserID" />
+    </Key>
+    <Property Name="StudentUserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_StudentUsers_AspNetUsers" FromRole="StudentUsers" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_StudentUsers_Students" FromRole="StudentUsers" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Times">
+    <Key>
+      <PropertyRef Name="TimeID" />
+    </Key>
+    <Property Name="TimeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Times1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AvailableCourses" Relationship="Self.FK_AvailableCourses_Times" FromRole="Times" ToRole="AvailableCourses" />
+  </EntityType>
+  <EntityType Name="Years">
+    <Key>
+      <PropertyRef Name="YearID" />
+    </Key>
+    <Property Name="YearID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="SemesterYear" Relationship="Self.FK_SemesterYear_Years" FromRole="Years" ToRole="SemesterYear" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentUsers_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="StudentUsers" Type="Self.StudentUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StudentUsers">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AvailableCourses_Buildings">
+    <End Role="Buildings" Type="Self.Buildings" Multiplicity="1" />
+    <End Role="AvailableCourses" Type="Self.AvailableCourses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Buildings">
+        <PropertyRef Name="BuildingID" />
+      </Principal>
+      <Dependent Role="AvailableCourses">
+        <PropertyRef Name="BuildingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AvailableCourses_Courses">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+    <End Role="AvailableCourses" Type="Self.AvailableCourses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="AvailableCourses">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AvailableCourses_Days">
+    <End Role="Days" Type="Self.Days" Multiplicity="1" />
+    <End Role="AvailableCourses" Type="Self.AvailableCourses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Days">
+        <PropertyRef Name="DaysID" />
+      </Principal>
+      <Dependent Role="AvailableCourses">
+        <PropertyRef Name="DayID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AvailableCourses_Professors">
+    <End Role="Professors" Type="Self.Professors" Multiplicity="1" />
+    <End Role="AvailableCourses" Type="Self.AvailableCourses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professors">
+        <PropertyRef Name="ProfessorID" />
+      </Principal>
+      <Dependent Role="AvailableCourses">
+        <PropertyRef Name="ProfessorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AvailableCourses_SemesterYear">
+    <End Role="SemesterYear" Type="Self.SemesterYear" Multiplicity="1" />
+    <End Role="AvailableCourses" Type="Self.AvailableCourses" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="SemesterYear">
+        <PropertyRef Name="SemesterYearID" />
+      </Principal>
+      <Dependent Role="AvailableCourses">
+        <PropertyRef Name="AvailalbeCourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AvailableCourses_Times">
+    <End Role="Times" Type="Self.Times" Multiplicity="1" />
+    <End Role="AvailableCourses" Type="Self.AvailableCourses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Times">
+        <PropertyRef Name="TimeID" />
+      </Principal>
+      <Dependent Role="AvailableCourses">
+        <PropertyRef Name="TimeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Registrations_AvailableCourses">
+    <End Role="AvailableCourses" Type="Self.AvailableCourses" Multiplicity="1" />
+    <End Role="Registrations" Type="Self.Registrations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AvailableCourses">
+        <PropertyRef Name="AvailalbeCourseID" />
+      </Principal>
+      <Dependent Role="Registrations">
+        <PropertyRef Name="AvailableCourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Corequisites_Courses">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+    <End Role="Corequisites" Type="Self.Corequisites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="Corequisites">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Corequisites_Courses1">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+    <End Role="Corequisites" Type="Self.Corequisites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="Corequisites">
+        <PropertyRef Name="RequiredCourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseGrades_Grades">
+    <End Role="Grades" Type="Self.Grades" Multiplicity="1" />
+    <End Role="CourseGrades" Type="Self.CourseGrades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grades">
+        <PropertyRef Name="GradeID" />
+      </Principal>
+      <Dependent Role="CourseGrades">
+        <PropertyRef Name="GradeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseGrades_Registrations">
+    <End Role="Registrations" Type="Self.Registrations" Multiplicity="1" />
+    <End Role="CourseGrades" Type="Self.CourseGrades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Registrations">
+        <PropertyRef Name="RegistrationID" />
+      </Principal>
+      <Dependent Role="CourseGrades">
+        <PropertyRef Name="RegistrationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseGrades_Students">
+    <End Role="Students" Type="Self.Students" Multiplicity="1" />
+    <End Role="CourseGrades" Type="Self.CourseGrades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="CourseGrades">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Courses_Departments">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+    <End Role="Courses" Type="Self.Courses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="DepartmentID" />
+      </Principal>
+      <Dependent Role="Courses">
+        <PropertyRef Name="DepartmentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MajorRequirements_Courses">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+    <End Role="MajorRequirements" Type="Self.MajorRequirements" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="MajorRequirements">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MinorRequirements_Courses">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+    <End Role="MinorRequirements" Type="Self.MinorRequirements" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="MinorRequirements">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Prerequisites_Courses">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+    <End Role="Prerequisites" Type="Self.Prerequisites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="Prerequisites">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Prerequisites_Courses1">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="1" />
+    <End Role="Prerequisites" Type="Self.Prerequisites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="Prerequisites">
+        <PropertyRef Name="RequiredCourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MajorRequirements_Majors">
+    <End Role="Majors" Type="Self.Majors" Multiplicity="1" />
+    <End Role="MajorRequirements" Type="Self.MajorRequirements" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Majors">
+        <PropertyRef Name="MajorID" />
+      </Principal>
+      <Dependent Role="MajorRequirements">
+        <PropertyRef Name="MajorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentMajors_Majors">
+    <End Role="Majors" Type="Self.Majors" Multiplicity="1" />
+    <End Role="StudentMajors" Type="Self.StudentMajors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Majors">
+        <PropertyRef Name="MajorID" />
+      </Principal>
+      <Dependent Role="StudentMajors">
+        <PropertyRef Name="MajorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MinorRequirements_Minors">
+    <End Role="Minors" Type="Self.Minors" Multiplicity="1" />
+    <End Role="MinorRequirements" Type="Self.MinorRequirements" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Minors">
+        <PropertyRef Name="MinorID" />
+      </Principal>
+      <Dependent Role="MinorRequirements">
+        <PropertyRef Name="MinorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentMinors_Minors">
+    <End Role="Minors" Type="Self.Minors" Multiplicity="1" />
+    <End Role="StudentMinors" Type="Self.StudentMinors" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Minors">
+        <PropertyRef Name="MinorID" />
+      </Principal>
+      <Dependent Role="StudentMinors">
+        <PropertyRef Name="StudentMinorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Registrations_Students">
+    <End Role="Students" Type="Self.Students" Multiplicity="1" />
+    <End Role="Registrations" Type="Self.Registrations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="Registrations">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SemesterYear_Semesters">
+    <End Role="Semesters" Type="Self.Semesters" Multiplicity="1" />
+    <End Role="SemesterYear" Type="Self.SemesterYear" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Semesters">
+        <PropertyRef Name="SemesterID" />
+      </Principal>
+      <Dependent Role="SemesterYear">
+        <PropertyRef Name="SemesterYearID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SemesterYear_Years">
+    <End Role="Years" Type="Self.Years" Multiplicity="1" />
+    <End Role="SemesterYear" Type="Self.SemesterYear" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Years">
+        <PropertyRef Name="YearID" />
+      </Principal>
+      <Dependent Role="SemesterYear">
+        <PropertyRef Name="SemesterYearID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentMajors_Students">
+    <End Role="Students" Type="Self.Students" Multiplicity="1" />
+    <End Role="StudentMajors" Type="Self.StudentMajors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="StudentMajors">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentMinors_Students">
+    <End Role="Students" Type="Self.Students" Multiplicity="1" />
+    <End Role="StudentMinors" Type="Self.StudentMinors" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="StudentMinors">
+        <PropertyRef Name="StudentMinorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentUsers_Students">
+    <End Role="Students" Type="Self.Students" Multiplicity="1" />
+    <End Role="StudentUsers" Type="Self.StudentUsers" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="StudentUsers">
+        <PropertyRef Name="StudentUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="headmasterEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+    <EntitySet Name="AvailableCourses" EntityType="Self.AvailableCourses" />
+    <EntitySet Name="Buildings" EntityType="Self.Buildings" />
+    <EntitySet Name="Corequisites" EntityType="Self.Corequisites" />
+    <EntitySet Name="CourseGrades" EntityType="Self.CourseGrades" />
+    <EntitySet Name="Courses" EntityType="Self.Courses" />
+    <EntitySet Name="Days" EntityType="Self.Days" />
+    <EntitySet Name="Departments" EntityType="Self.Departments" />
+    <EntitySet Name="Grades" EntityType="Self.Grades" />
+    <EntitySet Name="MajorRequirements" EntityType="Self.MajorRequirements" />
+    <EntitySet Name="Majors" EntityType="Self.Majors" />
+    <EntitySet Name="MinorRequirements" EntityType="Self.MinorRequirements" />
+    <EntitySet Name="Minors" EntityType="Self.Minors" />
+    <EntitySet Name="Prerequisites" EntityType="Self.Prerequisites" />
+    <EntitySet Name="Professors" EntityType="Self.Professors" />
+    <EntitySet Name="Registrations" EntityType="Self.Registrations" />
+    <EntitySet Name="Semesters" EntityType="Self.Semesters" />
+    <EntitySet Name="SemesterYear" EntityType="Self.SemesterYear" />
+    <EntitySet Name="StudentMajors" EntityType="Self.StudentMajors" />
+    <EntitySet Name="StudentMinors" EntityType="Self.StudentMinors" />
+    <EntitySet Name="Students" EntityType="Self.Students" />
+    <EntitySet Name="StudentUsers" EntityType="Self.StudentUsers" />
+    <EntitySet Name="Times" EntityType="Self.Times" />
+    <EntitySet Name="Years" EntityType="Self.Years" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentUsers_AspNetUsers" Association="Self.FK_StudentUsers_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="StudentUsers" EntitySet="StudentUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AvailableCourses_Buildings" Association="Self.FK_AvailableCourses_Buildings">
+      <End Role="Buildings" EntitySet="Buildings" />
+      <End Role="AvailableCourses" EntitySet="AvailableCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AvailableCourses_Courses" Association="Self.FK_AvailableCourses_Courses">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="AvailableCourses" EntitySet="AvailableCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AvailableCourses_Days" Association="Self.FK_AvailableCourses_Days">
+      <End Role="Days" EntitySet="Days" />
+      <End Role="AvailableCourses" EntitySet="AvailableCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AvailableCourses_Professors" Association="Self.FK_AvailableCourses_Professors">
+      <End Role="Professors" EntitySet="Professors" />
+      <End Role="AvailableCourses" EntitySet="AvailableCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AvailableCourses_SemesterYear" Association="Self.FK_AvailableCourses_SemesterYear">
+      <End Role="SemesterYear" EntitySet="SemesterYear" />
+      <End Role="AvailableCourses" EntitySet="AvailableCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AvailableCourses_Times" Association="Self.FK_AvailableCourses_Times">
+      <End Role="Times" EntitySet="Times" />
+      <End Role="AvailableCourses" EntitySet="AvailableCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Registrations_AvailableCourses" Association="Self.FK_Registrations_AvailableCourses">
+      <End Role="AvailableCourses" EntitySet="AvailableCourses" />
+      <End Role="Registrations" EntitySet="Registrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Corequisites_Courses" Association="Self.FK_Corequisites_Courses">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Corequisites" EntitySet="Corequisites" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Corequisites_Courses1" Association="Self.FK_Corequisites_Courses1">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Corequisites" EntitySet="Corequisites" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseGrades_Grades" Association="Self.FK_CourseGrades_Grades">
+      <End Role="Grades" EntitySet="Grades" />
+      <End Role="CourseGrades" EntitySet="CourseGrades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseGrades_Registrations" Association="Self.FK_CourseGrades_Registrations">
+      <End Role="Registrations" EntitySet="Registrations" />
+      <End Role="CourseGrades" EntitySet="CourseGrades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseGrades_Students" Association="Self.FK_CourseGrades_Students">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="CourseGrades" EntitySet="CourseGrades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Courses_Departments" Association="Self.FK_Courses_Departments">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Courses" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MajorRequirements_Courses" Association="Self.FK_MajorRequirements_Courses">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="MajorRequirements" EntitySet="MajorRequirements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MinorRequirements_Courses" Association="Self.FK_MinorRequirements_Courses">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="MinorRequirements" EntitySet="MinorRequirements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Prerequisites_Courses" Association="Self.FK_Prerequisites_Courses">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Prerequisites" EntitySet="Prerequisites" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Prerequisites_Courses1" Association="Self.FK_Prerequisites_Courses1">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Prerequisites" EntitySet="Prerequisites" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MajorRequirements_Majors" Association="Self.FK_MajorRequirements_Majors">
+      <End Role="Majors" EntitySet="Majors" />
+      <End Role="MajorRequirements" EntitySet="MajorRequirements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentMajors_Majors" Association="Self.FK_StudentMajors_Majors">
+      <End Role="Majors" EntitySet="Majors" />
+      <End Role="StudentMajors" EntitySet="StudentMajors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MinorRequirements_Minors" Association="Self.FK_MinorRequirements_Minors">
+      <End Role="Minors" EntitySet="Minors" />
+      <End Role="MinorRequirements" EntitySet="MinorRequirements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentMinors_Minors" Association="Self.FK_StudentMinors_Minors">
+      <End Role="Minors" EntitySet="Minors" />
+      <End Role="StudentMinors" EntitySet="StudentMinors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Registrations_Students" Association="Self.FK_Registrations_Students">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Registrations" EntitySet="Registrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SemesterYear_Semesters" Association="Self.FK_SemesterYear_Semesters">
+      <End Role="Semesters" EntitySet="Semesters" />
+      <End Role="SemesterYear" EntitySet="SemesterYear" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SemesterYear_Years" Association="Self.FK_SemesterYear_Years">
+      <End Role="Years" EntitySet="Years" />
+      <End Role="SemesterYear" EntitySet="SemesterYear" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentMajors_Students" Association="Self.FK_StudentMajors_Students">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="StudentMajors" EntitySet="StudentMajors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentMinors_Students" Association="Self.FK_StudentMinors_Students">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="StudentMinors" EntitySet="StudentMinors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentUsers_Students" Association="Self.FK_StudentUsers_Students">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="StudentUsers" EntitySet="StudentUsers" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

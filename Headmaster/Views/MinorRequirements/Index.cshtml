@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Headmaster.Models.MinorRequirements>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Courses.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Minors.MinorName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Courses.CourseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Minors.MinorName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MinorRequirementsID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MinorRequirementsID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MinorRequirementsID })
+        </td>
+    </tr>
+}
+
+</table>

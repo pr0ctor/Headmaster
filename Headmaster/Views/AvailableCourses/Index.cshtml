@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Headmaster.Models.AvailableCourses>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Section)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CRN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SemesterYearID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Buildings.Abbreviaion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Courses.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Days.Day)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Professors.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SemesterYear.SemesterYearID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Times.Times1)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Section)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CRN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SemesterYearID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Buildings.Abbreviaion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Courses.CourseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Days.Day)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Professors.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SemesterYear.SemesterYearID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Times.Times1)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AvailalbeCourseID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AvailalbeCourseID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AvailalbeCourseID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Headmaster.Models.Corequisites>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Courses.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Courses1.CourseName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Courses.CourseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Courses1.CourseName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CorequisiteID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CorequisiteID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CorequisiteID })
+        </td>
+    </tr>
+}
+
+</table>
