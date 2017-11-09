@@ -18,7 +18,7 @@ namespace Headmaster.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            var students = db.Students.Include(s => s.StudentMinors).Include(s => s.StudentUsers);
+            var students = db.Students.Include(s => s.StudentMinors);
             return View(students.ToList());
         }
 
@@ -37,11 +37,20 @@ namespace Headmaster.Controllers
             return View(students);
         }
 
+        //Gets the student ID from the userID 
+        public Students QueryStudentID(String UserId)
+        {
+            var list= from s in db.Students
+                          where s.UserId.Equals(UserId)
+                          select s;
+            Students student = list.First();
+            return student;
+        }
         public ActionResult StudentDashBoard()
         {
             String userID=User.Identity.GetUserId();
           
-            //Students student= db.Students.Include("StudentUsers").Where(userID=StudentUser.Id)
+            
 
             return View();
         }
@@ -50,7 +59,7 @@ namespace Headmaster.Controllers
         public ActionResult Create()
         {
            ViewBag.StudentID = new SelectList(db.StudentMinors, "StudentMinorID", "StudentMinorID");
-           ViewBag.StudentID = new SelectList(db.StudentUsers, "StudentUserID", "UserID");
+          
             return View();
         }
 
@@ -70,24 +79,26 @@ namespace Headmaster.Controllers
             }
 
             ViewBag.StudentID = new SelectList(db.StudentMinors, "StudentMinorID", "StudentMinorID", students.StudentID);
-           // ViewBag.StudentID = new SelectList(db.StudentUsers, "StudentUserID", "UserID", students.StudentID);
+           
             return View(students);
         }
 
         // GET: Students/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit()
         {
-            if (id == null)
+            
+            if (!User.Identity.IsAuthenticated)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Students students = db.Students.Find(id);
+            Students students = QueryStudentID(User.Identity.GetUserId());
+                
             if (students == null)
             {
                 return HttpNotFound();
             }
             ViewBag.StudentID = new SelectList(db.StudentMinors, "StudentMinorID", "StudentMinorID", students.StudentID);
-            ViewBag.StudentID = new SelectList(db.StudentUsers, "StudentUserID", "UserID", students.StudentID);
+           
             return View(students);
         }
 
@@ -100,12 +111,13 @@ namespace Headmaster.Controllers
         {
             if (ModelState.IsValid)
             {
+                students.UserId = User.Identity.GetUserId();
                 db.Entry(students).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("StudentDashBoard");
             }
             ViewBag.StudentID = new SelectList(db.StudentMinors, "StudentMinorID", "StudentMinorID", students.StudentID);
-            ViewBag.StudentID = new SelectList(db.StudentUsers, "StudentUserID", "UserID", students.StudentID);
+          
             return View(students);
         }
 

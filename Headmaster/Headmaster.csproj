@@ -312,9 +312,6 @@
     <Compile Include="Models\Students.cs">
       <DependentUpon>HeadmasterModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\StudentUsers.cs">
-      <DependentUpon>HeadmasterModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>HeadmasterModel.tt</DependentUpon>
     </Compile>

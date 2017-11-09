@@ -36,7 +36,6 @@ namespace Headmaster.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentMajors> StudentMajors { get; set; }
         public virtual StudentMinors StudentMinors { get; set; }
-        public virtual StudentUsers StudentUsers { get; set; }
         public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

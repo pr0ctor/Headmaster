@@ -226,14 +226,17 @@
     <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="MiddleName" Type="varchar" MaxLength="50" />
     <Property Name="VIPID" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
   </EntityType>
-  <EntityType Name="StudentUsers">
+  <EntityType Name="sysdiagrams">
     <Key>
-      <PropertyRef Name="StudentUserID" />
+      <PropertyRef Name="diagram_id" />
     </Key>
-    <Property Name="StudentUserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="StudentID" Type="int" Nullable="false" />
-    <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="Times">
     <Key>
@@ -617,27 +620,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_StudentUsers_AspNetUsers">
+  <Association Name="FK_Students_AspNetUsers">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-    <End Role="StudentUsers" Type="Self.StudentUsers" Multiplicity="*" />
+    <End Role="Students" Type="Self.Students" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="StudentUsers">
-        <PropertyRef Name="UserID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_StudentUsers_Students">
-    <End Role="Students" Type="Self.Students" Multiplicity="1" />
-    <End Role="StudentUsers" Type="Self.StudentUsers" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Students">
-        <PropertyRef Name="StudentID" />
-      </Principal>
-      <Dependent Role="StudentUsers">
-        <PropertyRef Name="StudentUserID" />
+      <Dependent Role="Students">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -668,7 +659,7 @@
     <EntitySet Name="StudentMajors" EntityType="Self.StudentMajors" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StudentMinors" EntityType="Self.StudentMinors" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="StudentUsers" EntityType="Self.StudentUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Times" EntityType="Self.Times" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Years" EntityType="Self.Years" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_AvailableCourses_Buildings" Association="Self.FK_AvailableCourses_Buildings">
@@ -791,13 +782,9 @@
       <End Role="Students" EntitySet="Students" />
       <End Role="StudentMinors" EntitySet="StudentMinors" />
     </AssociationSet>
-    <AssociationSet Name="FK_StudentUsers_AspNetUsers" Association="Self.FK_StudentUsers_AspNetUsers">
+    <AssociationSet Name="FK_Students_AspNetUsers" Association="Self.FK_Students_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="StudentUsers" EntitySet="StudentUsers" />
-    </AssociationSet>
-    <AssociationSet Name="FK_StudentUsers_Students" Association="Self.FK_StudentUsers_Students">
       <End Role="Students" EntitySet="Students" />
-      <End Role="StudentUsers" EntitySet="StudentUsers" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

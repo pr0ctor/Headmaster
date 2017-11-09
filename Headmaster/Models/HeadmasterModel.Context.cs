@@ -50,7 +50,6 @@ namespace Headmaster.Models
         public virtual DbSet<StudentMajors> StudentMajors { get; set; }
         public virtual DbSet<StudentMinors> StudentMinors { get; set; }
         public virtual DbSet<Students> Students { get; set; }
-        public virtual DbSet<StudentUsers> StudentUsers { get; set; }
         public virtual DbSet<Times> Times { get; set; }
         public virtual DbSet<Years> Years { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }

@@ -30,12 +30,10 @@
         <EntityTypeShape EntityType="headmasterModel.StudentMajors" Width="1.5" PointX="10.5" PointY="16.375" IsExpanded="true" />
         <EntityTypeShape EntityType="headmasterModel.StudentMinors" Width="1.5" PointX="10.5" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="headmasterModel.Students" Width="1.5" PointX="8.25" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="headmasterModel.StudentUsers" Width="1.5" PointX="18.25" PointY="13.25" IsExpanded="true" />
         <EntityTypeShape EntityType="headmasterModel.Times" Width="1.5" PointX="3" PointY="19.5" IsExpanded="true" />
         <EntityTypeShape EntityType="headmasterModel.Years" Width="1.5" PointX="0.75" PointY="17.125" IsExpanded="true" />
         <AssociationConnector Association="headmasterModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="headmasterModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="headmasterModel.FK_StudentUsers_AspNetUsers" ManuallyRouted="false" />
         <AssociationConnector Association="headmasterModel.FK_AvailableCourses_Buildings" ManuallyRouted="false" />
         <AssociationConnector Association="headmasterModel.FK_AvailableCourses_Courses" ManuallyRouted="false" />
         <AssociationConnector Association="headmasterModel.FK_AvailableCourses_Days" ManuallyRouted="false" />
@@ -62,7 +60,6 @@
         <AssociationConnector Association="headmasterModel.FK_SemesterYear_Years" ManuallyRouted="false" />
         <AssociationConnector Association="headmasterModel.FK_StudentMajors_Students" ManuallyRouted="false" />
         <AssociationConnector Association="headmasterModel.FK_StudentMinors_Students" ManuallyRouted="false" />
-        <AssociationConnector Association="headmasterModel.FK_StudentUsers_Students" ManuallyRouted="false" />
         <AssociationConnector Association="headmasterModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="headmasterModel.sysdiagrams" Width="1.5" PointX="8.375" PointY="0.75" />
         <AssociationConnector Association="headmasterModel.FK_Students_AspNetUsers" />

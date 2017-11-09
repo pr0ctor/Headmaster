@@ -26,9 +26,7 @@
         <th>
             @Html.DisplayNameFor(model => model.StudentMinors.StudentMinorID)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StudentUsers.UserID)
-        </th>
+        
         <th></th>
     </tr>
 
@@ -49,9 +47,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.StudentMinors.StudentMinorID)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentUsers.UserID)
-        </td>
+       
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.StudentID }) |
             @Html.ActionLink("Details", "Details", new { id=item.StudentID }) |
