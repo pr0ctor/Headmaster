@@ -27,6 +27,7 @@ namespace Headmaster.Models
         public string LastName { get; set; }
         public string MiddleName { get; set; }
         public int VIPID { get; set; }
+        public string UserId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseGrades> CourseGrades { get; set; }
@@ -36,5 +37,6 @@ namespace Headmaster.Models
         public virtual ICollection<StudentMajors> StudentMajors { get; set; }
         public virtual StudentMinors StudentMinors { get; set; }
         public virtual StudentUsers StudentUsers { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

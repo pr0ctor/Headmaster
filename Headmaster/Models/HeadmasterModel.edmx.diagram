@@ -64,6 +64,8 @@
         <AssociationConnector Association="headmasterModel.FK_StudentMinors_Students" ManuallyRouted="false" />
         <AssociationConnector Association="headmasterModel.FK_StudentUsers_Students" ManuallyRouted="false" />
         <AssociationConnector Association="headmasterModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="headmasterModel.sysdiagrams" Width="1.5" PointX="8.375" PointY="0.75" />
+        <AssociationConnector Association="headmasterModel.FK_Students_AspNetUsers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
