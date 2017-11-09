@@ -508,6 +508,7 @@
     <Content Include="Views\Years\Details.cshtml" />
     <Content Include="Views\Years\Edit.cshtml" />
     <Content Include="Views\Years\Index.cshtml" />
+    <Content Include="Views\Students\StudentDashBoard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

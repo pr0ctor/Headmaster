@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Headmaster.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Headmaster.Controllers
 {
@@ -36,11 +37,20 @@ namespace Headmaster.Controllers
             return View(students);
         }
 
+        public ActionResult StudentDashBoard()
+        {
+            String userID=User.Identity.GetUserId();
+          
+            //Students student= db.Students.Include("StudentUsers").Where(userID=StudentUser.Id)
+
+            return View();
+        }
+
         // GET: Students/Create
         public ActionResult Create()
         {
-            ViewBag.StudentID = new SelectList(db.StudentMinors, "StudentMinorID", "StudentMinorID");
-            ViewBag.StudentID = new SelectList(db.StudentUsers, "StudentUserID", "UserID");
+           ViewBag.StudentID = new SelectList(db.StudentMinors, "StudentMinorID", "StudentMinorID");
+           ViewBag.StudentID = new SelectList(db.StudentUsers, "StudentUserID", "UserID");
             return View();
         }
 
@@ -51,15 +61,16 @@ namespace Headmaster.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "StudentID,FirstName,LastName,MiddleName,VIPID")] Students students)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && User.Identity.IsAuthenticated)
             {
-                db.Students.Add(students);
+                students=db.Students.Add(students);
+
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("StudentDashBoard");
             }
 
             ViewBag.StudentID = new SelectList(db.StudentMinors, "StudentMinorID", "StudentMinorID", students.StudentID);
-            ViewBag.StudentID = new SelectList(db.StudentUsers, "StudentUserID", "UserID", students.StudentID);
+           // ViewBag.StudentID = new SelectList(db.StudentUsers, "StudentUserID", "UserID", students.StudentID);
             return View(students);
         }
 

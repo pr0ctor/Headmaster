@@ -163,7 +163,7 @@ namespace Headmaster.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Create", "Students");
                 }
                 AddErrors(result);
             }
@@ -366,6 +366,7 @@ namespace Headmaster.Controllers
                 if (info == null)
                 {
                     return View("ExternalLoginFailure");
+
                 }
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
