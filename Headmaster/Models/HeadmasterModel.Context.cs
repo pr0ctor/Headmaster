@@ -53,5 +53,6 @@ namespace Headmaster.Models
         public virtual DbSet<StudentUsers> StudentUsers { get; set; }
         public virtual DbSet<Times> Times { get; set; }
         public virtual DbSet<Years> Years { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }
