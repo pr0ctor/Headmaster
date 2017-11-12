@@ -20,6 +20,7 @@ namespace Headmaster.Controllers
             var availableCourses = db.AvailableCourses.Include(a => a.Buildings).Include(a => a.Courses).Include(a => a.Days).Include(a => a.Professors).Include(a => a.SemesterYear).Include(a => a.Times);
             return View(availableCourses.ToList());
         }
+        
 
         // GET: AvailableCourses/Details/5
         public ActionResult Details(int? id)
