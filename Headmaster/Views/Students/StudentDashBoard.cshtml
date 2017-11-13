@@ -1,17 +1,72 @@
-﻿@using Microsoft.AspNet.Identity
-@model Headmaster.Models.Students
-
+﻿@model Headmaster.Models.Students
 @{
     ViewBag.Title = "StudentDashBoard";
+    IEnumerable<Headmaster.Models.AvailableCourses> course = ViewData["Courses"] as IEnumerable<Headmaster.Models.AvailableCourses>;
+    
 }
 
-@if (Request.IsAuthenticated)
-{
-   
-}
+<h2>@Html.DisplayFor(model=>model.FullName)  </h2>
 
+<dl class="dl-horizontal">
+    <dt>
+        Name: 
+    </dt>
 
+    <dd>
+        @Html.DisplayFor(model => model.FullName)
+    </dd>
+    <dt>
+       MiddleName: 
+    </dt>
 
+    <dd>
+        @Html.DisplayFor(model => model.MiddleName)
+    </dd>
+    <dt>
+       VIPID: 
+    </dt>
 
+    <dd>
+        @Html.DisplayFor(model => model.VIPID)
+    </dd>
+    <dt>
+        Credits Taken: 
+    </dt>
 
+    <dd>
+        @Html.DisplayFor(model => model.TotalCredits)
+    </dd>
+ </dl>
+<h4>Course Registration</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            Department
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Credits
+        </th>
+    </tr>
+    
+    @foreach (var item in (IEnumerable<Headmaster.Models.AvailableCourses>)course)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Courses.Departments.Abbreviation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Courses.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Courses.Credits)
+            </td>
+        </tr>
+    }
+    </table>
+<p><a href="@Url.Action("Create","Registrations")" class="btn btn-primary btn-lg">Register</a></p>
+  
 

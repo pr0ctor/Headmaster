@@ -46,13 +46,98 @@ namespace Headmaster.Controllers
             Students student = list.First();
             return student;
         }
+        //Returns the total number of credits taken by a student
+        public int TotalCredits(Students student)
+        {
+            int credits = 0;
+            try
+            {
+                 credits = (from s in db.Registrations
+                               where s.StudentID == student.StudentID
+                               select s.AvailableCourses.Courses.Credits).Sum();
+            }catch(System.InvalidOperationException e)
+            {
+                credits = 0;
+            }
+
+
+            return credits;
+                        
+        }
+        //Returns last Year student registered for classes
+        public int getLastYear(Students student)
+        {
+            int Year=0;
+            try
+            {
+                Year = (from s in db.Registrations
+                        where s.StudentID == student.StudentID
+                        select s.AvailableCourses.SemesterYear.Years.Year).Max();
+            }
+            catch(System.InvalidOperationException e)
+            {
+                try
+                {
+                    Year = (from s in db.Years
+                            select s.Year).Max();
+                }catch(System.InvalidOperationException x)
+                {
+                    Year = 2017;
+                }
+            }
+            return Year;
+        }
+        // Returns last SemesterID in defualts to spring
+        //Also sorry did realize table was already filled so now 
+        /*Semester | SemesterID
+         * Spring   4
+         * Summer   5
+         * Fall     6
+         */
+        public int getLastSemester(int year, Students student)
+        {
+            int id = 4;
+            try
+            {
+             id = (from s in db.Registrations
+                            where s.StudentID == student.StudentID && year == s.AvailableCourses.SemesterYear.Years.Year
+                            select s.AvailableCourses.SemesterYear.Semesters.SemesterID).Max();
+                
+
+            }
+            catch (System.InvalidOperationException e)
+            {
+                
+            }
+            return id;
+        }
+        
         public ActionResult StudentDashBoard()
         {
-            String userID=User.Identity.GetUserId();
-          
+            if (User.Identity.IsAuthenticated)
+            {
+                Students student = QueryStudentID(User.Identity.GetUserId());
+                int Year = getLastYear(student);
+                int Semester = getLastSemester(Year, student);
+               
+                //Pulls most recent Registration
+                var course = from s in db.Registrations
+                             where s.StudentID == student.StudentID && s.AvailableCourses.SemesterYear.Years.Year == Year
+                             && s.AvailableCourses.SemesterYear.SemesterID == Semester
+                             select s.AvailableCourses;
+
+                ViewData["Courses"] = course;
+                student.TotalCredits = TotalCredits(student);
+                
+                return View(student);
+            }
+           
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             
 
-            return View();
+
+           
+
         }
 
         // GET: Students/Create
