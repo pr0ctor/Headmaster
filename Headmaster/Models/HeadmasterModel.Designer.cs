@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\RyFor\source\repos\Headmaster\Headmaster\Models\HeadmasterModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Chandler\Desktop\Fall 2017\CSCI 540\Headmaster\Headmaster\Models\HeadmasterModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
