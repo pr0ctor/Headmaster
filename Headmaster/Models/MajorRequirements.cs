@@ -17,8 +17,10 @@ namespace Headmaster.Models
         public int MajorRequirementsID { get; set; }
         public int MajorID { get; set; }
         public int CourseID { get; set; }
+        public int PriorityID { get; set; }
     
         public virtual Courses Courses { get; set; }
         public virtual Majors Majors { get; set; }
+        public virtual CoursePriority CoursePriority { get; set; }
     }
 }

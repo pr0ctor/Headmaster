@@ -39,9 +39,9 @@ namespace Headmaster.Controllers
         // GET: SemesterYears/Create
         public ActionResult Create()
         {
-            ViewBag.SemesterYearID = new SelectList(db.AvailableCourses, "AvailalbeCourseID", "Section");
-            ViewBag.SemesterYearID = new SelectList(db.Semesters, "SemesterID", "Semester");
-            ViewBag.SemesterYearID = new SelectList(db.Years, "YearID", "YearID");
+           // ViewBag.SemesterYearID = new SelectList(db.AvailableCourses, "AvailalbeCourseID", "Section");
+            ViewBag.SemesterID= new SelectList(db.Semesters, "SemesterID", "Semester");
+            ViewBag.YearId = new SelectList(db.Years, "YearID", "Year");
             return View();
         }
 
@@ -54,12 +54,13 @@ namespace Headmaster.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.SemesterYear.Add(semesterYear);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SemesterYearID = new SelectList(db.AvailableCourses, "AvailalbeCourseID", "Section", semesterYear.SemesterYearID);
+            //ViewBag.SemesterYearID = new SelectList(db.AvailableCourses, "AvailalbeCourseID", "Section", semesterYear.SemesterYearID);
             ViewBag.SemesterYearID = new SelectList(db.Semesters, "SemesterID", "Semester", semesterYear.SemesterYearID);
             ViewBag.SemesterYearID = new SelectList(db.Years, "YearID", "YearID", semesterYear.SemesterYearID);
             return View(semesterYear);

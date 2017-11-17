@@ -20,5 +20,7 @@ namespace Headmaster.Models
     
         public virtual Minors Minors { get; set; }
         public virtual Students Students { get; set; }
+        public virtual Minors Minors1 { get; set; }
+        public virtual Students Students1 { get; set; }
     }
 }

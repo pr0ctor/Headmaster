@@ -63,6 +63,13 @@
         <AssociationConnector Association="headmasterModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="headmasterModel.sysdiagrams" Width="1.5" PointX="8.375" PointY="0.75" />
         <AssociationConnector Association="headmasterModel.FK_Students_AspNetUsers" />
+        <AssociationConnector Association="headmasterModel.FK_AvailableCourses_SemesterYear1" />
+        <AssociationConnector Association="headmasterModel.FK_StudentMinors_Minors1" />
+        <AssociationConnector Association="headmasterModel.FK_SemesterYear_Semesters1" />
+        <AssociationConnector Association="headmasterModel.FK_SemesterYear_Years1" />
+        <AssociationConnector Association="headmasterModel.FK_StudentMinors_Students1" />
+        <EntityTypeShape EntityType="headmasterModel.CoursePriority" Width="1.5" PointX="10.375" PointY="0.875" />
+        <AssociationConnector Association="headmasterModel.FK_MajorRequirements_CoursePriority" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

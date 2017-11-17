@@ -12,19 +12,19 @@ namespace Headmaster.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Semesters
+    public partial class CoursePriority
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Semesters()
+        public CoursePriority()
         {
-            this.SemesterYear1 = new HashSet<SemesterYear>();
+            this.MajorRequirements = new HashSet<MajorRequirements>();
         }
     
-        public int SemesterID { get; set; }
-        public string Semester { get; set; }
+        public int PriorityID { get; set; }
+        public int PriorityLevel { get; set; }
+        public string Priority { get; set; }
     
-        public virtual SemesterYear SemesterYear { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SemesterYear> SemesterYear1 { get; set; }
+        public virtual ICollection<MajorRequirements> MajorRequirements { get; set; }
     }
 }

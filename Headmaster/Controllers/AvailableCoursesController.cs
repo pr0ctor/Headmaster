@@ -20,8 +20,74 @@ namespace Headmaster.Controllers
             var availableCourses = db.AvailableCourses.Include(a => a.Buildings).Include(a => a.Courses).Include(a => a.Days).Include(a => a.Professors).Include(a => a.SemesterYear).Include(a => a.Times);
             return View(availableCourses.ToList());
         }
-        
+        public ActionResult SearchAndRegister()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+               
+                var SemesterYear = (from s in db.SemesterYear.AsEnumerable()
+                               select new SelectListItem
+                               {
+                                   Text = s.SemesterYearName,
+                                   Value = s.SemesterID.ToString()
+                                   
+                               }).ToList();
+           
 
+                var Dept = (from s in db.Departments.AsEnumerable()
+                            select new SelectListItem
+                            {
+                                Text = s.DepartmentName,
+                                Value = s.DepartmentID.ToString()
+
+                            }).ToList();
+          
+
+                var Course = (from s in db.Courses.AsEnumerable()
+                               select new SelectListItem
+                               {
+                                   Text = s.CourseName,
+                                   Value = s.CourseID.ToString()
+                    
+                            }).ToList();
+
+                ViewBag.SemesterYearID = new SelectList(SemesterYear, "Value", "Text");
+                ViewBag.DepartmentID = new SelectList(Dept, "Value", "Text");
+                ViewBag.CourseNumber = new SelectList(Course, "Value", "Text");
+                ViewData["Course"]= db.AvailableCourses.ToList();
+               
+               
+
+                return View();
+            }
+            else
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+       
+       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SearchAndRegister(AvailableCourses model)
+        {
+            var search= db.AvailableCourses.ToList();
+            if (ModelState.IsValid)
+            {
+                var courses = from s in db.AvailableCourses
+                              where model.SemesterYear.SemesterID == s.SemesterYear.SemesterID &&
+                              model.SemesterYear.YearID == s.SemesterYear.YearID &&
+                              model.Courses.DepartmentID == s.Courses.DepartmentID
+                              select s;
+                search=courses.ToList();
+
+            }
+            ViewBag.SemesterYearID = new SelectList(db.SemesterYear);
+         
+            ViewBag.DepartmentID = new SelectList(db.Departments, "DepartmentID", "Department");
+            ViewBag.Searched = search;
+            return View();
+        }
+        
+        
         // GET: AvailableCourses/Details/5
         public ActionResult Details(int? id)
         {
@@ -92,6 +158,7 @@ namespace Headmaster.Controllers
             ViewBag.TimeID = new SelectList(db.Times, "TimeID", "Times1", availableCourses.TimeID);
             return View(availableCourses);
         }
+        
 
         // POST: AvailableCourses/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
