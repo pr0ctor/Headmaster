@@ -14,9 +14,17 @@ namespace Headmaster.Models
     
     public partial class Years
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Years()
+        {
+            this.SemesterYear1 = new HashSet<SemesterYear>();
+        }
+    
         public int YearID { get; set; }
         public int Year { get; set; }
     
         public virtual SemesterYear SemesterYear { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SemesterYear> SemesterYear1 { get; set; }
     }
 }

@@ -110,7 +110,7 @@ namespace Headmaster.Controllers
          * Summer   5
          * Fall     6
          */
-        public int getLastSemester(int year, Students student)
+        public int GetLastSemester(int year, Students student)
         {
             int id = 4;
             try
@@ -121,7 +121,7 @@ namespace Headmaster.Controllers
                 
 
             }
-            catch (System.InvalidOperationException e)
+            catch (System.InvalidOperationException)
             {
                 
             }
@@ -134,7 +134,7 @@ namespace Headmaster.Controllers
             {
                 Students student = QueryStudentID(User.Identity.GetUserId());
                 int Year = getLastYear(student);
-                int Semester = getLastSemester(Year, student);
+                int Semester = GetLastSemester(Year, student);
                
                 //Pulls most recent Registration
                 var course = from s in db.Registrations

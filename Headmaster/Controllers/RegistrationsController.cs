@@ -77,6 +77,7 @@ namespace Headmaster.Controllers
             }
             ViewBag.AvailableCourseID = new SelectList(db.AvailableCourses, "AvailalbeCourseID", "Section", registrations.AvailableCourseID);
             ViewBag.StudentID = new SelectList(db.Students, "StudentID", "FirstName", registrations.StudentID);
+         
             return View(registrations);
         }
 

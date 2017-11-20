@@ -39,5 +39,6 @@ namespace Headmaster.Models
         public virtual Times Times { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Registrations> Registrations { get; set; }
+        public virtual SemesterYear SemesterYear1 { get; set; }
     }
 }

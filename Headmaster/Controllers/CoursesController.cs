@@ -20,7 +20,7 @@ namespace Headmaster.Controllers
             var courses = db.Courses.Include(c => c.Departments);
             return View(courses.ToList());
         }
-
+       
         // GET: Courses/Details/5
         public ActionResult Details(int? id)
         {

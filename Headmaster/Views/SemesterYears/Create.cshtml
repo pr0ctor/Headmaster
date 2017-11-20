@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Create";
+    IEnumerable<SelectListItem> Semester = ViewBag.SemesterID as IEnumerable<SelectListItem>;
+    IEnumerable<SelectListItem> Year = ViewBag.YearId as IEnumerable<SelectListItem>; 
 }
 
 <h2>Create</h2>
@@ -18,16 +20,16 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SemesterID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SemesterID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model=>model.SemesterID, Semester, "Select", htmlAttributes: new { @class = "form-control", @id = "SemesterDropDown" })
                 @Html.ValidationMessageFor(model => model.SemesterID, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.YearID, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model=>model.YearID,null, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.YearID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.YearID, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model=>model.YearID, Year, "Select", htmlAttributes: new { @class = "form-control", @id = "YearDropDown" })
+                @Html.ValidationMessageFor(model => model.YearID,"", new { @class = "text-danger" })
             </div>
         </div>
 
