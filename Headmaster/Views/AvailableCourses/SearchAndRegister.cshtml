@@ -3,31 +3,38 @@
     ViewBag.Title = "SearchAndRegister";
     IEnumerable<Headmaster.Models.AvailableCourses> course = ViewData["Course"] as IEnumerable<Headmaster.Models.AvailableCourses>;
 }
-
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <h2>Search and Register</h2>
 
-
-@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-       <div class="form-group">
-        @Html.LabelFor(model => model.SemesterYear.SemesterID, "Semester", htmlAttributes: new { @class = "control-label col-md-2" })
+@using (Html.BeginForm("SearchAndRegister"))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+           <div class="form-group">
+            @Html.LabelFor(model => model.SemesterYear.SemesterID, "Semester", htmlAttributes: new { @class = "control-label col-md-2" })
        
-           <div class="col-md-10">
-            @Html.DropDownList("SemesterYearID", null, "Select", htmlAttributes: new { @class = "form-control", @id = "SemesterDropDown"})
-            @Html.ValidationMessageFor(model => model.SemesterYear.SemesterID, "", new { @class = "text-danger" })
-
-        </div>
-        @Html.LabelFor(model => model.Courses.DepartmentID, "Department", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10" >
-            @Html.DropDownList("DepartmentID", null,"Select", htmlAttributes: new { @class = "form-control", @id = "DepartmentDropDown" })
-            @Html.ValidationMessageFor(model => model.SemesterYear.SemesterID, "", new { @class = "text-danger" })
-        </div>
-    
-           <div class="form-group" >
-               @Html.LabelFor(model => model.Courses.CourseNumber,"Course", htmlAttributes: new { @class = "control-label col-md-2" })
                <div class="col-md-10">
-                   @Html.DropDownList("CourseNumber", null, "Select",htmlAttributes: new { @class = "form-control", @disabled = "disabled", @id="CourseDropDown" })
-                   @Html.ValidationMessageFor(model => model.Courses.CourseNumber, "", new { @class = "text-danger" })
-               </div>
+                @Html.DropDownList("SemesterYearID", null, "Select", htmlAttributes: new { @class = "form-control", @id = "SemesterDropDown" })
+                @Html.ValidationMessageFor(model => model.SemesterYear.SemesterID, "", new { @class = "text-danger" })
+
+            </div>
+             </div>
+            @Html.LabelFor(model => model.Courses.DepartmentID, "Department", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10" >
+                @Html.DropDownList("DepartmentID", null, "Select", htmlAttributes: new { @class = "form-control", @id = "DepartmentDropDown", @disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.SemesterYear.SemesterID, "", new { @class = "text-danger" })
+            </div>
+
+               <div class="form-group" >
+                   @Html.LabelFor(model => model.Courses.CourseNumber, "Course", htmlAttributes: new { @class = "control-label col-md-2" })
+                   <div class="col-md-10">
+                  
+               @Html.DropDownList("CourseNumber", null, "Select", htmlAttributes: new { @class = "form-control", @disabled = "disabled", @id = "CourseDropDown"})
+               @Html.ValidationMessageFor(model => model.Courses.CourseNumber, "", new { @class = "text-danger" })
+                    
+                   </div>
+                   </div>
+                <a onclick="this.form.submit();" class="btn btn-primary" id="SearchButton" >Search</a>
+}
 
    
 <table class="table">
@@ -98,16 +105,36 @@
 
 </table>
 
-<script>$(document).ready(function () {
+<script>    $(document).ready(function () {
+        //Unlock Course
     $('#DepartmentDropDown').change(function () {
 
         var selecteditem = $('#DepartmentDropDown').find(":selected").text();
 
-        if (selecteditem == "Select")
-        {
+        if (selecteditem == "Select") {
             $('#CourseDropDown').prop('disabled', true);
+         
         }
-        else
+        else {
             $('#CourseDropDown').prop('disabled', false);
+   
+        }
         });
+        //Unlock department
+    $('#SemesterDropDown').change(function () {
+
+        var selecteditem = $('#SemesterDropDown').find(":selected").text;
+
+        if (selecteditem == "Select") {
+            $('#DepartmentDropDown').prop('disabled', true);
+            
+        }
+        else {
+            $('#DepartmentDropDown').prop('disabled', false);
+
+
+        }
+    });
+       
+   
     });</script> 

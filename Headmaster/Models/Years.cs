@@ -23,7 +23,6 @@ namespace Headmaster.Models
         public int YearID { get; set; }
         public int Year { get; set; }
     
-        public virtual SemesterYear SemesterYear { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SemesterYear> SemesterYear1 { get; set; }
     }

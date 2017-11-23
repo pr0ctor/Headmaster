@@ -490,7 +490,7 @@ $.extend($.validator, {
 		numberOfInvalids: function() {
 			/// <summary>
 			/// Returns the number of invalid fields.
-			/// This depends on the internal validator state. It covers all fields only after
+			/// This depends on the internal validator State. It covers all fields only after
 			/// validating the complete form (on submit or via $("form").valid()). After validating
 			/// a single element, only that element is counted. Most useful in combination with the
 			/// invalidHandler-option.

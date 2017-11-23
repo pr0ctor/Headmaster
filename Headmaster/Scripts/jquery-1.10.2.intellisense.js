@@ -92,7 +92,7 @@ intellisense.annotate(jQuery, {
   },
   'Deferred': function() {
     /// <signature>
-    ///   <summary>A constructor function that returns a chainable utility object with methods to register multiple callbacks into callback queues, invoke callback queues, and relay the success or failure state of any synchronous or asynchronous function.</summary>
+    ///   <summary>A constructor function that returns a chainable utility object with methods to register multiple callbacks into callback queues, invoke callback queues, and relay the success or failure State of any synchronous or asynchronous function.</summary>
     ///   <param name="beforeStart" type="Function">A function that is called just before the constructor returns.</param>
     ///   <returns type="Deferred" />
     /// </signature>
@@ -477,7 +477,7 @@ intellisense.annotate(_object, {
     /// </signature>
   },
   'lock': function() {
-    /// <summary>Lock a callback list in its current state.</summary>
+    /// <summary>Lock a callback list in its current State.</summary>
     /// <returns type="Callbacks" />
   },
   'locked': function() {
@@ -607,8 +607,8 @@ intellisense.annotate(_object, {
     ///   <returns type="Deferred" />
     /// </signature>
   },
-  'state': function() {
-    /// <summary>Determine the current state of a Deferred object.</summary>
+  'State': function() {
+    /// <summary>Determine the current State of a Deferred object.</summary>
     /// <returns type="String" />
   },
   'then': function() {
@@ -1238,7 +1238,7 @@ intellisense.annotate(jQuery.fn, {
     /// <summary>Selects all elements that are enabled.</summary>
   },
   'end': function() {
-    /// <summary>End the most recent filtering operation in the current chain and return the set of matched elements to its previous state.</summary>
+    /// <summary>End the most recent filtering operation in the current chain and return the set of matched elements to its previous State.</summary>
     /// <returns type="jQuery" />
   },
   'eq': function() {

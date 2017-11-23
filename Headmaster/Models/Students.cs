@@ -29,11 +29,9 @@ namespace Headmaster.Models
         public string MiddleName { get; set; }
         public int VIPID { get; set; }
         public string UserId { get; set; }
+        public string FullName { get { return FirstName + " " + LastName; } }   
         public int TotalCredits { get; set; }
-        public string FullName { get { return string.Concat(FirstName + " " + LastName); } }
-    
-
-[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseGrades> CourseGrades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Registrations> Registrations { get; set; }

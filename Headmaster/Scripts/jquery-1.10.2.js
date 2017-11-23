@@ -125,7 +125,7 @@ var
 			window.removeEventListener( "load", completed, false );
 
 		} else {
-			document.detachEvent( "onreadystatechange", completed );
+			document.detachEvent( "onreadyStatechange", completed );
 			window.detachEvent( "onload", completed );
 		}
 	};
@@ -951,7 +951,7 @@ jQuery.ready.promise = function( obj ) {
 		// If IE event model is used
 		} else {
 			// Ensure firing before onload, maybe late but safe also for iframes
-			document.attachEvent( "onreadystatechange", completed );
+			document.attachEvent( "onreadyStatechange", completed );
 
 			// A fallback to window.onload, that will always work
 			window.attachEvent( "onload", completed );
@@ -3151,7 +3151,7 @@ jQuery.Callbacks = function( options ) {
 			disabled: function() {
 				return !list;
 			},
-			// Lock the list in its current state
+			// Lock the list in its current State
 			lock: function() {
 				stack = undefined;
 				if ( !memory ) {
@@ -3193,15 +3193,15 @@ jQuery.extend({
 
 	Deferred: function( func ) {
 		var tuples = [
-				// action, add listener, listener list, final state
+				// action, add listener, listener list, final State
 				[ "resolve", "done", jQuery.Callbacks("once memory"), "resolved" ],
 				[ "reject", "fail", jQuery.Callbacks("once memory"), "rejected" ],
 				[ "notify", "progress", jQuery.Callbacks("memory") ]
 			],
-			state = "pending",
+			State = "pending",
 			promise = {
-				state: function() {
-					return state;
+				State: function() {
+					return State;
 				},
 				always: function() {
 					deferred.done( arguments ).fail( arguments );
@@ -3243,16 +3243,16 @@ jQuery.extend({
 		// Add list-specific methods
 		jQuery.each( tuples, function( i, tuple ) {
 			var list = tuple[ 2 ],
-				stateString = tuple[ 3 ];
+				StateString = tuple[ 3 ];
 
 			// promise[ done | fail | progress ] = list.add
 			promise[ tuple[1] ] = list.add;
 
-			// Handle state
-			if ( stateString ) {
+			// Handle State
+			if ( StateString ) {
 				list.add(function() {
-					// state = [ resolved | rejected ]
-					state = stateString;
+					// State = [ resolved | rejected ]
+					State = StateString;
 
 				// [ reject_list | resolve_list ].disable; progress_list.lock
 				}, tuples[ i ^ 1 ][ 2 ].disable, tuples[ 2 ][ 2 ].lock );
@@ -3444,7 +3444,7 @@ jQuery.support = (function( support ) {
 	// value of true after appended to the DOM (IE6/7)
 	support.appendChecked = input.checked;
 
-	// WebKit doesn't clone checked state correctly in fragments
+	// WebKit doesn't clone checked State correctly in fragments
 	support.checkClone = fragment.cloneNode( true ).cloneNode( true ).lastChild.checked;
 
 	// Support: IE<9
@@ -4170,16 +4170,16 @@ jQuery.fn.extend({
 		return this;
 	},
 
-	toggleClass: function( value, stateVal ) {
+	toggleClass: function( value, StateVal ) {
 		var type = typeof value;
 
-		if ( typeof stateVal === "boolean" && type === "string" ) {
-			return stateVal ? this.addClass( value ) : this.removeClass( value );
+		if ( typeof StateVal === "boolean" && type === "string" ) {
+			return StateVal ? this.addClass( value ) : this.removeClass( value );
 		}
 
 		if ( jQuery.isFunction( value ) ) {
 			return this.each(function( i ) {
-				jQuery( this ).toggleClass( value.call(this, i, this.className, stateVal), stateVal );
+				jQuery( this ).toggleClass( value.call(this, i, this.className, StateVal), StateVal );
 			});
 		}
 
@@ -5302,7 +5302,7 @@ jQuery.event = {
 			delegateType: "focusout"
 		},
 		click: {
-			// For checkbox, fire native event so checked state will be right
+			// For checkbox, fire native event so checked State will be right
 			trigger: function() {
 				if ( jQuery.nodeName( this, "input" ) && this.type === "checkbox" && this.click ) {
 					this.click();
@@ -6413,7 +6413,7 @@ function fixCloneNodeIssues( src, dest ) {
 		}
 
 	} else if ( nodeName === "input" && manipulation_rcheckableType.test( src.type ) ) {
-		// IE6-8 fails to persist the checked state of a cloned checkbox
+		// IE6-8 fails to persist the checked State of a cloned checkbox
 		// or radio button. Worse, IE6-7 fail to give the cloned element
 		// a checked appearance if the defaultChecked value isn't also set
 
@@ -6426,7 +6426,7 @@ function fixCloneNodeIssues( src, dest ) {
 		}
 
 	// IE6-8 fails to return the selected option to the default selected
-	// state when cloning options
+	// State when cloning options
 	} else if ( nodeName === "option" ) {
 		dest.defaultSelected = dest.selected = src.defaultSelected;
 
@@ -6940,9 +6940,9 @@ jQuery.fn.extend({
 	hide: function() {
 		return showHide( this );
 	},
-	toggle: function( state ) {
-		if ( typeof state === "boolean" ) {
-			return state ? this.show() : this.hide();
+	toggle: function( State ) {
+		if ( typeof State === "boolean" ) {
+			return State ? this.show() : this.hide();
 		}
 
 		return this.each(function() {
@@ -7929,8 +7929,8 @@ jQuery.extend({
 			// Headers (they are sent all at once)
 			requestHeaders = {},
 			requestHeadersNames = {},
-			// The jqXHR state
-			state = 0,
+			// The jqXHR State
+			State = 0,
 			// Default abort message
 			strAbort = "canceled",
 			// Fake xhr
@@ -7940,7 +7940,7 @@ jQuery.extend({
 				// Builds headers hashtable if needed
 				getResponseHeader: function( key ) {
 					var match;
-					if ( state === 2 ) {
+					if ( State === 2 ) {
 						if ( !responseHeaders ) {
 							responseHeaders = {};
 							while ( (match = rheaders.exec( responseHeadersString )) ) {
@@ -7954,13 +7954,13 @@ jQuery.extend({
 
 				// Raw string
 				getAllResponseHeaders: function() {
-					return state === 2 ? responseHeadersString : null;
+					return State === 2 ? responseHeadersString : null;
 				},
 
 				// Caches the header
 				setRequestHeader: function( name, value ) {
 					var lname = name.toLowerCase();
-					if ( !state ) {
+					if ( !State ) {
 						name = requestHeadersNames[ lname ] = requestHeadersNames[ lname ] || name;
 						requestHeaders[ name ] = value;
 					}
@@ -7969,7 +7969,7 @@ jQuery.extend({
 
 				// Overrides response content-type header
 				overrideMimeType: function( type ) {
-					if ( !state ) {
+					if ( !State ) {
 						s.mimeType = type;
 					}
 					return this;
@@ -7979,7 +7979,7 @@ jQuery.extend({
 				statusCode: function( map ) {
 					var code;
 					if ( map ) {
-						if ( state < 2 ) {
+						if ( State < 2 ) {
 							for ( code in map ) {
 								// Lazy-add the new callback in a way that preserves old ones
 								statusCode[ code ] = [ statusCode[ code ], map[ code ] ];
@@ -8039,7 +8039,7 @@ jQuery.extend({
 		inspectPrefiltersOrTransports( prefilters, s, options, jqXHR );
 
 		// If request was aborted inside a prefilter, stop there
-		if ( state === 2 ) {
+		if ( State === 2 ) {
 			return jqXHR;
 		}
 
@@ -8112,7 +8112,7 @@ jQuery.extend({
 		}
 
 		// Allow custom headers/mimetypes and early abort
-		if ( s.beforeSend && ( s.beforeSend.call( callbackContext, jqXHR, s ) === false || state === 2 ) ) {
+		if ( s.beforeSend && ( s.beforeSend.call( callbackContext, jqXHR, s ) === false || State === 2 ) ) {
 			// Abort if not done already and return
 			return jqXHR.abort();
 		}
@@ -8146,11 +8146,11 @@ jQuery.extend({
 			}
 
 			try {
-				state = 1;
+				State = 1;
 				transport.send( requestHeaders, done );
 			} catch ( e ) {
 				// Propagate exception as error if not done
-				if ( state < 2 ) {
+				if ( State < 2 ) {
 					done( -1, e );
 				// Simply rethrow otherwise
 				} else {
@@ -8165,12 +8165,12 @@ jQuery.extend({
 				statusText = nativeStatusText;
 
 			// Called once
-			if ( state === 2 ) {
+			if ( State === 2 ) {
 				return;
 			}
 
 			// State is "done" now
-			state = 2;
+			State = 2;
 
 			// Clear timeout if it exists
 			if ( timeoutTimer ) {
@@ -8223,7 +8223,7 @@ jQuery.extend({
 
 				// If we have data, let's convert it
 				} else {
-					statusText = response.state;
+					statusText = response.State;
 					success = response.data;
 					error = response.error;
 					isSuccess = !error;
@@ -8442,7 +8442,7 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 						try {
 							response = conv( response );
 						} catch ( e ) {
-							return { state: "parsererror", error: conv ? e : "No conversion from " + prev + " to " + current };
+							return { State: "parsererror", error: conv ? e : "No conversion from " + prev + " to " + current };
 						}
 					}
 				}
@@ -8450,7 +8450,7 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 		}
 	}
 
-	return { state: "success", data: response };
+	return { State: "success", data: response };
 }
 // Install script dataType
 jQuery.ajaxSetup({
@@ -8503,12 +8503,12 @@ jQuery.ajaxTransport( "script", function(s) {
 				script.src = s.url;
 
 				// Attach handlers for all browsers
-				script.onload = script.onreadystatechange = function( _, isAbort ) {
+				script.onload = script.onreadyStatechange = function( _, isAbort ) {
 
 					if ( isAbort || !script.readyState || /loaded|complete/.test( script.readyState ) ) {
 
 						// Handle memory leak in IE
-						script.onload = script.onreadystatechange = null;
+						script.onload = script.onreadyStatechange = null;
 
 						// Remove the script
 						if ( script.parentNode ) {
@@ -8736,7 +8736,7 @@ if ( xhrSupported ) {
 
 								// Do not keep as active anymore
 								if ( handle ) {
-									xhr.onreadystatechange = jQuery.noop;
+									xhr.onreadyStatechange = jQuery.noop;
 									if ( xhrOnUnloadAbort ) {
 										delete xhrCallbacks[ handle ];
 									}
@@ -8812,7 +8812,7 @@ if ( xhrSupported ) {
 							// Add to list of active xhrs callbacks
 							xhrCallbacks[ handle ] = callback;
 						}
-						xhr.onreadystatechange = callback;
+						xhr.onreadyStatechange = callback;
 					}
 				},
 
@@ -9167,7 +9167,7 @@ function defaultPrefilter( elem, props, opts ) {
 			dataShow = jQuery._data( elem, "fxshow", {} );
 		}
 
-		// store state if its toggle - enables .stop().toggle() to "reverse"
+		// store State if its toggle - enables .stop().toggle() to "reverse"
 		if ( toggle ) {
 			dataShow.hidden = !hidden;
 		}

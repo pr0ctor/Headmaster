@@ -32,7 +32,7 @@ namespace Headmaster.Models
         public string Description { get; set; }
         public int Credits { get; set; }
         public string CourseNumber { get; set; }
-        public bool IsVariableCredits { get; set; }
+        public Nullable<bool> IsVariableCredits { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AvailableCourses> AvailableCourses { get; set; }

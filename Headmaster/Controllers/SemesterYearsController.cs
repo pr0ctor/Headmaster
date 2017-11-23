@@ -17,7 +17,7 @@ namespace Headmaster.Controllers
         // GET: SemesterYears
         public ActionResult Index()
         {
-            var semesterYear = db.SemesterYear.Include(s => s.AvailableCourses).Include(s => s.Semesters).Include(s => s.Years);
+            var semesterYear = db.SemesterYear.Include(s => s.Years1).Include(s => s.Semesters1);
             return View(semesterYear.ToList());
         }
 
@@ -54,7 +54,7 @@ namespace Headmaster.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+               
                 db.SemesterYear.Add(semesterYear);
                 db.SaveChanges();
                 return RedirectToAction("Index");

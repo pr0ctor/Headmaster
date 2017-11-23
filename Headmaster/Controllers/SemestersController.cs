@@ -17,7 +17,7 @@ namespace Headmaster.Controllers
         // GET: Semesters
         public ActionResult Index()
         {
-            var semesters = db.Semesters.Include(s => s.SemesterYear);
+            var semesters = db.Semesters;
             return View(semesters.ToList());
         }
 
