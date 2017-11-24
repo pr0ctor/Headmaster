@@ -45,6 +45,9 @@
             Department
         </th>
         <th>
+            Course Number
+        </th>
+        <th>
             Title
         </th>
         <th>
@@ -58,6 +61,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Courses.Departments.Abbreviation)
             </td>
+            <td>
+                td>
+                @Html.DisplayFor(modelItem => item.Courses.CourseNumber)
+            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.Courses.CourseName)
             </td>

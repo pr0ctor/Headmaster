@@ -11,21 +11,22 @@
     <h4>Registrations</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dd>
+            @Html.DisplayFor(model => model.AvailableCourses.Courses.Departments.Abbreviation) @Html.DisplayFor(model=>model.AvailableCourses.Courses.CourseNumber)
+        </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.AvailableCourses.Section)
+            @Html.DisplayNameFor(model => model.AvailableCourses.Courses.CourseName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AvailableCourses.Section)
+           Credits:  @Html.DisplayFor(model => model.AvailableCourses.Courses.Credits)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Students.FirstName)
+           Description:  @Html.DisplayNameFor(model => model.AvailableCourses.Courses.Description)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Students.FirstName)
-        </dd>
+        
 
     </dl>
 

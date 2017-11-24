@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Headmaster.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Headmaster.Controllers
 {
@@ -19,6 +20,26 @@ namespace Headmaster.Controllers
         {
             var registrations = db.Registrations.Include(r => r.AvailableCourses).Include(r => r.Students);
             return View(registrations.ToList());
+        }
+
+        public ActionResult IndexStudent()
+        {
+            if(User.Identity.IsAuthenticated)
+            {
+               
+                Students student = new StudentsController().QueryStudentID(User.Identity.GetUserId()); ;
+                var history = (from s in db.Registrations
+                               where s.StudentID == student.StudentID
+                               select s).OrderBy(s => s.AvailableCourses.SemesterYearID);
+                ViewData["History"] = history;
+                ViewBag.Student= student;
+                
+                return View();
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
         }
 
         // GET: Registrations/Details/5

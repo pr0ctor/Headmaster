@@ -103,7 +103,7 @@ namespace Headmaster.Controllers
             }
             return Year;
         }
-        // Returns last SemesterID in defualts to spring
+        // Returns last SemesterID of that year for that student in defualts to spring
         //Also sorry did realize table was already filled so now 
         /*Semester | SemesterID
          * Spring   4
