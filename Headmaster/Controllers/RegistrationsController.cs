@@ -143,7 +143,7 @@ namespace Headmaster.Controllers
             Registrations registrations = db.Registrations.Find(id);
             db.Registrations.Remove(registrations);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexStudent");
         }
 
         protected override void Dispose(bool disposing)
