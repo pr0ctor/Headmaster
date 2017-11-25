@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Headmaster.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Headmaster.Controllers
 {
@@ -22,20 +23,7 @@ namespace Headmaster.Controllers
         }
         
         //Returns the avalible courses to the view after filtering them based on the department
-        [HttpPost]
-        public JsonResult  GetFilteredCourses(int id)
-        {
-            List<SelectListItem> items = (from s in db.Courses
-                        where s.DepartmentID == id
-                        select new SelectListItem
-                        {
-                            Text = s.CourseName,
-                            Value = s.CourseID.ToString()
-                        }).ToList();
-            ViewBag.CourseNumbers = items;
-            return Json(items, JsonRequestBehavior.AllowGet);
-
-        }
+       
 
         public ActionResult SearchAndRegister()
         {
@@ -46,11 +34,11 @@ namespace Headmaster.Controllers
                                         select new SelectListItem
                                         {
                                             Text = s.SemesterYearName,
-                                            Value = s.SemesterID.ToString()
+                                            Value = s.SemesterYearID.ToString()
                         
                                         }).ToList();
 
-                
+          /*      
                 var Dept = (from s in db.Departments.AsEnumerable()
                             select new SelectListItem
                             {
@@ -58,7 +46,7 @@ namespace Headmaster.Controllers
                                 Value = s.DepartmentID.ToString()
 
                             }).ToList();
-          
+          */
 
                 var Course = (from s in db.Courses.AsEnumerable()
                                select new SelectListItem
@@ -69,11 +57,12 @@ namespace Headmaster.Controllers
                             }).ToList();
 
                 ViewBag.SemesterYearID = new SelectList(SemesterYear, "Value", "Text");
-                ViewBag.DepartmentID = new SelectList(Dept, "Value", "Text");
-                ViewBag.CourseNumber = new SelectList(Course, "Value", "Text");
-                ViewData["Course"]= db.AvailableCourses.ToList();
-               
-               
+             //   ViewBag.DepartmentID = new SelectList(Dept, "Value", "Text");
+                ViewBag.CourseID = new SelectList(Course, "Value", "Text");
+                ViewData["Course"] = db.AvailableCourses.OrderBy(AvailableCourses => AvailableCourses.SemesterYearID).ToList();
+
+
+
 
                 return View();
             }
@@ -82,28 +71,84 @@ namespace Headmaster.Controllers
         }
        
        
-        [HttpPost]
+        [HttpPost]        
         public ActionResult SearchAndRegister(AvailableCourses model)
         {
-            var search= db.AvailableCourses.ToList();
+
+            var search = db.AvailableCourses.OrderBy(AvailableCourses => AvailableCourses.SemesterYearID).ToList();
             if (ModelState.IsValid)
             {
-                var courses = from s in db.AvailableCourses
-                              where model.SemesterYear.SemesterYearID == s.SemesterYear.SemesterYearID &&
-                              model.Courses.DepartmentID == s.Courses.DepartmentID &&
-                              model.CourseID == s.CourseID
-                              select s;
-                search=courses.ToList();
+              
+                    var courses = (from s in db.AvailableCourses
+                                   where (model.SemesterYearID == s.SemesterYearID) && (model.CourseID == s.CourseID)
+                                   select s) ;
+
+                    if (courses != null)
+                    {
+                        search = courses.ToList();
+                    }
+                
+              
 
             }
-            ViewBag.SemesterYearID = new SelectList(db.SemesterYear);
-         
-            ViewBag.DepartmentID = new SelectList(db.Departments, "DepartmentID", "Department");
+
+                var SemesterYear = (from s in db.SemesterYear.AsEnumerable()
+                                    select new SelectListItem
+                                    {
+                                        Text = s.SemesterYearName,
+                                        Value = s.SemesterID.ToString()
+
+                                    }).ToList();
+
+/*
+                var Dept = (from s in db.Departments.AsEnumerable()
+                            select new SelectListItem
+                            {
+                                Text = s.DepartmentName,
+                                Value = s.DepartmentID.ToString()
+
+                            }).ToList();
+
+    */
+                var Course = (from s in db.Courses.AsEnumerable()
+                              select new SelectListItem
+                              {
+                                  Text = s.CourseName,
+                                  Value = s.CourseID.ToString()
+
+                              }).ToList();
+            ViewBag.SemesterYearID = new SelectList(SemesterYear, "Value", "Text");
+            //ViewBag.DepartmentID = new SelectList(Dept, "Value", "Text");
+            ViewBag.CourseID = new SelectList(Course, "Value", "Text");
             ViewData["Course"]= search;
             return View();
         }
         
-        
+        public ActionResult RegisterStudent(int? id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                AvailableCourses Course = db.AvailableCourses.Find(id);
+                
+                return View(Course);
+
+            } else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+        }
+        [HttpPost]
+        public ActionResult RegisterStudent(int id)
+        {
+            Registrations reg = new Registrations();
+            Students user = new StudentsController().QueryStudentID(User.Identity.GetUserId());
+            reg.AvailableCourseID = id;
+            reg.StudentID = user.StudentID;
+            db.Registrations.Add(reg);
+            db.SaveChanges();
+            return RedirectToAction("SearchAndRegister");
+
+        }
         // GET: AvailableCourses/Details/5
         public ActionResult Details(int? id)
         {

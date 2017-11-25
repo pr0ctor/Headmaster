@@ -515,6 +515,8 @@
     <Content Include="Views\Students\StudentDashBoard.cshtml" />
     <Content Include="Views\AvailableCourses\SearchAndRegister.cshtml" />
     <Content Include="Views\Registrations\IndexStudent.cshtml" />
+    <Content Include="Views\SemesterYears\Add.cshtml" />
+    <Content Include="Views\AvailableCourses\RegisterStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

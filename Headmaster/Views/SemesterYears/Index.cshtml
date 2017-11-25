@@ -17,15 +17,8 @@
         <th>
             @Html.DisplayNameFor(model => model.YearID)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AvailableCourses.Section)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Semesters.Semester)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Years.YearID)
-        </th>
+        
+       
         <th></th>
     </tr>
 
@@ -37,15 +30,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.YearID)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AvailableCourses.Section)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Semesters.Semester)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Years.YearID)
-        </td>
+      
+        
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.SemesterYearID }) |
             @Html.ActionLink("Details", "Details", new { id=item.SemesterYearID }) |
