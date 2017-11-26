@@ -46,21 +46,7 @@ namespace Headmaster.Controllers
             Students student = list.First();
             return student;
         }
-        /*public Students QueryRequirements()
-        {
-            Students students = QueryStudentID(User.Identity.GetUserId());
-
-            var taken = from s in db.Registrations
-                        where s.StudentID == students.StudentID
-                        select s.AvailableCourses.Courses;
-
-            var inMajor = from t in db.MajorRequirements
-                          where t.Majors.StudentMajors == students.StudentMajors
-                          select t.CourseID;
-
-            return students;
-        }
-        */
+       
 
         //Returns the total number of credits taken by a student
         public int TotalCredits(Students student)

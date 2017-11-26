@@ -150,7 +150,7 @@ namespace Headmaster.Controllers
 
                 ViewBag.Core = core.OrderBy(x=>x.Courses.CourseNumber);
                 ViewBag.GenED = genED.OrderBy(x => x.Courses.CourseNumber); ;
-                ViewBag.Supplemental = Supple.OrderBy(x => x.Courses.CourseNumber); ;
+                ViewBag.Supplemental = Supple.OrderBy(x => x.Courses.CourseNumber); 
              
                 return View();
             }else

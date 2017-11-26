@@ -520,6 +520,7 @@
     <Content Include="Views\AvailableCourses\RegisterStudent.cshtml" />
     <Content Include="Views\MajorRequirements\RequiredCourses.cshtml" />
     <Content Include="Views\MajorRequirements\RecommendCourse.cshtml" />
+    <Content Include="Views\AvailableCourses\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
