@@ -126,7 +126,7 @@ namespace Headmaster.Controllers
         
         public ActionResult RegisterStudent(int? id)
         {
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated && id!=null)
             {
                 AvailableCourses Course = db.AvailableCourses.Find(id);
                 

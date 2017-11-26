@@ -135,12 +135,12 @@ namespace Headmaster.Controllers
                 Students student = QueryStudentID(User.Identity.GetUserId());
                 int Year = getLastYear(student);
                 int Semester = GetLastSemester(Year, student);
-               
+
                 //Pulls most recent Registration
                 var course = from s in db.Registrations
                              where s.StudentID == student.StudentID && s.AvailableCourses.SemesterYear.Years1.Year == Year
                              && s.AvailableCourses.SemesterYear.SemesterID == Semester
-                             select s.AvailableCourses;
+                             select s;
 
                 ViewData["Courses"] = course;
                 student.TotalCredits = TotalCredits(student);

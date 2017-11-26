@@ -1,7 +1,7 @@
 ﻿@model Headmaster.Models.Students
 @{
     ViewBag.Title = "StudentDashBoard";
-    IEnumerable<Headmaster.Models.AvailableCourses> course = ViewData["Courses"] as IEnumerable<Headmaster.Models.AvailableCourses>;
+    IEnumerable<Headmaster.Models.Registrations> course = ViewData["Courses"] as IEnumerable<Headmaster.Models.Registrations>;
     
 }
 
@@ -55,21 +55,25 @@
         </th>
     </tr>
     
-    @foreach (var item in (IEnumerable<Headmaster.Models.AvailableCourses>)course)
+    @foreach (var item in (IEnumerable<Headmaster.Models.Registrations>)course)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Courses.Departments.Abbreviation)
+                @Html.DisplayFor(modelItem => item.AvailableCourses.Courses.Departments.Abbreviation)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Courses.CourseNumber)
+                @Html.DisplayFor(modelItem => item.AvailableCourses.Courses.CourseNumber)
             </td>
            
             <td>
-                @Html.DisplayFor(modelItem => item.Courses.CourseName)
+                @Html.DisplayFor(modelItem => item.AvailableCourses.Courses.CourseName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Courses.Credits)
+                @Html.DisplayFor(modelItem => item.AvailableCourses.Courses.Credits)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", "Courses", new { id = item.AvailableCourses.CourseID }, null) |
+                @Html.ActionLink("Delete", "Delete","Registrations",new { id = item.RegistrationID },null)
             </td>
         </tr>
     }
