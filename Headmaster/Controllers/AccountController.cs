@@ -17,7 +17,7 @@ namespace Headmaster.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private ApplicationDbContext context;
         public AccountController()
         {
         }
@@ -26,6 +26,7 @@ namespace Headmaster.Controllers
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            context.Configuration.LazyLoadingEnabled = true;
         }
 
         public ApplicationSignInManager SignInManager
@@ -156,12 +157,14 @@ namespace Headmaster.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
 
                     return RedirectToAction("Edit", "Students");
                 }
