@@ -10,6 +10,7 @@ using Headmaster.Models;
 
 namespace Headmaster.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class YearsController : Controller
     {
         private headmasterEntities db = new headmasterEntities();

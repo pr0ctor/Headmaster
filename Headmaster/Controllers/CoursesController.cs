@@ -37,6 +37,7 @@ namespace Headmaster.Controllers
         }
 
         // GET: Courses/Create
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             ViewBag.DepartmentID = new SelectList(db.Departments, "DepartmentID", "Abbreviation");
@@ -48,6 +49,7 @@ namespace Headmaster.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create([Bind(Include = "CourseID,DepartmentID,CourseName,CourseNumber,Description,Credits")] Courses courses)
         {
             if (ModelState.IsValid)
@@ -62,6 +64,7 @@ namespace Headmaster.Controllers
         }
 
         // GET: Courses/Edit/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,6 +85,7 @@ namespace Headmaster.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit([Bind(Include = "CourseID,DepartmentID,CourseName,Description,Credits")] Courses courses)
         {
             if (ModelState.IsValid)
@@ -95,6 +99,7 @@ namespace Headmaster.Controllers
         }
 
         // GET: Courses/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -112,6 +117,7 @@ namespace Headmaster.Controllers
         // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult DeleteConfirmed(int id)
         {
             Courses courses = db.Courses.Find(id);

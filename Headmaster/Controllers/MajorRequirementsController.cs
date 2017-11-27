@@ -38,6 +38,7 @@ namespace Headmaster.Controllers
         }
 
         // GET: MajorRequirements/Create
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             ViewBag.CourseID = new SelectList(db.Courses, "CourseID", "CourseName");
@@ -50,6 +51,7 @@ namespace Headmaster.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create([Bind(Include = "MajorRequirementsID,MajorID,CourseID")] MajorRequirements majorRequirements)
         {
             if (ModelState.IsValid)
@@ -65,6 +67,7 @@ namespace Headmaster.Controllers
         }
 
         // GET: MajorRequirements/Edit/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -87,6 +90,7 @@ namespace Headmaster.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit([Bind(Include = "MajorRequirementsID,MajorID,CourseID")] MajorRequirements majorRequirements)
         {
             if (ModelState.IsValid)
@@ -101,6 +105,7 @@ namespace Headmaster.Controllers
         }
 
         // GET: MajorRequirements/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -118,6 +123,7 @@ namespace Headmaster.Controllers
         // POST: MajorRequirements/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult DeleteConfirmed(int id)
         {
             MajorRequirements majorRequirements = db.MajorRequirements.Find(id);

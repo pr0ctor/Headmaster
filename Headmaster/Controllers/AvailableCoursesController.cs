@@ -213,6 +213,7 @@ namespace Headmaster.Controllers
         }
 
         // GET: AvailableCourses/Create
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             ViewBag.BuildingID = new SelectList(db.Buildings, "BuildingID", "Abbreviaion");
@@ -229,6 +230,7 @@ namespace Headmaster.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create([Bind(Include = "AvailalbeCourseID,CourseID,Section,CRN,TimeID,DayID,BuildingID,ProfessorID,SemesterYearID,RoomNumber")] AvailableCourses availableCourses)
         {
             if (ModelState.IsValid)
@@ -248,6 +250,7 @@ namespace Headmaster.Controllers
         }
 
         // GET: AvailableCourses/Edit/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -274,6 +277,7 @@ namespace Headmaster.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit([Bind(Include = "AvailalbeCourseID,CourseID,Section,CRN,TimeID,DayID,BuildingID,ProfessorID,SemesterYearID,RoomNumber")] AvailableCourses availableCourses)
         {
             if (ModelState.IsValid)
@@ -292,6 +296,7 @@ namespace Headmaster.Controllers
         }
 
         // GET: AvailableCourses/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -309,6 +314,7 @@ namespace Headmaster.Controllers
         // POST: AvailableCourses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult DeleteConfirmed(int id)
         {
             AvailableCourses availableCourses = db.AvailableCourses.Find(id);
