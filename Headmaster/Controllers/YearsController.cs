@@ -17,7 +17,7 @@ namespace Headmaster.Controllers
         // GET: Years
         public ActionResult Index()
         {
-            var years = db.Years.Include(y => y.SemesterYear);
+            var years = db.Years;
             return View(years.ToList());
         }
 

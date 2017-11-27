@@ -219,6 +219,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\PriorityQueue.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetRoles.cs">
       <DependentUpon>HeadmasterModel.tt</DependentUpon>
@@ -514,6 +515,12 @@
     <Content Include="Views\Students\Index.cshtml" />
     <Content Include="Views\Students\StudentDashBoard.cshtml" />
     <Content Include="Views\AvailableCourses\SearchAndRegister.cshtml" />
+    <Content Include="Views\Registrations\IndexStudent.cshtml" />
+    <Content Include="Views\SemesterYears\Add.cshtml" />
+    <Content Include="Views\AvailableCourses\RegisterStudent.cshtml" />
+    <Content Include="Views\MajorRequirements\RequiredCourses.cshtml" />
+    <Content Include="Views\MajorRequirements\RecommendCourse.cshtml" />
+    <Content Include="Views\AvailableCourses\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

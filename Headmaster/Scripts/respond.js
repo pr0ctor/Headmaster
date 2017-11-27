@@ -296,7 +296,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 				return;
 			}	
 			req.open( "GET", url, true );
-			req.onreadystatechange = function () {
+			req.onreadyStatechange = function () {
 				if ( req.readyState != 4 || req.status != 200 && req.status != 304 ){
 					return;
 				}

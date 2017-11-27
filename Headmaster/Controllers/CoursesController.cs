@@ -48,7 +48,7 @@ namespace Headmaster.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CourseID,DepartmentID,CourseName,Description,Credits")] Courses courses)
+        public ActionResult Create([Bind(Include = "CourseID,DepartmentID,CourseName,CourseNumber,Description,Credits")] Courses courses)
         {
             if (ModelState.IsValid)
             {

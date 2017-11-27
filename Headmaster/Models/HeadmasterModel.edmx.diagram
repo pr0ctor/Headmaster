@@ -56,8 +56,6 @@
         <AssociationConnector Association="headmasterModel.FK_MinorRequirements_Minors" ManuallyRouted="false" />
         <AssociationConnector Association="headmasterModel.FK_StudentMinors_Minors" ManuallyRouted="false" />
         <AssociationConnector Association="headmasterModel.FK_Registrations_Students" ManuallyRouted="false" />
-        <AssociationConnector Association="headmasterModel.FK_SemesterYear_Semesters" ManuallyRouted="false" />
-        <AssociationConnector Association="headmasterModel.FK_SemesterYear_Years" ManuallyRouted="false" />
         <AssociationConnector Association="headmasterModel.FK_StudentMajors_Students" ManuallyRouted="false" />
         <AssociationConnector Association="headmasterModel.FK_StudentMinors_Students" ManuallyRouted="false" />
         <AssociationConnector Association="headmasterModel.AspNetUserRoles" ManuallyRouted="false" />

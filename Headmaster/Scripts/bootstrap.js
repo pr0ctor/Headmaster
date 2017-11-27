@@ -210,21 +210,21 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     loadingText: 'loading...'
   }
 
-  Button.prototype.setState = function (state) {
+  Button.prototype.setState = function (State) {
     var d    = 'disabled'
     var $el  = this.$element
     var val  = $el.is('input') ? 'val' : 'html'
     var data = $el.data()
 
-    state = state + 'Text'
+    State = State + 'Text'
 
     if (!data.resetText) $el.data('resetText', $el[val]())
 
-    $el[val](data[state] || this.options[state])
+    $el[val](data[State] || this.options[State])
 
     // push to event loop to allow forms to submit
     setTimeout(function () {
-      state == 'loadingText' ?
+      State == 'loadingText' ?
         $el.addClass(d).attr(d, d) :
         $el.removeClass(d).removeAttr(d);
     }, 0)

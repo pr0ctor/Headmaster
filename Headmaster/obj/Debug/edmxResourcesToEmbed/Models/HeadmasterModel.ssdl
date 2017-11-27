@@ -118,7 +118,7 @@
     <Property Name="Description" Type="nvarchar(max)" />
     <Property Name="Credits" Type="int" Nullable="false" />
     <Property Name="CourseNumber" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="IsVariableCredits" Type="bit" Nullable="false" />
+    <Property Name="IsVariableCredits" Type="bit" />
   </EntityType>
   <EntityType Name="Days">
     <Key>
@@ -210,7 +210,7 @@
     </Key>
     <Property Name="SemesterYearID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SemesterID" Type="int" Nullable="false" />
-    <Property Name="YearID" Type="int" Nullable="false" />
+    <Property Name="YearID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
   </EntityType>
   <EntityType Name="StudentMajors">
     <Key>

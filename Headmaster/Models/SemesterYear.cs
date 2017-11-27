@@ -23,10 +23,7 @@ namespace Headmaster.Models
         public int SemesterYearID { get; set; }
         public int SemesterID { get; set; }
         public int YearID { get; set; }
-        public string SemesterYearName { get { return string.Concat(Semesters.Semester + " " + Years.Year); } }    
-        public virtual AvailableCourses AvailableCourses { get; set; }
-        public virtual Semesters Semesters { get; set; }
-        public virtual Years Years { get; set; }
+        public string SemesterYearName { get { return string.Concat(Semesters1.Semester + " " + Years1.Year); } }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AvailableCourses> AvailableCourses1 { get; set; }
         public virtual Semesters Semesters1 { get; set; }

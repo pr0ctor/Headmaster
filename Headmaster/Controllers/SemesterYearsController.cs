@@ -17,7 +17,7 @@ namespace Headmaster.Controllers
         // GET: SemesterYears
         public ActionResult Index()
         {
-            var semesterYear = db.SemesterYear.Include(s => s.AvailableCourses).Include(s => s.Semesters).Include(s => s.Years);
+            var semesterYear = db.SemesterYear.Include(s => s.Years1).Include(s => s.Semesters1);
             return View(semesterYear.ToList());
         }
 
@@ -54,7 +54,7 @@ namespace Headmaster.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+               
                 db.SemesterYear.Add(semesterYear);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -128,7 +128,32 @@ namespace Headmaster.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult Add()
+        {
+           
+           ViewBag.SemesterID = new SelectList(db.Semesters, "SemesterID", "Semester");
+           ViewBag.YearId = new SelectList(db.Years, "YearID", "Year");
+           return View();
+     
+        }
+        [HttpPost]
+        public ActionResult Add(SemesterYear model)
+        {
+            if (ModelState.IsValid)
+            {
+                SemesterYear smy = new SemesterYear();
+                smy.SemesterID = model.SemesterID;
+                smy.YearID = model.YearID;
+                smy.SemesterYearID = 0;
+                db.SemesterYear.Add(smy);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.SemesterID = new SelectList(db.Semesters, "SemesterID", "Semester");
+            ViewBag.YearId = new SelectList(db.Years, "YearID", "Year");
+            return View();
 
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

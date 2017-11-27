@@ -46,21 +46,7 @@ namespace Headmaster.Controllers
             Students student = list.First();
             return student;
         }
-        /*public Students QueryRequirements()
-        {
-            Students students = QueryStudentID(User.Identity.GetUserId());
-
-            var taken = from s in db.Registrations
-                        where s.StudentID == students.StudentID
-                        select s.AvailableCourse.Courses;
-
-            var inMajor = from t in db.MajorRequirements
-                          where t.Majors.StudentMajors == students.StudentMajors
-                          select t.CourseID;
-
-            return students;
-        }*/
-        
+       
 
         //Returns the total number of credits taken by a student
         public int TotalCredits(Students student)
@@ -88,7 +74,7 @@ namespace Headmaster.Controllers
             {
                 Year = (from s in db.Registrations
                         where s.StudentID == student.StudentID
-                        select s.AvailableCourses.SemesterYear.Years.Year).Max();
+                        select s.AvailableCourses.SemesterYear.Years1.Year).Max();
             }
             catch(System.InvalidOperationException e)
             {
@@ -103,7 +89,7 @@ namespace Headmaster.Controllers
             }
             return Year;
         }
-        // Returns last SemesterID in defualts to spring
+        // Returns last SemesterID of that year for that student in defualts to spring
         //Also sorry did realize table was already filled so now 
         /*Semester | SemesterID
          * Spring   4
@@ -116,8 +102,8 @@ namespace Headmaster.Controllers
             try
             {
              id = (from s in db.Registrations
-                            where s.StudentID == student.StudentID && year == s.AvailableCourses.SemesterYear.Years.Year
-                            select s.AvailableCourses.SemesterYear.Semesters.SemesterID).Max();
+                            where s.StudentID == student.StudentID && year == s.AvailableCourses.SemesterYear.Years1.Year
+                            select s.AvailableCourses.SemesterYear.Semesters1.SemesterID).Max();
                 
 
             }
@@ -135,12 +121,12 @@ namespace Headmaster.Controllers
                 Students student = QueryStudentID(User.Identity.GetUserId());
                 int Year = getLastYear(student);
                 int Semester = GetLastSemester(Year, student);
-               
+
                 //Pulls most recent Registration
                 var course = from s in db.Registrations
-                             where s.StudentID == student.StudentID && s.AvailableCourses.SemesterYear.Years.Year == Year
+                             where s.StudentID == student.StudentID && s.AvailableCourses.SemesterYear.Years1.Year == Year
                              && s.AvailableCourses.SemesterYear.SemesterID == Semester
-                             select s.AvailableCourses;
+                             select s;
 
                 ViewData["Courses"] = course;
                 student.TotalCredits = TotalCredits(student);

@@ -1,0 +1,55 @@
+﻿@model Headmaster.Models.Registrations
+
+@{
+    ViewBag.Title = "IndexStudent";
+    IEnumerable<Headmaster.Models.Registrations> History = ViewData["History"] as IEnumerable<Headmaster.Models.Registrations>;
+    var student = ViewBag.Student;
+
+}
+
+<h2>@student.FullName's Registration History</h2>
+<h4>Course Registration</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            Department
+        </th>
+        <th>
+            Course Number
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Credits
+        </th>
+    </tr>
+
+    @foreach (var item in (IEnumerable<Headmaster.Models.Registrations>)History)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvailableCourses.Courses.Departments.Abbreviation)
+            </td>
+            <td>
+             
+                @Html.DisplayFor(modelItem => item.AvailableCourses.Courses.CourseNumber)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.AvailableCourses.Courses.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvailableCourses.Courses.Credits)
+            </td>
+            <td>
+            @Html.ActionLink("Details", "Details", "Course", new { id = item.AvailableCourses.CourseID },null) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.RegistrationID })
+            </td>
+       
+        </tr>
+    }
+</table>
+
+
