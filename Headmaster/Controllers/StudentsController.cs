@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Headmaster.Controllers
 {
+    [Authorize]
     public class StudentsController : Controller
     {
         private headmasterEntities db = new headmasterEntities();
@@ -143,6 +144,7 @@ namespace Headmaster.Controllers
         }
 
         // GET: Students/Create
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
            ViewBag.StudentID = new SelectList(db.StudentMinors, "StudentMinorID", "StudentMinorID");
@@ -153,8 +155,10 @@ namespace Headmaster.Controllers
         // POST: Students/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create([Bind(Include = "StudentID,FirstName,LastName,MiddleName,VIPID")] Students students)
         {
             if (ModelState.IsValid && User.Identity.IsAuthenticated)
@@ -171,6 +175,7 @@ namespace Headmaster.Controllers
         }
 
         // GET: Students/Edit/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit()
         {
             
@@ -194,6 +199,7 @@ namespace Headmaster.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit([Bind(Include = "StudentID,FirstName,LastName,MiddleName,VIPID")] Students students)
         {
             if (ModelState.IsValid)
@@ -209,6 +215,7 @@ namespace Headmaster.Controllers
         }
 
         // GET: Students/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -226,6 +233,7 @@ namespace Headmaster.Controllers
         // POST: Students/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult DeleteConfirmed(int id)
         {
             Students students = db.Students.Find(id);

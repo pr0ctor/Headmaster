@@ -10,6 +10,7 @@ using Headmaster.Models;
 
 namespace Headmaster.Controllers
 {
+    [Authorize]
     public class StudentMajorsController : Controller
     {
         private headmasterEntities db = new headmasterEntities();
@@ -37,6 +38,7 @@ namespace Headmaster.Controllers
         }
 
         // GET: StudentMajors/Create
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             ViewBag.MajorID = new SelectList(db.Majors, "MajorID", "MajorName");
@@ -49,6 +51,7 @@ namespace Headmaster.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create([Bind(Include = "StudentMajorID,StudentID,MajorID")] StudentMajors studentMajors)
         {
             if (ModelState.IsValid)
@@ -64,6 +67,7 @@ namespace Headmaster.Controllers
         }
 
         // GET: StudentMajors/Edit/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,6 +89,7 @@ namespace Headmaster.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit([Bind(Include = "StudentMajorID,StudentID,MajorID")] StudentMajors studentMajors)
         {
             if (ModelState.IsValid)
@@ -99,6 +104,7 @@ namespace Headmaster.Controllers
         }
 
         // GET: StudentMajors/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -116,6 +122,7 @@ namespace Headmaster.Controllers
         // POST: StudentMajors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult DeleteConfirmed(int id)
         {
             StudentMajors studentMajors = db.StudentMajors.Find(id);

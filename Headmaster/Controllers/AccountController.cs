@@ -20,13 +20,16 @@ namespace Headmaster.Controllers
         private ApplicationDbContext context;
         public AccountController()
         {
+            context = new ApplicationDbContext();
+            context.Configuration.LazyLoadingEnabled = true;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
-            context.Configuration.LazyLoadingEnabled = true;
+
+
         }
 
         public ApplicationSignInManager SignInManager
@@ -140,6 +143,7 @@ namespace Headmaster.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
             return View();
         }
 
