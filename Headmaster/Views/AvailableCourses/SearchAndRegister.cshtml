@@ -23,7 +23,7 @@
             </div>
              </div>
           
-               <div class="form-group" >
+          
                    @Html.LabelFor(model => model.CourseID, "Course", htmlAttributes: new { @class = "control-label col-md-2" })
                    <div class="col-md-10">
                   
@@ -31,7 +31,7 @@
                @Html.ValidationMessageFor(model => model.Courses.CourseID, "", new { @class = "text-danger" })
                     
                    </div>
-                   </div>
+                  
                 <input type="submit" value="Search" class="btn btn-default" />
 }
 
@@ -92,7 +92,7 @@
             </td>
            
             <td>
-                @Html.DisplayFor(modelItem => item.SemesterYear.SemesterYearName)
+                @Html.DisplayFor(modelItem => item.SemesterYear1.SemesterYearName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Courses.Credits)

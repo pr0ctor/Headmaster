@@ -110,8 +110,10 @@ namespace Headmaster.Controllers
 
                 ViewBag.SemesterYearID = new SelectList(SemesterYear, "Value", "Text");
                 ViewBag.CourseID = new SelectList(Course, "Value", "Text");
-                ViewData["Course"] = db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years1.Year).ThenBy(x => x.SemesterYear.SemesterID).ThenBy(x=>x.Courses.Departments.DepartmentName).ToList();
-
+                ViewData["Course"] = from s in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years1.Year).ThenBy(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ToList()
+                                     where s.Courses.DepartmentID == id
+                                     select s;
+                                      
 
 
 
@@ -123,8 +125,10 @@ namespace Headmaster.Controllers
        
        
         [HttpPost]        
-        public ActionResult SearchAndRegister(AvailableCourses model, int id)
+        public ActionResult SearchAndRegister(AvailableCourses model, int? id)
         {
+            if(id==0)
+                RedirectToAction("Search");
 
             var search = (from s in db.AvailableCourses
                           select s);
@@ -133,12 +137,12 @@ namespace Headmaster.Controllers
             {
               
                     var courses = (from s in db.AvailableCourses
-                                   where (model.SemesterYearID == s.SemesterYearID) && (model.CourseID == s.CourseID) && (s.Courses.DepartmentID==id)
+                                   where (model.SemesterYearID == s.SemesterYearID) && (model.CourseID == s.CourseID) 
                                    select s) ;
 
                     if (courses != null)
                     {
-                    search = courses;
+                        search = courses;
                     }
               
             }
@@ -147,7 +151,7 @@ namespace Headmaster.Controllers
                                     select new SelectListItem
                                     {
                                         Text = s.SemesterYearName,
-                                        Value = s.SemesterID.ToString()
+                                        Value = s.SemesterYearID.ToString()
 
                                     }).ToList();
 
@@ -163,7 +167,7 @@ namespace Headmaster.Controllers
             ViewBag.SemesterYearID = new SelectList(SemesterYear, "Value", "Text");
           
             ViewBag.CourseID = new SelectList(Course, "Value", "Text");
-            ViewData["Course"]= search.OrderByDescending(x => x.SemesterYear.Years1.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ToList();
+            ViewData["Course"]= search.OrderByDescending(x => x.SemesterYear.Years1.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName);
             return View();
         }
         

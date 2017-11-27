@@ -11,7 +11,27 @@
     <hr />
 
     <dl class="dl-horizontal">
-      
+        <dt>
+            @Html.DisplayNameFor(model => model.Courses.CourseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Courses.CourseName)
+        </dd>
+        <dt>
+            Department
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Courses.Departments.DepartmentName)
+        </dd>
+        <dt>
+            Course Number
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Courses.CourseNumber)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Section)
         </dt>
@@ -37,19 +57,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Buildings.Abbreviaion)
+          Building
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Buildings.Abbreviaion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Courses.CourseName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Courses.CourseName)
+            @Html.DisplayFor(model => model.Buildings.BuidingName)
         </dd>
 
         <dt>
@@ -61,37 +73,38 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Professors.FirstName)
+          Professor
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Professors.FirstName)
+            @Html.DisplayFor(model => model.Professors.LastName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SemesterYear.SemesterYearID)
+            Semester Years
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SemesterYear.SemesterYearID)
+            @Html.DisplayFor(model => model.SemesterYear1.SemesterYearName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Times.Times1)
+            Times
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Times.Times1)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.SemesterYear1.SemesterYearID)
+            Description
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SemesterYear1.SemesterYearID)
+            @Html.DisplayFor(model => model.Courses.Description)
         </dd>
+      
 
+        
     </dl>
 
 </div>
