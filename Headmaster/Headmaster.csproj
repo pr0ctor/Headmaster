@@ -521,6 +521,9 @@
     <Content Include="Views\MajorRequirements\RequiredCourses.cshtml" />
     <Content Include="Views\MajorRequirements\RecommendCourse.cshtml" />
     <Content Include="Views\AvailableCourses\Search.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutStudent.cshtml" />
+    <Content Include="Views\Students\AdminDashBoard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

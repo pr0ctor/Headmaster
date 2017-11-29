@@ -1,8 +1,12 @@
 ﻿@{ 
-    if (Context.User.Identity.IsAuthenticated)
+    if (this.User.IsInRole("Adminstration"))
     {
-        Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 
+    }
+    else if(this.User.IsInRole("Student"))
+    {
+        Layout = "~/Views/Shared/_LayoutStudent.cshtml";
     }
     else
     {
