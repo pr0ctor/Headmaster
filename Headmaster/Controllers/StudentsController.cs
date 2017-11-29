@@ -114,7 +114,7 @@ namespace Headmaster.Controllers
             }
             return id;
         }
-        
+        [Authorize(Roles ="Student")]
         public ActionResult StudentDashBoard()
         {
             if (User.Identity.IsAuthenticated)
@@ -136,11 +136,12 @@ namespace Headmaster.Controllers
             }
            
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            
 
+        }
 
-           
-
+        public ActionResult AdminDashBoard()
+        {
+            return View();
         }
 
         // GET: Students/Create
@@ -175,7 +176,7 @@ namespace Headmaster.Controllers
         }
 
         // GET: Students/Edit/5
-        [Authorize(Roles = "Administrator")]
+        [Authorize]
         public ActionResult Edit()
         {
             

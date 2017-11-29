@@ -23,7 +23,7 @@ namespace Headmaster.Controllers
         }
 
         //Returns the avalible courses to the view after filtering them based on the department
-
+        [Authorize(Roles = "Student")]
         public ActionResult Search()
         {
             if (User.Identity.IsAuthenticated)
@@ -49,6 +49,7 @@ namespace Headmaster.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
         [HttpPost]
+        [Authorize(Roles = "Student")]
         public ActionResult Search(AvailableCourses model)
         {
             if(model.Courses.DepartmentID!=0)
@@ -81,7 +82,7 @@ namespace Headmaster.Controllers
                
 
            
-        
+        [Authorize(Roles ="Student")]
         public ActionResult SearchAndRegister(int? id)
         {
             if (User.Identity.IsAuthenticated)
@@ -124,7 +125,8 @@ namespace Headmaster.Controllers
         }
        
        
-        [HttpPost]        
+        [HttpPost]
+        [Authorize(Roles = "Student")]
         public ActionResult SearchAndRegister(AvailableCourses model, int? id)
         {
             if(id==0)
