@@ -136,11 +136,12 @@ namespace Headmaster.Controllers
             }
            
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            
 
+        }
 
-           
-
+        public ActionResult AdminDashBoard()
+        {
+            return View();
         }
 
         // GET: Students/Create
