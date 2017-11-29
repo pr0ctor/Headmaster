@@ -114,7 +114,7 @@ namespace Headmaster.Controllers
             }
             return id;
         }
-        [Authorize(Roles ="Student")]
+        [Authorize] 
         public ActionResult StudentDashBoard()
         {
             if (User.Identity.IsAuthenticated)
@@ -200,7 +200,7 @@ namespace Headmaster.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrator")]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "StudentID,FirstName,LastName,MiddleName,VIPID")] Students students)
         {
             if (ModelState.IsValid)

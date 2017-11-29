@@ -83,7 +83,7 @@ namespace Headmaster.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToAction("StudentDashBoard", "Students");
+                    return RedirectToAction("Redirector");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -94,7 +94,14 @@ namespace Headmaster.Controllers
                     return View(model);
             }
         }
-
+        public ActionResult Redirector()
+        {
+            if (this.User.IsInRole("Student"))
+                return RedirectToAction("StudentDashBoard", "Students");
+            if (this.User.IsInRole("Administrator"))
+                return RedirectToAction("AdminDashBoard", "Students");
+            return RedirectToAction("Login");
+        }
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
@@ -160,6 +167,7 @@ namespace Headmaster.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -168,7 +176,7 @@ namespace Headmaster.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
+                    
 
                     return RedirectToAction("Edit", "Students");
                 }
