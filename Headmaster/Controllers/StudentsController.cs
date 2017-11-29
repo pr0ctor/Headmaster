@@ -114,7 +114,7 @@ namespace Headmaster.Controllers
             }
             return id;
         }
-        
+        [Authorize(Roles ="Student")]
         public ActionResult StudentDashBoard()
         {
             if (User.Identity.IsAuthenticated)
@@ -175,7 +175,7 @@ namespace Headmaster.Controllers
         }
 
         // GET: Students/Edit/5
-        [Authorize(Roles = "Administrator")]
+        [Authorize]
         public ActionResult Edit()
         {
             
