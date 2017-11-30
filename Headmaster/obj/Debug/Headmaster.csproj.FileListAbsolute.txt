@@ -478,3 +478,5 @@ C:\Users\jdfishtorn\source\repos\Headmaster\Headmaster\bin\Microsoft.AI.WindowsS
 C:\Users\jdfishtorn\source\repos\Headmaster\Headmaster\bin\Microsoft.AI.Web.xml
 C:\Users\RyFor\source\repos\Headmaster\Headmaster\bin\itextsharp.dll
 C:\Users\RyFor\source\repos\Headmaster\Headmaster\bin\itextsharp.xml
+C:\Users\Chandler\Desktop\Fall 2017\CSCI 540\Headmaster\Headmaster\bin\itextsharp.dll
+C:\Users\Chandler\Desktop\Fall 2017\CSCI 540\Headmaster\Headmaster\bin\itextsharp.xml
