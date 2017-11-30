@@ -17,13 +17,13 @@ namespace Headmaster.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Semesters()
         {
-            this.SemesterYear1 = new HashSet<SemesterYear>();
+            this.SemesterYear = new HashSet<SemesterYear>();
         }
     
         public int SemesterID { get; set; }
         public string Semester { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SemesterYear> SemesterYear1 { get; set; }
+        public virtual ICollection<SemesterYear> SemesterYear { get; set; }
     }
 }

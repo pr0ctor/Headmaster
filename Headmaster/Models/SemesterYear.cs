@@ -17,17 +17,17 @@ namespace Headmaster.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SemesterYear()
         {
-            this.AvailableCourses1 = new HashSet<AvailableCourses>();
+            this.AvailableCourses = new HashSet<AvailableCourses>();
         }
     
         public int SemesterYearID { get; set; }
         public int SemesterID { get; set; }
         public int YearID { get; set; }
-        public string SemesterYearName { get { return Semesters1.Semester +" "+ Years1.Year.ToString(); } }
+        public string SemesterYearName { get { return string.Concat(Semesters.Semester+ " " + Years.Year); } }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AvailableCourses> AvailableCourses1 { get; set; }
-        public virtual Semesters Semesters1 { get; set; }
-        public virtual Years Years1 { get; set; }
+        public virtual ICollection<AvailableCourses> AvailableCourses { get; set; }
+        public virtual Semesters Semesters { get; set; }
+        public virtual Years Years { get; set; }
     }
 }

@@ -40,7 +40,7 @@ namespace Headmaster.Controllers
         // GET: Years/Create
         public ActionResult Create()
         {
-            ViewBag.YearID = new SelectList(db.SemesterYear, "SemesterYearID", "SemesterYearID");
+            
             return View();
         }
 

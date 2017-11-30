@@ -4,16 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="headmasterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationID" />
-          </Key>
-          <Property Name="MigrationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ContextKey" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-        </EntityType>
+      <Schema Namespace="headmasterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -138,7 +129,7 @@
           </Key>
           <Property Name="DepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Abbreviation" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="DepartmentName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Grades">
           <Key>
@@ -215,7 +206,7 @@
           </Key>
           <Property Name="SemesterYearID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SemesterID" Type="int" Nullable="false" />
-          <Property Name="YearID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="YearID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="StudentMajors">
           <Key>
@@ -243,16 +234,6 @@
           <Property Name="MiddleName" Type="varchar" MaxLength="50" />
           <Property Name="VIPID" Type="int" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Times">
           <Key>
@@ -661,7 +642,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="headmasterModelStoreContainer">
-          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
@@ -688,7 +668,6 @@
           <EntitySet Name="StudentMajors" EntityType="Self.StudentMajors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentMinors" EntityType="Self.StudentMinors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Times" EntityType="Self.Times" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Years" EntityType="Self.Years" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AvailableCourses_Buildings" Association="Self.FK_AvailableCourses_Buildings">
@@ -820,19 +799,11 @@
             <End Role="Students" EntitySet="Students" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="headmasterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationID" />
-          </Key>
-          <Property Name="MigrationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ContextKey" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -880,8 +851,8 @@
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_Students_AspNetUsers" FromRole="AspNetUsers" ToRole="Students" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
-          <NavigationProperty Name="Students" Relationship="headmasterModel.FK_Students_AspNetUsers" FromRole="AspNetUsers" ToRole="Students" />
         </EntityType>
         <EntityType Name="AvailableCourses">
           <Key>
@@ -904,7 +875,6 @@
           <NavigationProperty Name="SemesterYear" Relationship="Self.FK_AvailableCourses_SemesterYear" FromRole="AvailableCourses" ToRole="SemesterYear" />
           <NavigationProperty Name="Times" Relationship="Self.FK_AvailableCourses_Times" FromRole="AvailableCourses" ToRole="Times" />
           <NavigationProperty Name="Registrations" Relationship="Self.FK_Registrations_AvailableCourses" FromRole="AvailableCourses" ToRole="Registrations" />
-          <NavigationProperty Name="SemesterYear1" Relationship="headmasterModel.FK_AvailableCourses_SemesterYear1" FromRole="AvailableCourses" ToRole="SemesterYear" />
         </EntityType>
         <EntityType Name="Buildings">
           <Key>
@@ -937,6 +907,15 @@
           <NavigationProperty Name="Registrations" Relationship="Self.FK_CourseGrades_Registrations" FromRole="CourseGrades" ToRole="Registrations" />
           <NavigationProperty Name="Students" Relationship="Self.FK_CourseGrades_Students" FromRole="CourseGrades" ToRole="Students" />
         </EntityType>
+        <EntityType Name="CoursePriority">
+          <Key>
+            <PropertyRef Name="PriorityID" />
+          </Key>
+          <Property Name="PriorityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PriorityLevel" Type="Int32" Nullable="false" />
+          <Property Name="Priority" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MajorRequirements" Relationship="Self.FK_MajorRequirements_CoursePriority" FromRole="CoursePriority" ToRole="MajorRequirements" />
+        </EntityType>
         <EntityType Name="Courses">
           <Key>
             <PropertyRef Name="CourseID" />
@@ -946,6 +925,8 @@
           <Property Name="CourseName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Credits" Type="Int32" Nullable="false" />
+          <Property Name="CourseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsVariableCredits" Type="Boolean" />
           <NavigationProperty Name="AvailableCourses" Relationship="Self.FK_AvailableCourses_Courses" FromRole="Courses" ToRole="AvailableCourses" />
           <NavigationProperty Name="Corequisites" Relationship="Self.FK_Corequisites_Courses" FromRole="Courses" ToRole="Corequisites" />
           <NavigationProperty Name="Corequisites1" Relationship="Self.FK_Corequisites_Courses1" FromRole="Courses" ToRole="Corequisites" />
@@ -954,8 +935,6 @@
           <NavigationProperty Name="MinorRequirements" Relationship="Self.FK_MinorRequirements_Courses" FromRole="Courses" ToRole="MinorRequirements" />
           <NavigationProperty Name="Prerequisites" Relationship="Self.FK_Prerequisites_Courses" FromRole="Courses" ToRole="Prerequisites" />
           <NavigationProperty Name="Prerequisites1" Relationship="Self.FK_Prerequisites_Courses1" FromRole="Courses" ToRole="Prerequisites" />
-          <Property Name="CourseNumber" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="IsVariableCredits" Type="Boolean" />
         </EntityType>
         <EntityType Name="Days">
           <Key>
@@ -971,7 +950,7 @@
           </Key>
           <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Abbreviation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Courses" Relationship="Self.FK_Courses_Departments" FromRole="Departments" ToRole="Courses" />
         </EntityType>
         <EntityType Name="Grades">
@@ -989,10 +968,10 @@
           <Property Name="MajorRequirementsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MajorID" Type="Int32" Nullable="false" />
           <Property Name="CourseID" Type="Int32" Nullable="false" />
+          <Property Name="PriorityID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CoursePriority" Relationship="Self.FK_MajorRequirements_CoursePriority" FromRole="MajorRequirements" ToRole="CoursePriority" />
           <NavigationProperty Name="Courses" Relationship="Self.FK_MajorRequirements_Courses" FromRole="MajorRequirements" ToRole="Courses" />
           <NavigationProperty Name="Majors" Relationship="Self.FK_MajorRequirements_Majors" FromRole="MajorRequirements" ToRole="Majors" />
-          <Property Name="PriorityID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CoursePriority" Relationship="headmasterModel.FK_MajorRequirements_CoursePriority" FromRole="MajorRequirements" ToRole="CoursePriority" />
         </EntityType>
         <EntityType Name="Majors">
           <Key>
@@ -1021,7 +1000,6 @@
           <Property Name="MinorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="MinorRequirements" Relationship="Self.FK_MinorRequirements_Minors" FromRole="Minors" ToRole="MinorRequirements" />
           <NavigationProperty Name="StudentMinors" Relationship="Self.FK_StudentMinors_Minors" FromRole="Minors" ToRole="StudentMinors" />
-          <NavigationProperty Name="StudentMinors1" Relationship="headmasterModel.FK_StudentMinors_Minors1" FromRole="Minors" ToRole="StudentMinors" />
         </EntityType>
         <EntityType Name="Prerequisites">
           <Key>
@@ -1059,18 +1037,18 @@
           </Key>
           <Property Name="SemesterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Semester" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="SemesterYear1" Relationship="headmasterModel.FK_SemesterYear_Semesters1" FromRole="Semesters" ToRole="SemesterYear" />
+          <NavigationProperty Name="SemesterYear" Relationship="Self.FK_SemesterYear_Semesters" FromRole="Semesters" ToRole="SemesterYear" />
         </EntityType>
         <EntityType Name="SemesterYear">
           <Key>
             <PropertyRef Name="SemesterYearID" />
           </Key>
           <Property Name="SemesterYearID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SemesterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
-          <Property Name="YearID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="AvailableCourses1" Relationship="headmasterModel.FK_AvailableCourses_SemesterYear1" FromRole="SemesterYear" ToRole="AvailableCourses" />
-          <NavigationProperty Name="Semesters1" Relationship="headmasterModel.FK_SemesterYear_Semesters1" FromRole="SemesterYear" ToRole="Semesters" />
-          <NavigationProperty Name="Years1" Relationship="headmasterModel.FK_SemesterYear_Years1" FromRole="SemesterYear" ToRole="Years" />
+          <Property Name="SemesterID" Type="Int32" Nullable="false" />
+          <Property Name="YearID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AvailableCourses" Relationship="Self.FK_AvailableCourses_SemesterYear" FromRole="SemesterYear" ToRole="AvailableCourses" />
+          <NavigationProperty Name="Semesters" Relationship="Self.FK_SemesterYear_Semesters" FromRole="SemesterYear" ToRole="Semesters" />
+          <NavigationProperty Name="Years" Relationship="Self.FK_SemesterYear_Years" FromRole="SemesterYear" ToRole="Years" />
         </EntityType>
         <EntityType Name="StudentMajors">
           <Key>
@@ -1091,8 +1069,6 @@
           <Property Name="MinorID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Minors" Relationship="Self.FK_StudentMinors_Minors" FromRole="StudentMinors" ToRole="Minors" />
           <NavigationProperty Name="Students" Relationship="Self.FK_StudentMinors_Students" FromRole="StudentMinors" ToRole="Students" />
-          <NavigationProperty Name="Minors1" Relationship="headmasterModel.FK_StudentMinors_Minors1" FromRole="StudentMinors" ToRole="Minors" />
-          <NavigationProperty Name="Students1" Relationship="headmasterModel.FK_StudentMinors_Students1" FromRole="StudentMinors" ToRole="Students" />
         </EntityType>
         <EntityType Name="Students">
           <Key>
@@ -1103,13 +1079,12 @@
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="VIPID" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_Students_AspNetUsers" FromRole="Students" ToRole="AspNetUsers" />
           <NavigationProperty Name="CourseGrades" Relationship="Self.FK_CourseGrades_Students" FromRole="Students" ToRole="CourseGrades" />
           <NavigationProperty Name="Registrations" Relationship="Self.FK_Registrations_Students" FromRole="Students" ToRole="Registrations" />
           <NavigationProperty Name="StudentMajors" Relationship="Self.FK_StudentMajors_Students" FromRole="Students" ToRole="StudentMajors" />
           <NavigationProperty Name="StudentMinors" Relationship="Self.FK_StudentMinors_Students" FromRole="Students" ToRole="StudentMinors" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="headmasterModel.FK_Students_AspNetUsers" FromRole="Students" ToRole="AspNetUsers" />
-          <NavigationProperty Name="StudentMinors1" Relationship="headmasterModel.FK_StudentMinors_Students1" FromRole="Students" ToRole="StudentMinors" />
         </EntityType>
         <EntityType Name="Times">
           <Key>
@@ -1125,7 +1100,7 @@
           </Key>
           <Property Name="YearID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Year" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SemesterYear1" Relationship="headmasterModel.FK_SemesterYear_Years1" FromRole="Years" ToRole="SemesterYear" />
+          <NavigationProperty Name="SemesterYear" Relationship="Self.FK_SemesterYear_Years" FromRole="Years" ToRole="SemesterYear" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -1151,6 +1126,18 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Students">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1205,13 +1192,13 @@
         </Association>
         <Association Name="FK_AvailableCourses_SemesterYear">
           <End Role="SemesterYear" Type="Self.SemesterYear" Multiplicity="1" />
-          <End Role="AvailableCourses" Type="Self.AvailableCourses" Multiplicity="0..1" />
+          <End Role="AvailableCourses" Type="Self.AvailableCourses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SemesterYear">
               <PropertyRef Name="SemesterYearID" />
             </Principal>
             <Dependent Role="AvailableCourses">
-              <PropertyRef Name="AvailalbeCourseID" />
+              <PropertyRef Name="SemesterYearID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1296,6 +1283,18 @@
             </Principal>
             <Dependent Role="CourseGrades">
               <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MajorRequirements_CoursePriority">
+          <End Role="CoursePriority" Type="Self.CoursePriority" Multiplicity="1" />
+          <End Role="MajorRequirements" Type="Self.MajorRequirements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoursePriority">
+              <PropertyRef Name="PriorityID" />
+            </Principal>
+            <Dependent Role="MajorRequirements">
+              <PropertyRef Name="PriorityID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1397,13 +1396,13 @@
         </Association>
         <Association Name="FK_StudentMinors_Minors">
           <End Role="Minors" Type="Self.Minors" Multiplicity="1" />
-          <End Role="StudentMinors" Type="Self.StudentMinors" Multiplicity="0..1" />
+          <End Role="StudentMinors" Type="Self.StudentMinors" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Minors">
               <PropertyRef Name="MinorID" />
             </Principal>
             <Dependent Role="StudentMinors">
-              <PropertyRef Name="StudentMinorID" />
+              <PropertyRef Name="MinorID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1416,6 +1415,30 @@
             </Principal>
             <Dependent Role="Registrations">
               <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SemesterYear_Semesters">
+          <End Role="Semesters" Type="Self.Semesters" Multiplicity="1" />
+          <End Role="SemesterYear" Type="Self.SemesterYear" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Semesters">
+              <PropertyRef Name="SemesterID" />
+            </Principal>
+            <Dependent Role="SemesterYear">
+              <PropertyRef Name="SemesterID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SemesterYear_Years">
+          <End Role="Years" Type="Self.Years" Multiplicity="1" />
+          <End Role="SemesterYear" Type="Self.SemesterYear" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Years">
+              <PropertyRef Name="YearID" />
+            </Principal>
+            <Dependent Role="SemesterYear">
+              <PropertyRef Name="YearID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1433,13 +1456,13 @@
         </Association>
         <Association Name="FK_StudentMinors_Students">
           <End Role="Students" Type="Self.Students" Multiplicity="1" />
-          <End Role="StudentMinors" Type="Self.StudentMinors" Multiplicity="0..1" />
+          <End Role="StudentMinors" Type="Self.StudentMinors" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Students">
               <PropertyRef Name="StudentID" />
             </Principal>
             <Dependent Role="StudentMinors">
-              <PropertyRef Name="StudentMinorID" />
+              <PropertyRef Name="StudentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1448,7 +1471,6 @@
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
         </Association>
         <EntityContainer Name="headmasterEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
@@ -1457,6 +1479,7 @@
           <EntitySet Name="Buildings" EntityType="Self.Buildings" />
           <EntitySet Name="Corequisites" EntityType="Self.Corequisites" />
           <EntitySet Name="CourseGrades" EntityType="Self.CourseGrades" />
+          <EntitySet Name="CoursePriority" EntityType="Self.CoursePriority" />
           <EntitySet Name="Courses" EntityType="Self.Courses" />
           <EntitySet Name="Days" EntityType="Self.Days" />
           <EntitySet Name="Departments" EntityType="Self.Departments" />
@@ -1482,6 +1505,10 @@
           <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_AspNetUsers" Association="Self.FK_Students_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Students" EntitySet="Students" />
           </AssociationSet>
           <AssociationSet Name="FK_AvailableCourses_Buildings" Association="Self.FK_AvailableCourses_Buildings">
             <End Role="Buildings" EntitySet="Buildings" />
@@ -1531,6 +1558,10 @@
             <End Role="Students" EntitySet="Students" />
             <End Role="CourseGrades" EntitySet="CourseGrades" />
           </AssociationSet>
+          <AssociationSet Name="FK_MajorRequirements_CoursePriority" Association="Self.FK_MajorRequirements_CoursePriority">
+            <End Role="CoursePriority" EntitySet="CoursePriority" />
+            <End Role="MajorRequirements" EntitySet="MajorRequirements" />
+          </AssociationSet>
           <AssociationSet Name="FK_Courses_Departments" Association="Self.FK_Courses_Departments">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Courses" EntitySet="Courses" />
@@ -1571,6 +1602,14 @@
             <End Role="Students" EntitySet="Students" />
             <End Role="Registrations" EntitySet="Registrations" />
           </AssociationSet>
+          <AssociationSet Name="FK_SemesterYear_Semesters" Association="Self.FK_SemesterYear_Semesters">
+            <End Role="Semesters" EntitySet="Semesters" />
+            <End Role="SemesterYear" EntitySet="SemesterYear" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SemesterYear_Years" Association="Self.FK_SemesterYear_Years">
+            <End Role="Years" EntitySet="Years" />
+            <End Role="SemesterYear" EntitySet="SemesterYear" />
+          </AssociationSet>
           <AssociationSet Name="FK_StudentMajors_Students" Association="Self.FK_StudentMajors_Students">
             <End Role="Students" EntitySet="Students" />
             <End Role="StudentMajors" EntitySet="StudentMajors" />
@@ -1583,156 +1622,13 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="sysdiagrams" EntityType="headmasterModel.sysdiagrams" />
-          <AssociationSet Name="FK_Students_AspNetUsers" Association="headmasterModel.FK_Students_AspNetUsers">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="Students" EntitySet="Students" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AvailableCourses_SemesterYear1" Association="headmasterModel.FK_AvailableCourses_SemesterYear1">
-            <End Role="SemesterYear" EntitySet="SemesterYear" />
-            <End Role="AvailableCourses" EntitySet="AvailableCourses" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StudentMinors_Minors1" Association="headmasterModel.FK_StudentMinors_Minors1">
-            <End Role="Minors" EntitySet="Minors" />
-            <End Role="StudentMinors" EntitySet="StudentMinors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SemesterYear_Semesters1" Association="headmasterModel.FK_SemesterYear_Semesters1">
-            <End Role="Semesters" EntitySet="Semesters" />
-            <End Role="SemesterYear" EntitySet="SemesterYear" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SemesterYear_Years1" Association="headmasterModel.FK_SemesterYear_Years1">
-            <End Role="Years" EntitySet="Years" />
-            <End Role="SemesterYear" EntitySet="SemesterYear" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StudentMinors_Students1" Association="headmasterModel.FK_StudentMinors_Students1">
-            <End Role="Students" EntitySet="Students" />
-            <End Role="StudentMinors" EntitySet="StudentMinors" />
-          </AssociationSet>
-          <EntitySet Name="CoursePriority" EntityType="headmasterModel.CoursePriority" />
-          <AssociationSet Name="FK_MajorRequirements_CoursePriority" Association="headmasterModel.FK_MajorRequirements_CoursePriority">
-            <End Role="CoursePriority" EntitySet="CoursePriority" />
-            <End Role="MajorRequirements" EntitySet="MajorRequirements" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <Association Name="FK_Students_AspNetUsers">
-          <End Type="headmasterModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
-          <End Type="headmasterModel.Students" Role="Students" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Students">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AvailableCourses_SemesterYear1">
-          <End Type="headmasterModel.SemesterYear" Role="SemesterYear" Multiplicity="1" />
-          <End Type="headmasterModel.AvailableCourses" Role="AvailableCourses" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SemesterYear">
-              <PropertyRef Name="SemesterYearID" />
-            </Principal>
-            <Dependent Role="AvailableCourses">
-              <PropertyRef Name="SemesterYearID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StudentMinors_Minors1">
-          <End Type="headmasterModel.Minors" Role="Minors" Multiplicity="1" />
-          <End Type="headmasterModel.StudentMinors" Role="StudentMinors" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Minors">
-              <PropertyRef Name="MinorID" />
-            </Principal>
-            <Dependent Role="StudentMinors">
-              <PropertyRef Name="MinorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SemesterYear_Semesters1">
-          <End Type="headmasterModel.Semesters" Role="Semesters" Multiplicity="1" />
-          <End Type="headmasterModel.SemesterYear" Role="SemesterYear" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Semesters">
-              <PropertyRef Name="SemesterID" />
-            </Principal>
-            <Dependent Role="SemesterYear">
-              <PropertyRef Name="SemesterID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SemesterYear_Years1">
-          <End Type="headmasterModel.Years" Role="Years" Multiplicity="1" />
-          <End Type="headmasterModel.SemesterYear" Role="SemesterYear" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Years">
-              <PropertyRef Name="YearID" />
-            </Principal>
-            <Dependent Role="SemesterYear">
-              <PropertyRef Name="YearID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StudentMinors_Students1">
-          <End Type="headmasterModel.Students" Role="Students" Multiplicity="1" />
-          <End Type="headmasterModel.StudentMinors" Role="StudentMinors" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Students">
-              <PropertyRef Name="StudentID" />
-            </Principal>
-            <Dependent Role="StudentMinors">
-              <PropertyRef Name="StudentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="CoursePriority">
-          <Key>
-            <PropertyRef Name="PriorityID" />
-          </Key>
-          <Property Name="PriorityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PriorityLevel" Type="Int32" Nullable="false" />
-          <Property Name="Priority" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="MajorRequirements" Relationship="headmasterModel.FK_MajorRequirements_CoursePriority" FromRole="CoursePriority" ToRole="MajorRequirements" />
-        </EntityType>
-        <Association Name="FK_MajorRequirements_CoursePriority">
-          <End Type="headmasterModel.CoursePriority" Role="CoursePriority" Multiplicity="1" />
-          <End Type="headmasterModel.MajorRequirements" Role="MajorRequirements" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CoursePriority">
-              <PropertyRef Name="PriorityID" />
-            </Principal>
-            <Dependent Role="MajorRequirements">
-              <PropertyRef Name="PriorityID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="headmasterModelStoreContainer" CdmEntityContainer="headmasterEntities">
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="headmasterModel.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="MigrationID" ColumnName="MigrationID" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
             <EntityTypeMapping TypeName="headmasterModel.AspNetRoles">
               <MappingFragment StoreEntitySet="AspNetRoles">
@@ -1822,16 +1718,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CoursePriority">
+            <EntityTypeMapping TypeName="headmasterModel.CoursePriority">
+              <MappingFragment StoreEntitySet="CoursePriority">
+                <ScalarProperty Name="PriorityID" ColumnName="PriorityID" />
+                <ScalarProperty Name="PriorityLevel" ColumnName="PriorityLevel" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="headmasterModel.Courses">
               <MappingFragment StoreEntitySet="Courses">
-                <ScalarProperty Name="IsVariableCredits" ColumnName="IsVariableCredits" />
-                <ScalarProperty Name="CourseNumber" ColumnName="CourseNumber" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
                 <ScalarProperty Name="CourseName" ColumnName="CourseName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Credits" ColumnName="Credits" />
+                <ScalarProperty Name="CourseNumber" ColumnName="CourseNumber" />
+                <ScalarProperty Name="IsVariableCredits" ColumnName="IsVariableCredits" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1863,10 +1768,10 @@
           <EntitySetMapping Name="MajorRequirements">
             <EntityTypeMapping TypeName="headmasterModel.MajorRequirements">
               <MappingFragment StoreEntitySet="MajorRequirements">
-                <ScalarProperty Name="PriorityID" ColumnName="PriorityID" />
                 <ScalarProperty Name="MajorRequirementsID" ColumnName="MajorRequirementsID" />
                 <ScalarProperty Name="MajorID" ColumnName="MajorID" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="PriorityID" ColumnName="PriorityID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1960,12 +1865,12 @@
           <EntitySetMapping Name="Students">
             <EntityTypeMapping TypeName="headmasterModel.Students">
               <MappingFragment StoreEntitySet="Students">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
                 <ScalarProperty Name="VIPID" ColumnName="VIPID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1993,26 +1898,6 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="headmasterModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CoursePriority">
-            <EntityTypeMapping TypeName="headmasterModel.CoursePriority">
-              <MappingFragment StoreEntitySet="CoursePriority">
-                <ScalarProperty Name="Priority" ColumnName="Priority" />
-                <ScalarProperty Name="PriorityLevel" ColumnName="PriorityLevel" />
-                <ScalarProperty Name="PriorityID" ColumnName="PriorityID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

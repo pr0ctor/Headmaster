@@ -18,7 +18,7 @@ namespace Headmaster.Models
         public Minors()
         {
             this.MinorRequirements = new HashSet<MinorRequirements>();
-            this.StudentMinors1 = new HashSet<StudentMinors>();
+            this.StudentMinors = new HashSet<StudentMinors>();
         }
     
         public int MinorID { get; set; }
@@ -26,8 +26,7 @@ namespace Headmaster.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MinorRequirements> MinorRequirements { get; set; }
-        public virtual StudentMinors StudentMinors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StudentMinors> StudentMinors1 { get; set; }
+        public virtual ICollection<StudentMinors> StudentMinors { get; set; }
     }
 }

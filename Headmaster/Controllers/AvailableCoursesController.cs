@@ -38,7 +38,7 @@ namespace Headmaster.Controllers
 
                                  }).ToList();
                 ViewBag.Departments = Department;
-                ViewData["Course"] = db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years1.Year).ThenBy(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ToList();
+                ViewData["Course"] = db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years.Year).ThenBy(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ToList();
 
 
 
@@ -68,7 +68,7 @@ namespace Headmaster.Controllers
 
                                       }).ToList();
                     ViewBag.Departments = Department;
-                    ViewData["Course"] = db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years1.Year).ThenBy(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ToList();
+                    ViewData["Course"] = db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years.Year).ThenBy(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ToList();
 
 
 
@@ -91,7 +91,7 @@ namespace Headmaster.Controllers
                 {
                     RedirectToAction("Search");
                 }
-                    var SemesterYear = (from s in db.SemesterYear.OrderByDescending(x=>x.Years1.Year).ThenBy(x=>x.SemesterID).AsEnumerable()
+                    var SemesterYear = (from s in db.SemesterYear.OrderByDescending(x=>x.Years.Year).ThenBy(x=>x.SemesterID).AsEnumerable()
                                         select new SelectListItem
                                         {
                                             Text = s.SemesterYearName,
@@ -111,7 +111,7 @@ namespace Headmaster.Controllers
 
                 ViewBag.SemesterYearID = new SelectList(SemesterYear, "Value", "Text");
                 ViewBag.CourseID = new SelectList(Course, "Value", "Text");
-                ViewData["Course"] = from s in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years1.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ToList()
+                ViewData["Course"] = from s in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ToList()
                                      where s.Courses.DepartmentID == id
                                      select s;
                                       
@@ -149,7 +149,7 @@ namespace Headmaster.Controllers
               
             }
 
-                var SemesterYear = (from s in db.SemesterYear.OrderByDescending(x => x.Years1.Year).ThenByDescending(x => x.SemesterID).AsEnumerable()
+                var SemesterYear = (from s in db.SemesterYear.OrderByDescending(x => x.Years.Year).ThenByDescending(x => x.SemesterID).AsEnumerable()
                                     select new SelectListItem
                                     {
                                         Text = s.SemesterYearName,
@@ -169,7 +169,7 @@ namespace Headmaster.Controllers
             ViewBag.SemesterYearID = new SelectList(SemesterYear, "Value", "Text");
           
             ViewBag.CourseID = new SelectList(Course, "Value", "Text");
-            ViewData["Course"]= search.OrderByDescending(x => x.SemesterYear.Years1.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName);
+            ViewData["Course"]= search.OrderByDescending(x => x.SemesterYear.Years.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName);
             return View();
         }
         
