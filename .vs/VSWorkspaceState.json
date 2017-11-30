@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Headmaster",
+    "\\Headmaster\\Controllers",
+    "\\Headmaster\\Views"
   ],
-  "SelectedNode": "\\Headmaster.sln",
+  "SelectedNode": "\\Headmaster\\Views\\_ViewStart.cshtml",
   "PreviewInSolutionExplorer": false
 }

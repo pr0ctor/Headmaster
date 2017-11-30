@@ -5,8 +5,11 @@
 <div class="jumbotron">
     <h1>Headmaster</h1>
     <p class="lead"></p>
-    <p><a href="@Url.Action("Register","Account")" class="btn btn-primary btn-lg">Register</a></p>
-    <p><a href="@Url.Action("Login","Account")" class="btn btn-primary btn-lg">Login</a></p>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <p><a href="@Url.Action("Register", "Account")" class="btn btn-primary btn-lg">Register</a></p>
+        <p><a href="@Url.Action("Login", "Account")" class="btn btn-primary btn-lg">Login</a></p>
+    }
 </div>
 
 <div class="row">
