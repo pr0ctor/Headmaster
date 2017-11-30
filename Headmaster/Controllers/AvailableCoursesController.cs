@@ -111,7 +111,7 @@ namespace Headmaster.Controllers
 
                 ViewBag.SemesterYearID = new SelectList(SemesterYear, "Value", "Text");
                 ViewBag.CourseID = new SelectList(Course, "Value", "Text");
-                ViewData["Course"] = from s in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years1.Year).ThenBy(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ToList()
+                ViewData["Course"] = from s in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years1.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ToList()
                                      where s.Courses.DepartmentID == id
                                      select s;
                                       

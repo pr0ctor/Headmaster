@@ -31,7 +31,7 @@ namespace Headmaster.Controllers
             Courses courses = db.Courses.Find(id);
             if (courses == null)
             {
-                return HttpNotFound();
+              return HttpNotFound();
             }
             return View(courses);
         }

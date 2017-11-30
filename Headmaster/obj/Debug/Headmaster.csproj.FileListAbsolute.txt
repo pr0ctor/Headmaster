@@ -476,3 +476,5 @@ C:\Users\jdfishtorn\source\repos\Headmaster\Headmaster\bin\Microsoft.AI.Dependen
 C:\Users\jdfishtorn\source\repos\Headmaster\Headmaster\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\jdfishtorn\source\repos\Headmaster\Headmaster\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\jdfishtorn\source\repos\Headmaster\Headmaster\bin\Microsoft.AI.Web.xml
+C:\Users\RyFor\source\repos\Headmaster\Headmaster\bin\itextsharp.dll
+C:\Users\RyFor\source\repos\Headmaster\Headmaster\bin\itextsharp.xml
