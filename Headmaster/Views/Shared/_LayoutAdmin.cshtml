@@ -22,8 +22,30 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Edit
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href= "@Url.Action("Index","Courses")">Courses</a></li>
+                            <li><a href="@Url.Action("Index","AvailableCourses")">Available Courses</a></li>
+                            <li><a href="@Url.Action("Index","MajorRequirements")">Major Requirements</a></li>
+                            <li><a href="@Url.Action("Index","SemesterYears")">Semester Years</a></li>
+                        </ul>
+                        </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Create
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("Create","Courses")">Courses</a></li>
+                            <li><a href="@Url.Action("Create","AvailableCourses")">Available Courses</a></li>
+                            <li><a href="@Url.Action("Create","MajorRequirements")">Major Requirements</a></li>
+                            <li><a href="@Url.Action("Create","SemesterYears")">Semester Years</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
