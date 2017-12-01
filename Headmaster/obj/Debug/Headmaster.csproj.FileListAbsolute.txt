@@ -480,3 +480,5 @@ C:\Users\RyFor\source\repos\Headmaster\Headmaster\bin\itextsharp.dll
 C:\Users\RyFor\source\repos\Headmaster\Headmaster\bin\itextsharp.xml
 C:\Users\Chandler\Desktop\Fall 2017\CSCI 540\Headmaster\Headmaster\bin\itextsharp.dll
 C:\Users\Chandler\Desktop\Fall 2017\CSCI 540\Headmaster\Headmaster\bin\itextsharp.xml
+C:\Users\Carl\Desktop\Headmaster\Headmaster\Headmaster\bin\itextsharp.dll
+C:\Users\Carl\Desktop\Headmaster\Headmaster\Headmaster\bin\itextsharp.xml

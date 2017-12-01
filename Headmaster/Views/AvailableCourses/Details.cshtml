@@ -31,7 +31,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SemesterYearID)
+            @Html.DisplayFor(model => model.SemesterYear.SemesterYearName)
         </dd>
 
         <dt>
@@ -67,19 +67,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Professors.FirstName)
+            @Html.DisplayNameFor(model => model.Professors.LastName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Professors.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SemesterYear.SemesterYearID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SemesterYear.SemesterYearID)
+            @Html.DisplayFor(model => model.Professors.LastName)
         </dd>
 
         <dt>
