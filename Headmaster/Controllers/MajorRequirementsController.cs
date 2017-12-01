@@ -19,8 +19,40 @@ namespace Headmaster.Controllers
         public ActionResult Index()
         {
             var majorRequirements = db.MajorRequirements.Include(m => m.Courses).Include(m => m.Majors);
-            return View(majorRequirements.ToList());
+            ViewBag.MajorReqs = majorRequirements.ToList();
+            ViewBag.Priority = from s in db.CoursePriority
+                               select new SelectListItem
+                               {
+                                   Text = s.Priority,
+                                   Value = s.PriorityID.ToString()
+                               
+                               };
+
+            return View();
         }
+        [HttpPost]
+        public ActionResult Index(MajorRequirements model)
+        {
+            var majorRequirements = db.MajorRequirements.Include(m => m.Courses).Include(m => m.Majors);
+           
+            ViewBag.Priority = from s in db.CoursePriority
+                               select new SelectListItem
+                               {
+                                   Text = s.Priority,
+                                   Value = s.PriorityID.ToString()
+
+                               };
+            if(model.PriorityID!=0)
+            {
+                majorRequirements = from s in db.MajorRequirements
+                                    where s.PriorityID == model.PriorityID
+                                    select s;
+            }
+            ViewBag.MajorReqs = majorRequirements.ToList();
+
+            return View();
+        }
+
 
         // GET: MajorRequirements/Details/5
         public ActionResult Details(int? id)

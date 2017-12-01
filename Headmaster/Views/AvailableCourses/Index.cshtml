@@ -15,7 +15,7 @@
         @Html.LabelFor(model => model.Courses.DepartmentID, "Department", htmlAttributes: new { @class = "control-label col-md-2" })
 
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Courses.DepartmentID, Departments, "Select", htmlAttributes: new { @class = "form-control", @id = "SemesterDropDown" })
+            @Html.DropDownListFor(model => model.Courses.DepartmentID, Departments, "Select", htmlAttributes: new { @class = "form-control", @id = "DepartmentDropDown" })
             @Html.ValidationMessageFor(model => model.SemesterYear.SemesterID, "", new { @class = "text-danger" })
 
         </div>
@@ -88,9 +88,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Courses.Credits)
             </td>
-           
-
-
+          
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.AvailalbeCourseID}) |
+                @Html.ActionLink("Details", "Details", new { id = item.AvailalbeCourseID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.AvailalbeCourseID })
+            </td>
         </tr>
     }
 

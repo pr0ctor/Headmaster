@@ -16,6 +16,7 @@ namespace Headmaster.Controllers
         private headmasterEntities db = new headmasterEntities();
 
         // GET: AvailableCourses
+        [Authorize(Roles = "Administrator")]
         public ActionResult Index()
         {
             var availableCourses = db.AvailableCourses.Include(a => a.Buildings).Include(a => a.Courses).Include(a => a.Days).Include(a => a.Professors).Include(a => a.SemesterYear).Include(a => a.Times);
@@ -29,6 +30,7 @@ namespace Headmaster.Controllers
             return View();
         }
         [HttpPost]
+        [Authorize(Roles ="Administrator")]
         public ActionResult Index(AvailableCourses model)
         {
             if (model.Courses.DepartmentID != 0)
@@ -48,6 +50,7 @@ namespace Headmaster.Controllers
                 return View();
             }
         }
+        [Authorize(Roles = "Administrator")]
         public ActionResult Index1(int? id)
         {
             if (id == 0)
@@ -87,6 +90,7 @@ namespace Headmaster.Controllers
 
         }
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Index1(AvailableCourses model, int? id)
         {
             if (id == 0)
