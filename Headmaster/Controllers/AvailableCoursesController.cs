@@ -19,8 +19,128 @@ namespace Headmaster.Controllers
         public ActionResult Index()
         {
             var availableCourses = db.AvailableCourses.Include(a => a.Buildings).Include(a => a.Courses).Include(a => a.Days).Include(a => a.Professors).Include(a => a.SemesterYear).Include(a => a.Times);
-            return View(availableCourses.ToList());
+            ViewBag.Courses = availableCourses.OrderByDescending(x => x.SemesterYear.Years.Year).ThenBy(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ToList();
+            ViewBag.Departments = from s in db.Departments.OrderBy(x=>x.Abbreviation)
+                                  select new SelectListItem
+                                  {
+                                      Text = s.DepartmentName,
+                                      Value = s.DepartmentID.ToString()
+                                  };
+            return View();
         }
+        [HttpPost]
+        public ActionResult Index(AvailableCourses model)
+        {
+            if (model.Courses.DepartmentID != 0)
+            {
+                return RedirectToAction("Index1", new { id = model.Courses.DepartmentID });
+            }
+            else
+            {
+                var availableCourses = db.AvailableCourses.Include(a => a.Buildings).Include(a => a.Courses).Include(a => a.Days).Include(a => a.Professors).Include(a => a.SemesterYear).Include(a => a.Times);
+                ViewBag.Courses = availableCourses.ToList();
+                ViewBag.Departments = from s in db.Departments
+                                      select new SelectListItem
+                                      {
+                                          Text = s.DepartmentName,
+                                          Value = s.DepartmentID.ToString()
+                                      };
+                return View();
+            }
+        }
+        public ActionResult Index1(int? id)
+        {
+            if (id == 0)
+            {
+               return RedirectToAction("Index");
+            }
+            else
+            {
+                var availableCourses = db.AvailableCourses.Include(a => a.Buildings).Include(a => a.Courses).Include(a => a.Days).Include(a => a.Professors).Include(a => a.SemesterYear).Include(a => a.Times);
+                ViewBag.Courses = (from s in availableCourses
+                                   where s.Courses.DepartmentID == id
+                                   select s).OrderByDescending(x => x.SemesterYear.Years.Year).ThenBy(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ToList();
+
+                var SemesterYear = (from s in db.SemesterYear.OrderByDescending(x => x.Years.Year).ThenBy(x => x.SemesterID).AsEnumerable()
+                                    select new SelectListItem
+                                    {
+                                        Text = s.SemesterYearName,
+                                        Value = s.SemesterYearID.ToString()
+
+                                    }).ToList();
+
+
+                var Course = (from s in db.Courses.OrderBy(x => x.Departments.Abbreviation).ThenBy(x => x.CourseNumber).AsEnumerable()
+                              where s.DepartmentID == id
+                              select new SelectListItem
+                              {
+                                  Text = s.CourseName,
+                                  Value = s.CourseID.ToString()
+
+                              }).ToList();
+
+                ViewBag.SemesterYearID = new SelectList(SemesterYear, "Value", "Text");
+                ViewBag.CourseID = new SelectList(Course, "Value", "Text");
+
+                return View();
+            }
+
+        }
+        [HttpPost]
+        public ActionResult Index1(AvailableCourses model, int? id)
+        {
+            if (id == 0)
+                RedirectToAction("Index");
+
+            var search = (from s in db.AvailableCourses
+                          select s);
+
+          
+                if (model.CourseID != 0)
+                {
+                    search = (from s in search
+                              where (model.CourseID == s.CourseID)
+                              select s);
+                }
+                if (model.SemesterYearID != 0)
+                {
+                    search = (from s in search
+                              where (model.SemesterYearID == s.SemesterYearID)
+                              select s);
+                }
+
+
+
+
+          
+            var SemesterYear = (from s in db.SemesterYear.OrderByDescending(x => x.Years.Year).ThenByDescending(x => x.SemesterID).AsEnumerable()
+                                select new SelectListItem
+                                {
+                                    Text = s.SemesterYearName,
+                                    Value = s.SemesterYearID.ToString()
+
+                                }).ToList();
+
+
+            var Course = (from s in db.Courses.OrderBy(x => x.Departments.Abbreviation).ThenBy(x => x.CourseNumber).AsEnumerable()
+                          where s.DepartmentID == id
+                          select new SelectListItem
+                          {
+                              Text = s.CourseName,
+                              Value = s.CourseID.ToString()
+
+                          }).ToList();
+            ViewBag.SemesterYearID = new SelectList(SemesterYear, "Value", "Text");
+
+            ViewBag.CourseID = new SelectList(Course, "Value", "Text");
+            var availableCourses = db.AvailableCourses.Include(a => a.Buildings).Include(a => a.Courses).Include(a => a.Days).Include(a => a.Professors).Include(a => a.SemesterYear).Include(a => a.Times);
+            ViewBag.Courses = (from s in search
+                               where s.Courses.DepartmentID == id
+                               select s).OrderByDescending(x => x.SemesterYear.Years.Year).ThenBy(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ToList();
+            return View();
+        }
+
+        
 
         //Returns the avalible courses to the view after filtering them based on the department
         [Authorize(Roles = "Student")]
@@ -135,21 +255,22 @@ namespace Headmaster.Controllers
             var search = (from s in db.AvailableCourses
                           select s);
 
-            if (ModelState.IsValid)
-            {
-              
-                    var courses = (from s in db.AvailableCourses
-                                   where (model.SemesterYearID == s.SemesterYearID) && (model.CourseID == s.CourseID) 
-                                   select s) ;
 
-                    if (courses != null)
-                    {
-                        search = courses;
-                    }
-              
+            if (model.CourseID != 0)
+            {
+                search = (from s in search
+                          where (model.CourseID == s.CourseID)
+                          select s);
+            }
+            if (model.SemesterYearID != 0)
+            {
+                search = (from s in search
+                          where (model.SemesterYearID == s.SemesterYearID)
+                          select s);
             }
 
-                var SemesterYear = (from s in db.SemesterYear.OrderByDescending(x => x.Years.Year).ThenByDescending(x => x.SemesterID).AsEnumerable()
+
+            var SemesterYear = (from s in db.SemesterYear.OrderByDescending(x => x.Years.Year).ThenByDescending(x => x.SemesterID).AsEnumerable()
                                     select new SelectListItem
                                     {
                                         Text = s.SemesterYearName,
@@ -221,8 +342,8 @@ namespace Headmaster.Controllers
             ViewBag.BuildingID = new SelectList(db.Buildings, "BuildingID", "Abbreviaion");
             ViewBag.CourseID = new SelectList(db.Courses, "CourseID", "CourseName");
             ViewBag.DayID = new SelectList(db.Days, "DaysID", "Day");
-            ViewBag.ProfessorID = new SelectList(db.Professors, "ProfessorID", "FirstName");
-            ViewBag.AvailalbeCourseID = new SelectList(db.SemesterYear, "SemesterYearID", "SemesterYearID");
+            ViewBag.ProfessorID = new SelectList(db.Professors, "ProfessorID", "LastName");
+            ViewBag.SemesterYearID = new SelectList(db.SemesterYear, "SemesterYearID", "SemesterYearName");
             ViewBag.TimeID = new SelectList(db.Times, "TimeID", "Times1");
             return View();
         }
@@ -237,6 +358,7 @@ namespace Headmaster.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.AvailableCourses.Add(availableCourses);
                 db.SaveChanges();
                 return RedirectToAction("Index");
