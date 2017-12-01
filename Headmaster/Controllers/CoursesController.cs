@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Headmaster.Models;
+using System.Data.Entity.Validation;
+using System.Data.Entity.Infrastructure;
 
 namespace Headmaster.Controllers
 {
@@ -110,18 +112,42 @@ namespace Headmaster.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
-        public ActionResult Edit([Bind(Include = "CourseID,DepartmentID,CourseName,Description,Credits")] Courses courses)
+        public ActionResult Edit([Bind(Include = "CourseID,CourseNumber,DepartmentID,CourseName,Description,Credits")] Courses courses)
         {
+            ViewBag.DepartmentID = new SelectList(db.Departments, "DepartmentID", "Abbreviation", courses.DepartmentID);
             if (ModelState.IsValid)
             {
                
                     db.Entry(courses).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                /*try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (DbEntityValidationResult item in ex.EntityValidationErrors)
+                    {
+                        // Get entry
+
+                        DbEntityEntry entry = item.Entry;
+                        string entityTypeName = entry.Entity.GetType().Name;
+
+                        // Display or log error messages
+
+                        foreach (DbValidationError subItem in item.ValidationErrors)
+                        {
+                            string message = string.Format("Error '{0}' occurred in {1} at {2}",
+                                     subItem.ErrorMessage, entityTypeName, subItem.PropertyName);
+                            System.Diagnostics.Debug.WriteLine(message);
+                        }
+                    }
+                }*/
+                return RedirectToAction("Index");
                 
                
             }
-            ViewBag.DepartmentID = new SelectList(db.Departments, "DepartmentID", "Abbreviation", courses.DepartmentID);
+            
             return View(courses);
         }
 
