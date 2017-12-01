@@ -30,7 +30,7 @@ namespace Headmaster.Controllers
                 Students student = new StudentsController().QueryStudentID(User.Identity.GetUserId()); ;
                 var history = (from s in db.Registrations
                                where s.StudentID == student.StudentID
-                               select s).OrderBy(s => s.AvailableCourses.SemesterYearID);
+                               select s).OrderBy(s => s.AvailableCourses.Courses.Departments.DepartmentName).ThenBy(x=>x.AvailableCourses.Courses.CourseName);
                 ViewData["History"] = history;
                 ViewBag.Student= student;
                 
