@@ -410,7 +410,7 @@ namespace Headmaster.Controllers
             ViewBag.CourseID = new SelectList(db.Courses, "CourseID", "CourseName", availableCourses.CourseID);
             ViewBag.DayID = new SelectList(db.Days, "DaysID", "Day", availableCourses.DayID);
             ViewBag.ProfessorID = new SelectList(db.Professors, "ProfessorID", "LastName", availableCourses.ProfessorID);
-            ViewBag.AvailalbeCourseID = new SelectList(db.SemesterYear, "SemesterYearID", "SemesterYearID", availableCourses.AvailalbeCourseID);
+            ViewBag.AvailalbeCourseID = new SelectList(db.SemesterYear, "SemesterYearID", "SemesterYearName", availableCourses.AvailalbeCourseID);
             ViewBag.TimeID = new SelectList(db.Times, "TimeID", "Times1", availableCourses.TimeID);
             return View(availableCourses);
         }
@@ -432,7 +432,7 @@ namespace Headmaster.Controllers
             ViewBag.CourseID = new SelectList(db.Courses, "CourseID", "CourseName", availableCourses.CourseID);
             ViewBag.DayID = new SelectList(db.Days, "DaysID", "Day", availableCourses.DayID);
             ViewBag.ProfessorID = new SelectList(db.Professors, "ProfessorID", "LastName", availableCourses.ProfessorID);
-            ViewBag.AvailalbeCourseID = new SelectList(db.SemesterYear, "SemesterYearID", "SemesterYearID", availableCourses.AvailalbeCourseID);
+            ViewBag.AvailalbeCourseID = new SelectList(db.SemesterYear, "SemesterYearID", "SemesterYearName", availableCourses.AvailalbeCourseID);
             ViewBag.TimeID = new SelectList(db.Times, "TimeID", "Times1", availableCourses.TimeID);
             return View(availableCourses);
         }
@@ -456,7 +456,7 @@ namespace Headmaster.Controllers
             ViewBag.CourseID = new SelectList(db.Courses, "CourseID", "CourseName", availableCourses.CourseID);
             ViewBag.DayID = new SelectList(db.Days, "DaysID", "Day", availableCourses.DayID);
             ViewBag.ProfessorID = new SelectList(db.Professors, "ProfessorID", "LastName", availableCourses.ProfessorID);
-            ViewBag.AvailalbeCourseID = new SelectList(db.SemesterYear, "SemesterYearID", "SemesterYearID", availableCourses.AvailalbeCourseID);
+            ViewBag.AvailalbeCourseID = new SelectList(db.SemesterYear, "SemesterYearID", "SemesterYearName", availableCourses.AvailalbeCourseID);
             ViewBag.TimeID = new SelectList(db.Times, "TimeID", "Times1", availableCourses.TimeID);
             return View(availableCourses);
         }
