@@ -24,13 +24,24 @@ namespace Headmaster.Controllers
         [HttpGet]
         public ActionResult UploadFile()
         {
-            //var semesterYear = db.SemesterYear.Include(s => s.Years).Include(s => s.Semesters).OrderByDescending(x => x.Years.Year).ThenByDescending(x => x.SemesterID);
+            var SemesterYear = (from s in db.SemesterYear.OrderByDescending(x => x.Years.Year).ThenBy(x => x.SemesterID).AsEnumerable()
+                                select new SelectListItem
+                                {
+                                    Text = s.SemesterYearName,
+                                    Value = s.SemesterYearID.ToString()
+
+                                }).ToList();
+            ViewBag.SemesterYear = SemesterYear;
             return View();
         }
 
         [HttpPost]
-        public ActionResult UploadFile(HttpPostedFileBase file)
+        public ActionResult UploadFile(HttpPostedFileBase file, SemesterYear model)
         {
+            /*
+             * Check is if semesteryearId!=0 if it does refresh view 
+             * 
+             */
             String path = "";
             try
             {
