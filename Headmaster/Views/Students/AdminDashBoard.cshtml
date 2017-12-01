@@ -1,20 +1,24 @@
 ﻿<h2>Welcome Admin!</h2>
-
-<table style="width:40%">
+<style>
+    table, th, td {
+        width: 40%;
+        font-size: 18px;
+    }
+    .CenterThis
+    {
+        text-align:center;
+    }
+</style>
+<table>
     <tbody>
-        <tr>
-            <th>     </th>
-            <th>     </th>
-            <th>     </th>
-        </tr>
         <tr>
             <td>
                 Courses
             </td>
-            <td>
+            <td class="CenterThis">
                 <a href="@Url.Action("Create","Courses")">Create</a>
             </td>
-            <td>
+            <td class="CenterThis">
                 <a href="@Url.Action("Index","Courses")">Edit</a>
             </td>
         </tr>
@@ -22,10 +26,10 @@
             <td>
                 Available Courses
             </td>
-            <td>
+            <td class="CenterThis">
                 <a href="@Url.Action("Create","AvailableCourses")">Create</a>
             </td>
-            <td>
+            <td class="CenterThis">
                 <a href="@Url.Action("Index","AvailableCourses")">Edit</a>
             </td>
         </tr>
@@ -33,10 +37,10 @@
             <td>
                 Major Requirements
             </td>
-            <td>
+            <td class="CenterThis">
                 <a href="@Url.Action("Create","MajorRequirements")">Create</a>
             </td>
-            <td>
+            <td class="CenterThis">
                 <a href="@Url.Action("Index","MajorRequirements")">Edit</a>
             </td>
         </tr>
@@ -44,11 +48,30 @@
             <td>
                 Semester Years
             </td>
-            <td>
+            <td class="CenterThis">
                 <a href="@Url.Action("Create","SemesterYears")">Create</a>
             </td>
-            <td>
+            <td class="CenterThis">
                 <a href="@Url.Action("Index","SemesterYears")">Edit</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Years
+            </td>
+            <td class="CenterThis">
+                <a href="@Url.Action("Create","Years")">Create</a>
+            </td>
+            <td class="CenterThis">
+                <a href="@Url.Action("Index","Years")">Edit</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Upload Classes
+            </td>
+            <td class="CenterThis">
+                <a href="@Url.Action("","")">Upload</a>
             </td>
         </tr>
     </tbody>
