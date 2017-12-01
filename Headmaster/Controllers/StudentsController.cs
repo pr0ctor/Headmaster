@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Headmaster.Models;
 using Microsoft.AspNet.Identity;
+using Headmaster.Helper;
 
 namespace Headmaster.Controllers
 {
@@ -250,6 +251,16 @@ namespace Headmaster.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        //Creates the print data and downloads the PDF to the users computer. 
+        public ActionResult createPrintData()
+        {
+            var url = "";
+            PDFGenerator name = new PDFGenerator();
+            url = name.FillForm();
+
+            return File(url,"application/pdf",Server.UrlEncode(name.getFileName()));
+
         }
     }
 }
