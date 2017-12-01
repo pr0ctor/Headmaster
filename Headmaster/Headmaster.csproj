@@ -53,6 +53,7 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -218,10 +219,12 @@
     <Compile Include="Controllers\StudentMinorsController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\TimesController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\YearsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CSVReader.cs" />
     <Compile Include="Helper\PDFGenerator.cs" />
     <Compile Include="Helper\PriorityQueue.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -524,10 +527,12 @@
     <Content Include="Views\Shared\_LayoutStudent.cshtml" />
     <Content Include="Views\Students\AdminDashBoard.cshtml" />
     <Content Include="Views\AvailableCourses\Index1.cshtml" />
+    <Content Include="Views\Upload\UploadFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="temp\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

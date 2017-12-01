@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Microsoft.VisualBasic.FileIO;
-
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
 
 namespace Headmaster.Helper
 {
@@ -21,6 +23,7 @@ namespace Headmaster.Helper
         {
             path = newPath;
         }
+
 
         public void parse()
         {
@@ -68,6 +71,7 @@ namespace Headmaster.Helper
         public String Days { get; set; }
         public String Times { get; set; }
         public String path { get; set; }
+        public int SemesterYearID { get; set; }
 
         public void setCVSCourse(String CRN, String Sub, String CN, String Sec, String CrsTtle, String BdAbbr, String BdLN, String Room, String Prof, String Day, String Time)
         {
@@ -85,6 +89,11 @@ namespace Headmaster.Helper
 
         }
 
+        public void setSemesterYear(int semesterYear)
+        {
+            SemesterYearID = semesterYear;
+        }
+
         //Gets rid of the begining 'U' before the actual course number.
         private String calculateActualCourseNumber(String value)
         {
@@ -92,9 +101,29 @@ namespace Headmaster.Helper
         }
 
         //Insert this class into the databse.
-        public Boolean dbInsert(int SemesterYear)
+        public void dbInsert(int SemesterYear)
         {
-            return true;
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("InsertAvailableCourse", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CourseReferenceNumber", CourseReferenceNumber);
+                    cmd.Parameters.AddWithValue("@Department", Subject);
+                    cmd.Parameters.AddWithValue("@CourseNumber", ActualCourseNumber);
+                    cmd.Parameters.AddWithValue("@Section", Section);
+                    cmd.Parameters.AddWithValue("@CourseName", CourseTitle);
+                    cmd.Parameters.AddWithValue("@Abbreviation", BuildingAbbr);
+                    cmd.Parameters.AddWithValue("@BuildingName", BuildingLongName);
+                    cmd.Parameters.AddWithValue("@RoomNumber", RoomNumber);
+                    cmd.Parameters.AddWithValue("@ProfessorName", Instructor);
+                    cmd.Parameters.AddWithValue("@Days", Days);
+                    cmd.Parameters.AddWithValue("@Times", Times);
+                    cmd.Parameters.AddWithValue("@SemesterYearID", SemesterYear);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public String toString()
