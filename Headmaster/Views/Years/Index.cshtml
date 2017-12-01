@@ -15,7 +15,7 @@
             @Html.DisplayNameFor(model => model.Year)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SemesterYear.SemesterYearID)
+           
         </th>
         <th></th>
     </tr>
@@ -25,9 +25,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Year)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SemesterYear.SemesterYearID)
-        </td>
+       
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.YearID }) |
             @Html.ActionLink("Details", "Details", new { id=item.YearID }) |
