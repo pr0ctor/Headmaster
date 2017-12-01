@@ -355,6 +355,7 @@
     <Content Include="Models\HeadmasterModel.edmx.diagram">
       <DependentUpon>HeadmasterModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Resources\AdvisementForm.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DisableSwitch.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -526,6 +527,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="temp\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
