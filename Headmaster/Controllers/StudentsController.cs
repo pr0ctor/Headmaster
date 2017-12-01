@@ -75,7 +75,7 @@ namespace Headmaster.Controllers
             {
                 Year = (from s in db.Registrations
                         where s.StudentID == student.StudentID
-                        select s.AvailableCourses.SemesterYear1.Years1.Year).Max();
+                        select s.AvailableCourses.SemesterYear.Years.Year).Max();
             }
             catch(System.InvalidOperationException e)
             {
@@ -103,8 +103,8 @@ namespace Headmaster.Controllers
             try
             {
              id = (from s in db.Registrations
-                            where s.StudentID == student.StudentID && year == s.AvailableCourses.SemesterYear1.Years1.Year
-                            select s.AvailableCourses.SemesterYear1.Semesters1.SemesterID).Max();
+                            where s.StudentID == student.StudentID && year == s.AvailableCourses.SemesterYear.Years.Year
+                            select s.AvailableCourses.SemesterYear.Semesters.SemesterID).Max();
                 
 
             }
@@ -125,13 +125,13 @@ namespace Headmaster.Controllers
 
                 //Pulls most recent Registration
                 var course = from s in db.Registrations
-                             where s.StudentID == student.StudentID && s.AvailableCourses.SemesterYear1.Years1.Year == Year
-                             && s.AvailableCourses.SemesterYear1.SemesterID == Semester
+                             where s.StudentID == student.StudentID && s.AvailableCourses.SemesterYear.Years.Year == Year
+                             && s.AvailableCourses.SemesterYear.SemesterID == Semester
                              select s;
 
                 ViewData["Courses"] = course;
                 student.TotalCredits = TotalCredits(student);
-                
+            
                 return View(student);
             }
            

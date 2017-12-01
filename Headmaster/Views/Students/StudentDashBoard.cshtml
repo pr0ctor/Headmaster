@@ -59,7 +59,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.AvailableCourses.Courses.Departments.Abbreviation)
+               @Html.DisplayFor(modelItem => item.AvailableCourses.Courses.Departments.Abbreviation)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AvailableCourses.Courses.CourseNumber)
@@ -78,6 +78,6 @@
         </tr>
     }
     </table>
-<p><a href="@Url.Action("Search","AvailableCourses")" class="btn btn-primary btn-lg">Register</a></p>
+<p><a href="@Url.Action("Search","AvailableCourses")" class="btn btn-primary btn-lg">Register</a> <a href="@Url.Action("Search","AvailableCourses")" class="btn btn-primary btn-lg">Export</a></p>
   
 

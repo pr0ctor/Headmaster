@@ -25,7 +25,6 @@ namespace Headmaster.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
@@ -34,6 +33,7 @@ namespace Headmaster.Models
         public virtual DbSet<Buildings> Buildings { get; set; }
         public virtual DbSet<Corequisites> Corequisites { get; set; }
         public virtual DbSet<CourseGrades> CourseGrades { get; set; }
+        public virtual DbSet<CoursePriority> CoursePriority { get; set; }
         public virtual DbSet<Courses> Courses { get; set; }
         public virtual DbSet<Days> Days { get; set; }
         public virtual DbSet<Departments> Departments { get; set; }
@@ -52,7 +52,5 @@ namespace Headmaster.Models
         public virtual DbSet<Students> Students { get; set; }
         public virtual DbSet<Times> Times { get; set; }
         public virtual DbSet<Years> Years { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<CoursePriority> CoursePriority { get; set; }
     }
 }

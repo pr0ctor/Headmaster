@@ -17,10 +17,34 @@ namespace Headmaster.Controllers
         // GET: Courses
         public ActionResult Index()
         {
+            ViewBag.Department = (from s in db.Departments
+                                  select new SelectListItem
+                                  {
+                                      Text = s.DepartmentName,
+                                      Value = s.DepartmentID.ToString()
+                                  }).ToList();
+
             var courses = db.Courses.Include(c => c.Departments);
-            return View(courses.ToList());
+            ViewBag.Course = courses.ToList();
+            return View();
         }
-       
+        [HttpPost]
+        public ActionResult Index(Courses model)
+        {
+            ViewBag.Department = (from s in db.Departments
+                                  select new SelectListItem
+                                  {
+                                      Text = s.DepartmentName,
+                                      Value = s.DepartmentID.ToString()
+                                  }).ToList();
+
+            var courses = from s in db.Courses.Include(c => c.Departments)
+                          where s.DepartmentID == model.DepartmentID
+                          select s ;
+            ViewBag.Course = courses.ToList();
+            return View();
+        }
+
         // GET: Courses/Details/5
         public ActionResult Details(int? id)
         {
@@ -90,9 +114,12 @@ namespace Headmaster.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(courses).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+               
+                    db.Entry(courses).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                
+               
             }
             ViewBag.DepartmentID = new SelectList(db.Departments, "DepartmentID", "Abbreviation", courses.DepartmentID);
             return View(courses);

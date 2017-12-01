@@ -1,14 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="headmasterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="__MigrationHistory">
-    <Key>
-      <PropertyRef Name="MigrationID" />
-    </Key>
-    <Property Name="MigrationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ContextKey" Type="nvarchar" MaxLength="150" Nullable="false" />
-    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-  </EntityType>
   <EntityType Name="AspNetRoles">
     <Key>
       <PropertyRef Name="Id" />
@@ -133,7 +124,7 @@
     </Key>
     <Property Name="DepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Abbreviation" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="DepartmentName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DepartmentName" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Grades">
     <Key>
@@ -210,7 +201,7 @@
     </Key>
     <Property Name="SemesterYearID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="SemesterID" Type="int" Nullable="false" />
-    <Property Name="YearID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="YearID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="StudentMajors">
     <Key>
@@ -238,16 +229,6 @@
     <Property Name="MiddleName" Type="varchar" MaxLength="50" />
     <Property Name="VIPID" Type="int" Nullable="false" />
     <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="Times">
     <Key>
@@ -656,7 +637,6 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="headmasterModelStoreContainer">
-    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
@@ -683,7 +663,6 @@
     <EntitySet Name="StudentMajors" EntityType="Self.StudentMajors" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StudentMinors" EntityType="Self.StudentMinors" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Times" EntityType="Self.Times" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Years" EntityType="Self.Years" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_AvailableCourses_Buildings" Association="Self.FK_AvailableCourses_Buildings">

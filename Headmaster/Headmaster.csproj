@@ -255,9 +255,6 @@
     <Compile Include="Models\Courses.cs">
       <DependentUpon>HeadmasterModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>HeadmasterModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Days.cs">
       <DependentUpon>HeadmasterModel.tt</DependentUpon>
     </Compile>
@@ -318,9 +315,6 @@
       <DependentUpon>HeadmasterModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Students.cs">
-      <DependentUpon>HeadmasterModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>HeadmasterModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Times.cs">
@@ -528,6 +522,7 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutStudent.cshtml" />
     <Content Include="Views\Students\AdminDashBoard.cshtml" />
+    <Content Include="Views\AvailableCourses\Index1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
