@@ -113,6 +113,7 @@ namespace Headmaster.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.PriorityID = new SelectList(db.CoursePriority, "PriorityID", "Priority");
             ViewBag.CourseID = new SelectList(db.Courses, "CourseID", "CourseName", majorRequirements.CourseID);
             ViewBag.MajorID = new SelectList(db.Majors, "MajorID", "MajorName", majorRequirements.MajorID);
             return View(majorRequirements);
@@ -125,7 +126,7 @@ namespace Headmaster.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
-        public ActionResult Edit([Bind(Include = "MajorRequirementsID,MajorID,CourseID")] MajorRequirements majorRequirements)
+        public ActionResult Edit([Bind(Include = "MajorRequirementsID,MajorID,CourseID,PriorityID")] MajorRequirements majorRequirements)
         {
             if (ModelState.IsValid)
             {
@@ -133,6 +134,7 @@ namespace Headmaster.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.PriorityID = new SelectList(db.CoursePriority, "PriorityID", "Priority");
             ViewBag.CourseID = new SelectList(db.Courses, "CourseID", "CourseName", majorRequirements.CourseID);
             ViewBag.MajorID = new SelectList(db.Majors, "MajorID", "MajorName", majorRequirements.MajorID);
             return View(majorRequirements);
