@@ -64,7 +64,7 @@ namespace Headmaster.Controllers
                                    where s.Courses.DepartmentID == id
                                    select s).OrderByDescending(x => x.SemesterYear.Years.Year).ThenBy(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ToList();
 
-                var SemesterYear = (from s in db.SemesterYear.OrderByDescending(x => x.Years.Year).ThenBy(x => x.SemesterID).AsEnumerable()
+                var SemesterYear = (from s in db.SemesterYear.OrderByDescending(x => x.Years.Year).ThenByDescending(x => x.SemesterID).AsEnumerable()
                                     select new SelectListItem
                                     {
                                         Text = s.SemesterYearName,
@@ -158,7 +158,7 @@ namespace Headmaster.Controllers
                             where s.StudentID == user.StudentID
                             select s.AvailableCourseID;
 
-                var Courses = from s in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years.Year).ThenBy(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName)
+                var Courses = from s in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName)
                               where !taken.Contains(s.AvailalbeCourseID)
                               select s;
 
@@ -195,7 +195,7 @@ namespace Headmaster.Controllers
                                 where s.StudentID == user.StudentID
                                 select s.AvailableCourseID;
 
-                    var Courses = from s in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years.Year).ThenBy(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName)
+                    var Courses = from s in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName)
                                   where !taken.Contains(s.AvailalbeCourseID)
                                   select s;
 
@@ -239,11 +239,11 @@ namespace Headmaster.Controllers
                             where s.StudentID == user.StudentID
                             select s.AvailableCourseID;
 
-                var NotTaken = from s in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years.Year).ThenBy(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName)
+                var NotTaken = from s  in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName)
                               where !taken.Contains(s.AvailalbeCourseID)
                               select s;
 
-                var SemesterYear = (from s in db.SemesterYear.OrderByDescending(x=>x.Years.Year).ThenBy(x=>x.SemesterID).AsEnumerable()
+                var SemesterYear = (from s in db.SemesterYear.OrderByDescending(x=>x.Years.Year).ThenByDescending(x=>x.SemesterID).AsEnumerable()
                                         select new SelectListItem
                                         {
                                             Text = s.SemesterYearName,
