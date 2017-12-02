@@ -13,6 +13,7 @@
     @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="form-group">
+            <p>Upload the .CSV file containing the course information and select the semester that the courses will be uploaded to.</p>
             @Html.LabelFor(model => model.SemesterYearID, "Semester", htmlAttributes: new { @class = "control-label col-md-2" })
 
             <div class="col-md-10">
@@ -29,6 +30,9 @@
             <input type="submit" value="Upload" />
 
             @ViewBag.Message
+            <p>
+                <em>After upload in the CSV file please wait for the courses to be uloaded.</em>
+            </p>
 
         </div>
 
