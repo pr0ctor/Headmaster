@@ -38,33 +38,64 @@ namespace Headmaster.Controllers
         [HttpPost]
         public ActionResult UploadFile(HttpPostedFileBase file, SemesterYear model)
         {
+
             /*
              * Check is if semesteryearId!=0 if it does refresh view 
              * 
              */
-            String path = "";
-            try
+            if (model.SemesterYearID != 0)
             {
-                if (file.ContentLength > 0)
+                String path = "";
+                try
                 {
-                    string _FileName = Path.GetFileName(file.FileName);
-                    string _path = Path.Combine(Server.MapPath("~/Uploads"), _FileName);
-                    path = _path;
-                    file.SaveAs(_path);
+                    if (file.ContentLength > 0)
+                    {
+                        string _FileName = Path.GetFileName(file.FileName);
+                        string _path = Path.Combine(Server.MapPath("~/Uploads"), _FileName);
+                        path = _path;
+                        file.SaveAs(_path);
+                    }
+                    ViewBag.Message = "File Uploaded Successfully!!";
+
+                    CSVReader reader = new CSVReader();
+                    reader.setPath(path);
+                    reader.setSemesterYear(model.SemesterYearID);
+                    reader.parse();
+
+                    var SemesterYear = (from s in db.SemesterYear.OrderByDescending(x => x.Years.Year).ThenBy(x => x.SemesterID).AsEnumerable()
+                                        select new SelectListItem
+                                        {
+                                            Text = s.SemesterYearName,
+                                            Value = s.SemesterYearID.ToString()
+
+                                        }).ToList();
+                    ViewBag.SemesterYear = SemesterYear;
+                    return View();
                 }
-                ViewBag.Message = "File Uploaded Successfully!!";
+                catch
+                {
+                    var SemesterYear = (from s in db.SemesterYear.OrderByDescending(x => x.Years.Year).ThenBy(x => x.SemesterID).AsEnumerable()
+                                        select new SelectListItem
+                                        {
+                                            Text = s.SemesterYearName,
+                                            Value = s.SemesterYearID.ToString()
 
-                CSVReader reader = new CSVReader();
-                reader.setPath(path);
-                //reader.setSemesterYear(); [RYAN SET THIS VALUE]
-                reader.parse();
-
-
-                return View();
+                                        }).ToList();
+                    ViewBag.SemesterYear = SemesterYear;
+                    ViewBag.Message = "File upload failed!!";
+                    return View();
+                }
             }
-            catch
+            else
             {
-                ViewBag.Message = "File upload failed!!";
+                var SemesterYear = (from s in db.SemesterYear.OrderByDescending(x => x.Years.Year).ThenBy(x => x.SemesterID).AsEnumerable()
+                                    select new SelectListItem
+                                    {
+                                        Text = s.SemesterYearName,
+                                        Value = s.SemesterYearID.ToString()
+
+                                    }).ToList();
+                ViewBag.SemesterYear = SemesterYear;
                 return View();
             }
         }
