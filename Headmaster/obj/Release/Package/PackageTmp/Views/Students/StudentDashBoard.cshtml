@@ -1,0 +1,92 @@
+﻿@model Headmaster.Models.Students
+@{
+    ViewBag.Title = "StudentDashBoard";
+    IEnumerable<Headmaster.Models.Registrations> course = ViewData["Courses"] as IEnumerable<Headmaster.Models.Registrations>;
+    
+}
+
+<h2>@Html.DisplayFor(model=>model.FullName)  </h2>
+
+<dl class="dl-horizontal">
+    <dt>
+        Name: 
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.FullName)
+    </dd>
+    <dt>
+       MiddleName: 
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.MiddleName)
+    </dd>
+    <dt>
+       VIPID: 
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.VIPID)
+    </dd>
+    <dt>
+        Credits Taken: 
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.TotalCredits)
+    </dd>
+ </dl>
+<h4>Course Registration</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            Department
+        </th>
+        <th>
+            Course Number
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Credits
+        </th>
+        <th>
+            Semester
+        </th>
+        <th>
+
+        </th>
+    </tr>
+    
+    @foreach (var item in (IEnumerable<Headmaster.Models.Registrations>)course)
+    {
+        <tr>
+            <td>
+               @Html.DisplayFor(modelItem => item.AvailableCourses.Courses.Departments.Abbreviation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvailableCourses.Courses.CourseNumber)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.AvailableCourses.Courses.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvailableCourses.Courses.Credits)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvailableCourses.SemesterYear.SemesterYearName)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", "Courses", new { id = item.AvailableCourses.CourseID }, null) |
+                @Html.ActionLink("Delete", "Delete","Registrations",new { id = item.RegistrationID },null)
+            </td>
+        </tr>
+    }
+    </table>
+<p><a href="@Url.Action("Search","AvailableCourses")" class="btn btn-primary btn-lg">Register</a> <a href="@Url.Action("createPrintData","Students")" class="btn btn-primary btn-lg">Export</a></p>
+  
+

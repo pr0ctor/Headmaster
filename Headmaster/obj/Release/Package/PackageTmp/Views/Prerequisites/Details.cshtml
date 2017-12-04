@@ -1,0 +1,34 @@
+﻿@model Headmaster.Models.Prerequisites
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Prerequisites</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Course
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Courses.CourseName)
+        </dd>
+
+        <dt>
+            Prerequisite
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Courses1.CourseName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PrerequisiteID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

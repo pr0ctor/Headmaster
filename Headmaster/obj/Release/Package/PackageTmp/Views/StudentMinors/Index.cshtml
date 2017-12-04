@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Headmaster.Models.StudentMinors>
+
+@{
+    ViewBag.Title = "Index | Student Minors";
+}
+
+<h2>Index | Student Minors</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinorID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Minors.MinorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Students.FirstName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinorID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Minors.MinorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Students.FirstName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StudentMinorID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StudentMinorID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.StudentMinorID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,133 @@
+﻿@model Headmaster.Models.AvailableCourses
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AvailableCourses</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Section)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Section)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CRN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CRN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SemesterYearID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SemesterYear.SemesterYearName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Buildings.Abbreviaion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Buildings.Abbreviaion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Courses.CourseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Courses.CourseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Days.Day)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Days.Day)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Professors.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Professors.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Times.Times1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Times.Times1)
+        </dd>
+
+    </dl>
+
+    <h4>Prerequisites</h4>
+    <hr />
+    <table class="table">
+        <tr>
+            <th>
+                Course Number
+            </th>
+            <th>
+                Course Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Credits
+            </th>
+            <th>
+                Department
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.Courses.Prerequisites)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Courses1.CourseNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Courses1.CourseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Courses1.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Courses1.Credits)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Courses1.Departments.Abbreviation)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AvailalbeCourseID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

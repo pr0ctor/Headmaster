@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="db494618c05b43dab992829124bd2d22" Name="Diagram1">
+        <EntityTypeShape EntityType="headmasterModel.AspNetRoles" Width="1.5" PointX="3.75" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.AspNetUserClaims" Width="1.5" PointX="8.25" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.AspNetUserLogins" Width="1.5" PointX="8.25" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.AspNetUsers" Width="1.5" PointX="6" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.AvailableCourses" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.Buildings" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.Corequisites" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.CourseGrades" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.CoursePriority" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.Courses" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.Days" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.Departments" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.Grades" Width="1.5" PointX="10.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.MajorRequirements" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.Majors" Width="1.5" PointX="6" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.MinorRequirements" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.Minors" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.Prerequisites" Width="1.5" PointX="5.25" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.Professors" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.Registrations" Width="1.5" PointX="10.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.Semesters" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.SemesterYear" Width="1.5" PointX="3" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.StudentMajors" Width="1.5" PointX="10.5" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.StudentMinors" Width="1.5" PointX="10.5" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.Students" Width="1.5" PointX="8.25" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.Times" Width="1.5" PointX="3" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="headmasterModel.Years" Width="1.5" PointX="0.75" PointY="17.875" IsExpanded="true" />
+        <AssociationConnector Association="headmasterModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_Students_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_AvailableCourses_Buildings" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_AvailableCourses_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_AvailableCourses_Days" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_AvailableCourses_Professors" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_AvailableCourses_SemesterYear" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_AvailableCourses_Times" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_Registrations_AvailableCourses" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_Corequisites_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_Corequisites_Courses1" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_CourseGrades_Grades" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_CourseGrades_Registrations" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_CourseGrades_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_MajorRequirements_CoursePriority" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_Courses_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_MajorRequirements_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_MinorRequirements_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_Prerequisites_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_Prerequisites_Courses1" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_MajorRequirements_Majors" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_StudentMajors_Majors" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_MinorRequirements_Minors" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_StudentMinors_Minors" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_Registrations_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_SemesterYear_Semesters" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_SemesterYear_Years" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_StudentMajors_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.FK_StudentMinors_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="headmasterModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

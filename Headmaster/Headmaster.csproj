@@ -359,6 +359,7 @@
       <DependentUpon>HeadmasterModel.edmx</DependentUpon>
     </Content>
     <Content Include="Resources\AdvisementForm.pdf" />
+    <None Include="Properties\PublishProfiles\Headmaster - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DisableSwitch.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

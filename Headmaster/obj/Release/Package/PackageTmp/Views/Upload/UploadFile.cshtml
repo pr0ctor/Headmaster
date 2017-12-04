@@ -1,0 +1,41 @@
+﻿
+@model Headmaster.Models.SemesterYear
+
+@{
+    ViewBag.Title = "UploadFile";
+
+    var Semester = ViewBag.SemesterYear as IEnumerable<SelectListItem>;
+
+}
+
+    <h2>Upload File</h2>
+
+    @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            <p>Upload the .CSV file containing the course information and select the semester that the courses will be uploaded to.</p>
+            @Html.LabelFor(model => model.SemesterYearID, "Semester", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.SemesterYearID, Semester, "Select", htmlAttributes: new { @class = "form-control", @id = "SemesterDropDown" })
+                @Html.ValidationMessageFor(model => model.SemesterYearID, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div>
+
+            @Html.TextBox("file", "", new { type = "file" }) <br />
+
+
+            <input type="submit" value="Upload" />
+
+            @ViewBag.Message
+            <p>
+                <em>After upload in the CSV file please wait for the courses to be uloaded.</em>
+            </p>
+
+        </div>
+
+
+    }
+

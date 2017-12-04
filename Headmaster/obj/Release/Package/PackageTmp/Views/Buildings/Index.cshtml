@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Headmaster.Models.Buildings>
+
+@{
+    ViewBag.Title = "Index | Buildings";
+}
+
+<h2>Index | Buildings</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Abbreviaion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuidingName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Abbreviaion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuidingName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BuildingID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BuildingID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BuildingID })
+        </td>
+    </tr>
+}
+
+</table>
