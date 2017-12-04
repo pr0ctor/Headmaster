@@ -158,7 +158,7 @@ namespace Headmaster.Controllers
                             where s.StudentID == user.StudentID
                             select s.AvailableCourseID;
 
-                var Courses = from s in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName)
+                var Courses = from s in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ThenBy(x=>x.Courses.CourseNumber)
                               where !taken.Contains(s.AvailalbeCourseID)
                               select s;
 
@@ -195,7 +195,7 @@ namespace Headmaster.Controllers
                                 where s.StudentID == user.StudentID
                                 select s.AvailableCourseID;
 
-                    var Courses = from s in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName)
+                    var Courses = from s in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ThenBy(x => x.Courses.CourseNumber)
                                   where !taken.Contains(s.AvailalbeCourseID)
                                   select s;
 
@@ -239,8 +239,8 @@ namespace Headmaster.Controllers
                             where s.StudentID == user.StudentID
                             select s.AvailableCourseID;
 
-                var NotTaken = from s  in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName)
-                              where !taken.Contains(s.AvailalbeCourseID)
+                var NotTaken = from s  in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ThenBy(x => x.Courses.CourseNumber)
+                               where !taken.Contains(s.AvailalbeCourseID)
                               select s;
 
                 var SemesterYear = (from s in db.SemesterYear.OrderByDescending(x=>x.Years.Year).ThenByDescending(x=>x.SemesterID).AsEnumerable()
@@ -263,7 +263,7 @@ namespace Headmaster.Controllers
 
                 ViewBag.SemesterYearID = new SelectList(SemesterYear, "Value", "Text");
                 ViewBag.CourseID = new SelectList(Course, "Value", "Text");
-                ViewData["Course"] = from s in NotTaken.OrderByDescending(x => x.SemesterYear.Years.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ToList()
+                ViewData["Course"] = from s in NotTaken.OrderByDescending(x => x.SemesterYear.Years.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ThenBy(x => x.Courses.CourseNumber).ToList()
                                      where s.Courses.DepartmentID == id
                                      select s;
                                       
@@ -290,7 +290,7 @@ namespace Headmaster.Controllers
                         where s.StudentID == user.StudentID
                         select s.AvailableCourseID;
 
-            var NotTaken = from s in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years.Year).ThenBy(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName)
+            var NotTaken = from s in db.AvailableCourses.OrderByDescending(x => x.SemesterYear.Years.Year).ThenBy(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ThenBy(x => x.Courses.CourseNumber)
                            where !taken.Contains(s.AvailalbeCourseID) && s.Courses.DepartmentID == id
                           select s;
 
@@ -332,7 +332,7 @@ namespace Headmaster.Controllers
             ViewBag.SemesterYearID = new SelectList(SemesterYear, "Value", "Text");
           
             ViewBag.CourseID = new SelectList(Course, "Value", "Text");
-            ViewData["Course"]= search.OrderByDescending(x => x.SemesterYear.Years.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName);
+            ViewData["Course"]= search.OrderByDescending(x => x.SemesterYear.Years.Year).ThenByDescending(x => x.SemesterYear.SemesterID).ThenBy(x => x.Courses.Departments.DepartmentName).ThenBy(x => x.Courses.CourseNumber);
             return View();
         }
         

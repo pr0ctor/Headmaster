@@ -202,8 +202,15 @@ namespace Headmaster.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
+                
                 //Taken Courses
                 Students user = new StudentsController().QueryStudentID(User.Identity.GetUserId());
+                int Year = (from s in db.Years
+                            select s.Year).Max();
+                int Semester = (from s in db.SemesterYear
+                                where s.Years.Year == Year
+                                select s.SemesterID).Max();
+
                 var taken = from s in db.Registrations
                             where s.StudentID == user.StudentID
                             select s.AvailableCourses.CourseID;
@@ -221,12 +228,16 @@ namespace Headmaster.Controllers
                 Aval = from s in Aval
                       where !RemFalses.Contains(s)
                       select s;
-                
+                //Availble next Semester
+                var nextSemester = from s in db.AvailableCourses
+                                   where s.SemesterYear.Years.Year == Year && s.SemesterYear.SemesterID == Semester
+                                   select s.CourseID;
+
                 var major = from s in db.MajorRequirements
                             select s;
                 //Pull needed class from avalible 
                 var Recommend = (from s in major
-                                 where Aval.Contains(s.CourseID) || (!ClassWithPreq.Contains(s.CourseID) && (!taken.Contains(s.CourseID)))
+                                 where Aval.Contains(s.CourseID) || (!ClassWithPreq.Contains(s.CourseID) && (!taken.Contains(s.CourseID))) && nextSemester.Contains(s.CourseID)
                                  select s);
 
                 //Sort class based on priority
