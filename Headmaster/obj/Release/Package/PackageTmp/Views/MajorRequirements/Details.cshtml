@@ -1,0 +1,41 @@
+﻿@model Headmaster.Models.MajorRequirements
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MajorRequirements</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Courses.CourseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Courses.CourseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Majors.MajorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Majors.MajorName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CoursePriority.Priority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CoursePriority.Priority)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MajorRequirementsID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

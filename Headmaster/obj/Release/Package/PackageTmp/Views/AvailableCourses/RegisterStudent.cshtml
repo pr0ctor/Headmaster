@@ -1,0 +1,118 @@
+﻿@model Headmaster.Models.AvailableCourses
+
+@{
+    ViewBag.Title = "RegisterStudent";
+}
+
+<h2>Register</h2>
+
+<div>
+    <h4></h4>
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Courses.CourseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Courses.CourseName)
+        </dd>
+        <dt>
+            Department
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Courses.Departments.DepartmentName)
+        </dd>
+        <dt>
+            Course Number
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Courses.CourseNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Section)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Section)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CRN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CRN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomNumber)
+        </dd>
+
+        <dt>
+          Building
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Buildings.BuidingName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Days.Day)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Days.Day)
+        </dd>
+
+        <dt>
+          Professor
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Professors.LastName)
+        </dd>
+
+        <dt>
+            Semester Years
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SemesterYear.SemesterYearName)
+        </dd>
+
+        <dt>
+            Times
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Times.Times1)
+        </dd>
+        <dt>
+            Description
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Courses.Description)
+        </dd>
+      
+
+        
+    </dl>
+
+</div>
+        @using (Html.BeginForm("RegisterStudent", "AvailableCourses", new { model = Model }))
+        {
+        <input type="submit" value="Register" class="btn btn-default" />
+        }
+<p>
+    
+    @Html.ActionLink("Back to List", "Search")
+</p>

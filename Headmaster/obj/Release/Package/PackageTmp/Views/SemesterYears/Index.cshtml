@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Headmaster.Models.SemesterYear>
+
+@{
+    ViewBag.Title = "Index | Semester Year";
+
+}
+
+<h2>Index | Semester Year</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SemesterID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearID)
+        </th>
+        
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SemesterID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YearID)
+        </td>
+      
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SemesterYearID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SemesterYearID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SemesterYearID })
+        </td>
+    </tr>
+}
+
+</table>

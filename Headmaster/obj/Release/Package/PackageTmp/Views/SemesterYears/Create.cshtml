@@ -1,0 +1,50 @@
+﻿@model Headmaster.Models.SemesterYear
+
+@{
+    ViewBag.Title = "Create";
+    IEnumerable<SelectListItem> Semester = ViewBag.SemesterID as IEnumerable<SelectListItem>;
+    IEnumerable<SelectListItem> Year = ViewBag.YearId as IEnumerable<SelectListItem>; 
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>SemesterYear</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.SemesterID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model=>model.SemesterID, Semester, "Select", htmlAttributes: new { @class = "form-control", @id = "SemesterDropDown" })
+                @Html.ValidationMessageFor(model => model.SemesterID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model=>model.YearID,null, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model=>model.YearID, Year, "Select", htmlAttributes: new { @class = "form-control", @id = "YearDropDown" })
+                @Html.ValidationMessageFor(model => model.YearID,"", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

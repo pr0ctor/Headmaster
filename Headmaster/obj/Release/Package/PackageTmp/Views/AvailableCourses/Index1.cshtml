@@ -1,0 +1,112 @@
+﻿@model Headmaster.Models.AvailableCourses
+
+@{
+    ViewBag.Title = "Index | Available Courses";
+    var course = ViewBag.Courses as IEnumerable<Headmaster.Models.AvailableCourses>;
+    var CourseID = ViewBag.CourseID as IEnumerable<SelectListItem>;
+    var SemesterYear = ViewBag.SemesterYearID as IEnumerable<SelectListItem>;
+}
+<h2>Index</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.SemesterYear.SemesterID, "Semester", htmlAttributes: new { @class = "control-label col-md-2" })
+
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.SemesterYearID, SemesterYear, "Select", htmlAttributes: new { @class = "form-control", @id = "SemesterDropDown" })
+            @Html.ValidationMessageFor(model => model.SemesterYear.SemesterID, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+
+            @Html.LabelFor(model => model.CourseID, "Course", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.DropDownListFor(model => model.CourseID, CourseID, "Select", htmlAttributes: new { @class = "form-control", @id = "CourseDropDown" })
+                @Html.ValidationMessageFor(model => model.Courses.CourseID, "", new { @class = "text-danger" })
+
+            </div>
+
+                <input type="submit" value="Search" class="btn btn-default" />
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Department
+        </th>
+        <th>
+            Course Number
+        </th>
+        <th>
+            Title
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.CRN)
+        </th>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.Days.Day)
+        </th>
+        <th>
+            Time
+        </th>
+
+        <th>
+            Semester
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Courses.Credits)
+        </th>
+
+    </tr>
+    @foreach (var item in course)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Courses.Departments.Abbreviation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Courses.CourseNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Courses.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CRN)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Days.Day)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Times.Times1)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.SemesterYear.SemesterYearName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Courses.Credits)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BuildingID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.BuildingID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.BuildingID })
+            </td>
+
+
+        </tr>
+    }
+
+
+</table>

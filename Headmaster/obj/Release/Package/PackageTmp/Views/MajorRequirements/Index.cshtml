@@ -1,0 +1,56 @@
+﻿@model Headmaster.Models.MajorRequirements
+@{
+    ViewBag.Title = "Index | Major Requirements";
+    var Majors = ViewBag.MajorReqs as IEnumerable<Headmaster.Models.MajorRequirements>;
+    var Priority=ViewBag.Priority as IEnumerable<SelectListItem>;
+}
+
+<h2>Index | Major Requirements</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.CoursePriority.Priority, "Classification", htmlAttributes: new { @class = "control-label col-md-2" })
+
+        <div class="col-md-10">
+            @Html.DropDownListFor(model =>model.PriorityID, Priority, "Select", htmlAttributes: new { @class = "form-control", @id = "SemesterDropDown" })
+            @Html.ValidationMessageFor(model => model.CoursePriority.Priority, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+
+            <input type="submit" value="Search" class="btn btn-default" />
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Courses.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Majors.MajorName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Majors) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Courses.CourseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Majors.MajorName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MajorRequirementsID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MajorRequirementsID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MajorRequirementsID })
+        </td>
+    </tr>
+}
+
+</table>

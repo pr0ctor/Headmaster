@@ -1,0 +1,148 @@
+﻿@model Headmaster.Models.MajorRequirements
+
+@{
+    ViewBag.Title = "RequiredCourses";
+    IEnumerable<Headmaster.Models.MajorRequirements> GenEd = ViewBag.GenED as IEnumerable<Headmaster.Models.MajorRequirements>;
+    IEnumerable<Headmaster.Models.MajorRequirements> Core = ViewBag.Core as IEnumerable<Headmaster.Models.MajorRequirements>;
+    IEnumerable<Headmaster.Models.MajorRequirements> Supplemental = ViewBag.Supplemental as IEnumerable<Headmaster.Models.MajorRequirements>;
+}
+
+<h2>Required Courses</h2>
+<h4> General Education</h4>
+    <table class="table">
+    <tr>
+        <th>
+            Department
+        </th>
+        <th>
+            Course Number
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Credits
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    @foreach (var item in GenEd)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Courses.Departments.Abbreviation)
+            </td>
+            <td>
+
+                @Html.DisplayFor(modelItem => item.Courses.CourseNumber)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Courses.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Courses.Credits)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", "Courses", new { id = item.CourseID }, null) 
+               
+            </td>
+
+        </tr>
+    }
+</table>
+<h4> Core Requirements</h4>
+<table class="table">
+    <tr>
+        <th>
+            Department
+        </th>
+        <th>
+            Course Number
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Credits
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    @foreach (var item in Core)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Courses.Departments.Abbreviation)
+            </td>
+            <td>
+
+                @Html.DisplayFor(modelItem => item.Courses.CourseNumber)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Courses.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Courses.Credits)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", "Courses", new { id = item.CourseID }, null) 
+
+            </td>
+
+        </tr>
+    }
+</table>
+<h4> Supplemental Courses</h4>
+<table class="table">
+    <tr>
+        <th>
+            Department
+        </th>
+        <th>
+            Course Number
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Credits
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    @foreach (var item in Supplemental)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Courses.Departments.Abbreviation)
+            </td>
+            <td>
+
+                @Html.DisplayFor(modelItem => item.Courses.CourseNumber)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Courses.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Courses.Credits)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", "Courses", new { id = item.CourseID }, null) 
+
+            </td>
+
+        </tr>
+    }
+</table>
+@Html.ActionLink("Recommended Courses", "RecommendCourse")
+
+

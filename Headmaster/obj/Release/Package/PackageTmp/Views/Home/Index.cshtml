@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron" style="text-align:center;">
+    <h1>Headmaster</h1>
+    <p class="lead"></p>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <p><a href="@Url.Action("Register", "Account")" class="btn btn-primary btn-lg">Register</a></p>
+        <p><a href="@Url.Action("Login", "Account")" class="btn btn-primary btn-lg">Login</a></p>
+    }
+</div>
+
+<style>
+    p {
+        display: inline-block;
+        padding-top: 20pt;
+    }
+
+</style>

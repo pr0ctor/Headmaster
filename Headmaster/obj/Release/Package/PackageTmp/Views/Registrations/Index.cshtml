@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Headmaster.Models.Registrations>
+
+@{
+    ViewBag.Title = "Index | Registrations";
+}
+
+<h2>Index | Registrations</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AvailableCourses.Section)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Students.FirstName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AvailableCourses.Section)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Students.FirstName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RegistrationID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RegistrationID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RegistrationID })
+        </td>
+    </tr>
+}
+
+</table>

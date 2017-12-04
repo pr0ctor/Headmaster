@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Headmaster.Models.Days>
+
+@{
+    ViewBag.Title = "Index | Days";
+}
+
+<h2>Index | Days</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Day)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Day)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DaysID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DaysID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DaysID })
+        </td>
+    </tr>
+}
+
+</table>

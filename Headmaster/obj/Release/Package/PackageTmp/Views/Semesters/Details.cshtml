@@ -1,0 +1,34 @@
+﻿@model Headmaster.Models.Semesters
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Semesters</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Semester)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Semester)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SemesterYear.SemesterYearID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SemesterYear.SemesterYearID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SemesterID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
