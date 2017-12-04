@@ -83,6 +83,49 @@
         </dd>
 
     </dl>
+
+    <h4>Prerequisites</h4>
+    <hr />
+    <table class="table">
+        <tr>
+            <th>
+                Course Number
+            </th>
+            <th>
+                Course Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Credits
+            </th>
+            <th>
+                Department
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.Courses.Prerequisites)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Courses1.CourseNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Courses1.CourseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Courses1.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Courses1.Credits)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Courses1.Departments.Abbreviation)
+                </td>
+            </tr>
+        }
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.AvailalbeCourseID }) |

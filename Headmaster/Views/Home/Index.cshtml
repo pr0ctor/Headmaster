@@ -2,7 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
+<div class="jumbotron" style="text-align:center;">
     <h1>Headmaster</h1>
     <p class="lead"></p>
     @if (!User.Identity.IsAuthenticated)
@@ -12,11 +12,10 @@
     }
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-    </div>
-    <div class="col-md-4">
-    </div>
-    <div class="col-md-4">
-    </div>
-</div>
+<style>
+    p {
+        display: inline-block;
+        padding-top: 20pt;
+    }
+
+</style>
